@@ -143,5 +143,69 @@ footer{border-top:1px solid var(--line);color:#6b7a90;padding:18px 0;margin-top:
   transform: scale(1.03);
 }
 
+.edu-entry {
+  margin-bottom: 2.5rem;
+}
+
+.edu-entry h4 {
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.edu-entry p {
+  margin: 0.2rem 0 0.8rem;
+  line-height: 1.5;
+}
+
+.edu-entry ul {
+  padding-left: 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.edu-entry li {
+  margin-bottom: 0.3rem;
+  line-height: 1.5;
+}
+
+.edu-entry .right {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.social-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-links img {
+  width: 26px;
+  height: 26px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.social-links img:hover {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+
+.section-card {
+  background-color: #f9fafb; /* subtle light gray */
+  border: 1px solid #e0e0e0; /* light border */
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s ease;
+}
+
+.section-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
 
 </style>

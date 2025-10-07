@@ -53,6 +53,18 @@
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     footer{border-top:1px solid var(--line);color:#6b7a90;padding:18px 0;margin-top:10px}
     @media (max-width:920px){.hero{grid-template-columns:1fr}.hero .profile{max-width:360px;margin:0 auto}}
+    .section-card {
+      background-color: #f9fafb;  /* Light gray background */
+      border: 1px solid #e0e0e0;  /* Subtle border */
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.3s ease;
+      margin-top: 2rem;
+     }
+     .section-card:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+     }
   </style>
 </head>
 <body>
@@ -75,6 +87,7 @@
     <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#media">Media</a>
@@ -89,6 +102,7 @@
 <!-- Hero band: Bio LEFT, Photo RIGHT -->
 <div id="about" class="hero-band">
   <div class="container hero" style="align-items:center; padding: 2.25rem 0;">
+
     <section>
       <h2 style="margin: -6px 0 12px 0;">About Kayvon Karimi</h2>
 
@@ -102,14 +116,34 @@
       <ul style="margin-top: 1.1rem;">
         <li>Master’s in Cybersecurity Engineering — University of San Diego</li>
         <li>Graduate — Cyber Proud Pre-Apprenticeship</li>
-        <li>Bachelor’s — Texas A&amp;M University</li>
+        <li>Bachelor’s — Texas A&M University</li>
         <li>Hands-on cybersecurity experience</li>
       </ul>
+
+      <!-- Social links -->
+      <div class="social-links" style="margin-top: 1.5rem;">
+        <a href="https://linkedin.com/in/kayvonkarimi" target="_blank" rel="noopener noreferrer">
+          <img src="assets/linkedin.svg" alt="LinkedIn" style="height: 28px; margin-right: 1rem;">
+        </a>
+        <a href="https://www.youtube.com/@kayvonkarimi" target="_blank" rel="noopener noreferrer">
+          <img src="assets/youtube.svg" alt="YouTube" style="height: 28px;">
+        </a>
+      </div>
+
+
+
     </section>
 
     <aside class="profile">
       <img class="profileimg" src="assets/profile.JPG" alt="Kayvon Karimi" loading="lazy" decoding="async" />
     </aside>
+
+  </div>
+</div>
+
+
+
+    </section>
   </div>
 </div>
 
@@ -159,6 +193,75 @@
     </div>
   </div>
 </section>
+
+<section id="education" class="section" style="padding-top: 2rem;">
+  <div class="container">
+
+    <!-- Title outside the card -->
+    <h3 class="title">Education & Training</h3>
+
+    <!-- Wrap only the content in the card -->
+    <div class="section-card">
+
+
+      <!-- Education cards layout -->
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; align-items: stretch;">
+  <!-- Card: USD -->
+  <div style="flex: 1; min-width: 280px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1.5rem; transition: all 0.3s ease;"
+    onmouseover="this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)'; this.style.transform='translateY(-4px)'"
+    onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)'">
+    <h3 style="margin-bottom: 0.5rem; min-height: 3.6rem;">
+      Master of Science in Cybersecurity Engineering
+      <span style="float:right; font-weight: normal;">May 2026</span>
+    </h3>
+    <p style="margin: 0;">
+      <strong>University of San Diego</strong><br>
+      GPA: 4.00 <em>(The Cybersecurity Student Club)</em>
+    </p>
+  </div>
+
+  <!-- Card: Texas A&M -->
+  <div style="flex: 1; min-width: 280px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1.5rem; transition: all 0.3s ease;"
+    onmouseover="this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)'; this.style.transform='translateY(-4px)'"
+    onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)'">
+    <h3 style="margin-bottom: 0.5rem; min-height: 3.6rem;">
+      Bachelor of Arts in Psychology, Minor in Business
+      <span style="float:right; font-weight: normal;">May 2012</span>
+    </h3>
+    <p style="margin: 0;">
+      <strong>Texas A&M University</strong><br>
+      GPA: 3.4 <em>(Men’s D1 Tennis Team)</em>
+    </p>
+  </div>
+</div>
+
+
+      <!-- Training & Certifications -->
+      <p><strong>Cyber Proud: Cybersecurity Pre-Apprenticeship Program</strong> May 2025</p>
+      <ul>
+        <li>Completed training in fundamentals, cloud security, and cryptography.</li>
+        <li>Hands-on with Windows/Linux, PowerShell, Active Directory, AWS, Docker, Kubernetes.</li>
+        <li>Skills in penetration testing, SIEM tools, IDS/IPS, and VPN/firewall configuration.</li>
+      </ul>
+
+      <p><strong>CompTIA Security+</strong> June 2025<br>Scheduled</p>
+
+      <p><strong>Google: Foundations of Cybersecurity</strong> August 2023</p>
+      <ul>
+        <li>Explored key cybersecurity concepts, threats, and risk mitigation strategies.</li>
+      </ul>
+
+      <p><strong>Harvard: VPAL Cybersecurity – Managing Risk in the Information Age</strong> July 2023</p>
+      <ul>
+        <li>Studied governance, threat response, and risk management frameworks.</li>
+      </ul>
+
+    </div> <!-- ✅ this is your bordered section -->
+  </div>
+</section>
+
+
+
 
   <!-- Featured Videos (fast thumbnails) -->
 <section id="videos" class="section">
@@ -304,59 +407,8 @@
         </div>
       </div>
     </section>
-<!-- Experience -->
-<section id="experience" class="section">
-  <div class="container">
-    <h3 class="title">Experience</h3>
-    <p class="lead">Selected professional roles and accomplishments.</p>
 
-    <div class="cards" style="display: flex; flex-direction: column; gap: 1.5rem;">
-      <article class="card">
-        <div class="card-body">
-          <h4>Court Crate — Founder (Part-Time Seasonal)</h4>
-          <p class="muted">Oct 2019 – Present · courtcrate.com</p>
-          <ul class="tidy">
-            <li>Built subscription e-commerce with full-stack WordPress, CRM integration, and secure payments.</li>
-            <li>Scaled to 700+ members; implemented SSL/TLS and plugin vulnerability patching.</li>
-          </ul>
-        </div>
-      </article>
 
-      <article class="card">
-        <div class="card-body">
-          <h4>Tennis Professional — Broadstone Sports Club</h4>
-          <p class="muted">May 2023 – Present · Folsom, CA</p>
-          <ul class="tidy">
-            <li>Mentored players of all levels, emphasizing mental focus and strategic discipline.</li>
-            <li>Converted technical instruction into actionable, repeatable performance drills.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-body">
-          <h4>Real Estate Agent — Golden Gate Realty</h4>
-          <p class="muted">Jan 2020 – Nov 2022 · Dallas, TX</p>
-          <ul class="tidy">
-            <li>Closed $10M+ cumulative sales via data-driven client acquisition and retention strategy.</li>
-            <li>Completed 467 hours of professional training emphasizing analytics and client engagement.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-body">
-          <h4>Web Developer — Tri-Force Marketing</h4>
-          <p class="muted">Feb 2015 – May 2021 · Dallas, TX</p>
-          <ul class="tidy">
-            <li>Delivered 100+ secure, responsive websites hardened against XSS and SQL Injection.</li>
-            <li>Reduced client incidents 30% by embedding cybersecurity awareness in development cycles.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
 
 <!-- Media -->
