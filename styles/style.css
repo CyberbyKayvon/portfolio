@@ -1,0 +1,147 @@
+<style>
+:root {
+  --wrap:1100px;
+  --pad:22px;
+  --bg:#f9f9ff;
+  --fg:#0f172a;
+  --muted:#454b6b;
+  --band:#eaf3ff;
+  --line:#dee6ef;
+  --card:#fff;
+  --accent:#0b5bd3;
+  --shadow:0 10px 30px rgba(15,23,42,.08);
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+a{color:var(--accent);text-underline-offset:2px}
+
+.container{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+
+/* Header / Topbar */
+header.site{background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow);position:sticky;top:0;z-index:10}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 24px;
+}
+.brandwrap{
+  display:flex;
+  flex-direction:column;
+  gap:.25rem;
+  margin-left:32px; /* ✅ indent the title + tagline */
+}
+.brand{
+  font-size:1.7rem;
+  font-weight:700;
+  color:var(--fg);
+  text-decoration:none;
+}
+.tagline{
+  font-size:.9rem;
+  color:var(--muted);
+  margin:0;
+}
+nav a{
+  display:inline-block;
+  margin-left:14px;
+  padding:8px 10px;
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--fg);
+  font-weight:600;
+}
+nav a:hover{background:var(--accent);color:#fff}
+
+/* Hero band (About section) */
+.hero-band{background:var(--band);border-bottom:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:28px;align-items:start;padding:32px 0}
+.hero p{margin:0 0 18px 0;font-size:1rem;line-height:1.6;color:#1f2d3d}
+.hero h2{margin:0 0 22px 0}
+.hero ul{margin-top:10px}
+.profileimg{width:100%;height:auto;border-radius:14px;box-shadow:var(--shadow);object-fit:cover;display:block}
+
+/* Section spacing */
+section.section{padding:40px 0}
+h3.title{font-size:1.2rem;margin:0 0 12px 0}
+p.lead{margin:6px 0 10px 0;color:var(--muted)}
+
+/* Skills & Tools */
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{background:#e6f1ff;border:1px solid #b7d8ff;color:#0f3b82;padding:8px 12px;border-radius:12px;font-weight:600}
+
+/* Cards grid (Projects & Videos) */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.card-body{padding:14px}
+.card h4{margin:6px 0;font-size:1.12rem}
+.tidy li{margin:6px 0}
+
+/* Buttons / Links */
+.btnrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.btn{display:inline-block;padding:10px 12px;border-radius:12px;border:1px solid var(--line);text-decoration:none;font-weight:700;background:#f9fbff}
+.btn:hover{background:#f0f0ff}
+.smalllink{font-size:.9rem}
+
+/* Video thumbs */
+.thumb{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Footer */
+footer{border-top:1px solid var(--line);color:#6b7a90;padding:18px 0;margin-top:10px;text-align:center}
+
+/* Responsive */
+@media (max-width:920px){
+  .hero{grid-template-columns:1fr}
+  .hero .profileimg{max-width:360px;margin:0 auto}
+  /* <-- close the media block */
+}
+/* Lightbox */
+.zoomable{
+  width:100%;
+  border-radius:12px;
+  cursor:pointer;
+  transition:transform .2s ease;
+}
+.zoomable:hover{ transform:scale(1.03); }
+
+.lightbox{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.85);
+  display:flex; align-items:center; justify-content:center;
+  z-index:1000; visibility:hidden; opacity:0;
+  transition:opacity .25s ease;
+}
+.lightbox.active{ visibility:visible; opacity:1; }
+
+.lightbox img{
+  max-width:90%; max-height:90%;
+  border-radius:10px; box-shadow:0 0 25px rgba(0,0,0,.5);
+}
+/* --- Uniform Media Cards --- */
+#media .card-body {
+  height: 220px;              /* controls total box height */
+  overflow: hidden;           /* hides overflow beyond box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+#media .card-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* crops proportionally */
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+#media .card-body img:hover {
+  transform: scale(1.03);
+}
+
+
+</style>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kayvon Karimi — Cybersecurity Portfolio</title>
+  <meta name="description" content="Cybersecurity portfolio of Kayvon Karimi: practical labs, reports, and write-ups." />
+  <style>
+    :root{
+      --wrap:1100px; --pad:22px;
+      --bg:#f7f9fc; --fg:#0f172a; --muted:#46546b;
+      --band:#eaf3ff; --line:#e6eef8; --card:#fff; --accent:#0b5bd3;
+      --shadow:0 10px 30px rgba(15,23,42,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    a{color:var(--accent);text-underline-offset:2px}
+    .container{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+    header.site{background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow);position:sticky;top:0;z-index:10}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-weight:800;font-size:1.35rem;margin:0}
+    nav a{display:inline-block;margin-left:14px;padding:8px 10px;border-radius:12px;text-decoration:none;color:var(--fg);font-weight:600}
+    nav a:hover{background:#eef4ff}
+    /* Hero band */
+    .hero-band{background:var(--band);border-bottom:1px solid var(--line)}
+    .hero{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:28px;align-items:start;padding:32px 0}
+    .hero h2{margin:0 0 10px 0;font-size:1.9rem;line-height:1.2}
+    .hero p{margin:0 0 12px 0;color:#1f2d3d}
+    .hero ul{margin:10px 0 0 22px}
+    .hero li{margin:6px 0}
+    .profileimg{width:100%;height:auto;border-radius:14px;box-shadow:var(--shadow);object-fit:cover;display:block}
+    /* Sections */
+    section.section{padding:40px 0}
+    h3.title{font-size:1.6rem;margin:0 0 12px 0}
+    p.lead{margin:0 0 16px 0;color:var(--muted)}
+    /* Pills for Skills */
+    .pills{display:flex;flex-wrap:wrap;gap:10px}
+    .pill{background:#e9f1ff;border:1px solid #d7e5ff;color:#0f3b82;padding:8px 12px;border-radius:12px;font-weight:600}
+    /* Cards grid (Projects & Videos) */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .card-body{padding:14px}
+    .card h4{margin:0 0 6px 0;font-size:1.12rem}
+    .tidy{margin:8px 0 0 22px}
+    .tidy li{margin:6px 0}
+    .btnrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+    .btn{display:inline-block;padding:10px 12px;border-radius:12px;border:1px solid var(--line);text-decoration:none;font-weight:700;background:#f9fbff}
+    .btn:hover{background:#f0f6ff}
+    .smalllink{font-size:.9rem}
+    /* Video thumbs */
+    .thumb{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    footer{border-top:1px solid var(--line);color:#6b7a90;padding:18px 0;margin-top:10px}
+    @media (max-width:920px){.hero{grid-template-columns:1fr}.hero .profile{max-width:360px;margin:0 auto}}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site">
+  <div class="topbar">
+    <!-- Title + tagline (indented to the right) -->
+    <div class="brandwrap"
+         style="margin-left:32px; display:flex; flex-direction:column; gap:.25rem;">
+      <span class="brand"
+            style="font-size:1.7rem; font-weight:700; color:#0f172a; text-decoration:none;">
+        Kayvon Karimi
+      </span>
+      <span class="tagline"
+            style="font-size:.9rem; color:#454b6b; line-height:1.35;">
+        Cybersecurity Engineer | Web Security | SIEM &amp; Cloud Defense
+      </span>
+    </div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#media">Media</a>
+      <a href="#connect">Connect</a>
+    </nav>
+  </div>
+</header>
+
+
+
+
+<!-- Hero band: Bio LEFT, Photo RIGHT -->
+<div id="about" class="hero-band">
+  <div class="container hero" style="align-items:center; padding: 2.25rem 0;">
+    <section>
+      <h2 style="margin: -6px 0 12px 0;">About Kayvon Karimi</h2>
+
+      <p style="margin: 0 0 1.4rem 0;">
+        Detail-oriented Cybersecurity professional pursuing a Master’s in Cybersecurity Engineering with a foundation in penetration testing,
+        network defense, and digital forensics. Skilled in network security, vulnerability assessment, security operations, and risk management.
+        Completed a Cyber Security Pre-Apprenticeship program, further strengthening expertise in SIEM tools, cloud security, and governance frameworks.
+        Passionate about securing systems, protecting sensitive data, and contributing to resilient cybersecurity teams.
+      </p>
+
+      <ul style="margin-top: 1.1rem;">
+        <li>Master’s in Cybersecurity Engineering — University of San Diego</li>
+        <li>Graduate — Cyber Proud Pre-Apprenticeship</li>
+        <li>Bachelor’s — Texas A&amp;M University</li>
+        <li>Hands-on cybersecurity experience</li>
+      </ul>
+    </section>
+
+    <aside class="profile">
+      <img class="profileimg" src="assets/profile.JPG" alt="Kayvon Karimi" loading="lazy" decoding="async" />
+    </aside>
+  </div>
+</div>
+
+
+
+  <main>
+<!-- Skills & Tools -->
+<section id="skills" class="section">
+  <div class="container">
+    <h3 class="title">Skills &amp; Tools</h3>
+    <div class="pills">
+      <span class="pill">Wireshark</span>
+      <span class="pill">Burp Suite</span>
+      <span class="pill">Metasploit</span>
+      <span class="pill">Nmap</span>
+      <span class="pill">tcpdump</span>
+      <span class="pill">Gobuster</span>
+      <span class="pill">SQLmap</span>
+      <span class="pill">Hashcat</span>
+      <span class="pill">FFUF</span>
+      <span class="pill">Nessus</span>
+      <span class="pill">OpenVAS</span>
+      <span class="pill">WebGoat</span>
+      <span class="pill">iptables</span>
+      <span class="pill">AWS (EC2, S3, IAM)</span>
+      <span class="pill">Docker</span>
+      <span class="pill">Linux (Debian/Ubuntu)</span>
+      <span class="pill">Active Directory</span>
+      <span class="pill">PowerShell</span>
+      <span class="pill">Bash</span>
+      <span class="pill">Python</span>
+      <span class="pill">MySQL</span>
+      <span class="pill">Splunk</span>
+      <span class="pill">Snort</span>
+      <span class="pill">Wazuh</span>
+      <span class="pill">Volatility</span>
+      <span class="pill">Autopsy</span>
+      <span class="pill">Security Onion</span>
+      <!-- Added tools -->
+      <span class="pill">Nikto</span>
+      <span class="pill">PiVPN</span>
+      <span class="pill">WireGuard</span>
+      <span class="pill">Pi-hole</span>
+      <span class="pill">John the Ripper</span>
+      <span class="pill">WordPress</span>
+      <span class="pill">Selenium</span>
+    </div>
+  </div>
+</section>
+
+  <!-- Featured Videos (fast thumbnails) -->
+<section id="videos" class="section">
+  <div class="container">
+    <h3 class="title">Featured Videos</h3>
+    <p class="lead">Recent Projects: Loads instantly — opens on YouTube in a new tab.</p>
+
+    <div class="grid">
+
+      <!-- First video -->
+      <article class="card">
+        <a class="thumb" href="https://www.youtube.com/watch?v=2kLY9PaiTYI" target="_blank" rel="noopener" aria-label="Open video 1 on YouTube">
+          <img src="https://img.youtube.com/vi/2kLY9PaiTYI/hqdefault.jpg" alt="Wireless Encryption & Traffic Capture" />
+        </a>
+        <div class="card-body">
+          <!-- Title goes here -->
+          <h4 style="margin: 0 0 10px 0;">Wireless Encryption &amp; WiFi Password Cracking</h4>
+          <div class="btnrow">
+            <a class="btn" href="https://www.youtube.com/watch?v=2kLY9PaiTYI" target="_blank" rel="noopener">Open on YouTube</a>
+            <a class="smalllink" href="https://youtu.be/2kLY9PaiTYI" target="_blank" rel="noopener">Share link</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Second video -->
+      <article class="card">
+        <a class="thumb" href="https://www.youtube.com/watch?v=0bu_kN53izE" target="_blank" rel="noopener" aria-label="Open video 2 on YouTube">
+          <img src="https://img.youtube.com/vi/0bu_kN53izE/hqdefault.jpg" alt="Bypassing Kali Login" />
+        </a>
+        <div class="card-body">
+          <!-- Title goes here -->
+          <h4 style="margin: 0 0 10px 0;">Bypassing Kali Login via GRUB Menu</h4>
+          <div class="btnrow">
+            <a class="btn" href="https://www.youtube.com/watch?v=0bu_kN53izE" target="_blank" rel="noopener">Open on YouTube</a>
+            <a class="smalllink" href="https://youtu.be/0bu_kN53izE" target="_blank" rel="noopener">Share link</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h3 class="title">Projects</h3>
+        <p class="lead">A few security builds and write-ups.</p>
+
+        <div class="grid">
+
+          <!-- Court Crate — E-commerce Vulnerability Assessment -->
+<article class="card">
+  <div class="card-body">
+    <h4>Court Crate — E-commerce Vulnerability Assessment</h4>
+    <ul class="tidy">
+      <li>Scanned and enumerated endpoints with Nmap, Nikto, FFUF.</li>
+      <li>Mapped vulnerabilities to ASVS and provided recommendations.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn" href="#" target="_blank" rel="noopener">Report (PDF)</a>
+      <a class="smalllink" href="#" target="_blank" rel="noopener">Remediation Summary</a>
+    </div>
+  </div>
+</article>
+
+<!-- Design World — Web App Vulnerability Assessment -->
+<article class="card">
+  <div class="card-body">
+    <h4>Design World — Web App Vulnerability Assessment</h4>
+    <ul class="tidy">
+      <li>Enumerated routes and tested access control via FFUF, Gobuster.</li>
+      <li>Detected insecure headers and weak TLS configuration.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn" href="#" target="_blank" rel="noopener">Summary (PDF)</a>
+      <a class="smalllink" href="#" target="_blank" rel="noopener">Fix Plan</a>
+    </div>
+  </div>
+</article>
+
+          <!-- Wi-Fi -->
+          <article class="card">
+            <div class="card-body">
+              <h4>Wi-Fi Capture &amp; WPA2 Decryption (Wireshark/Kali)</h4>
+              <ul class="tidy">
+                <li>Monitor mode + packet injection; decrypted WPA2 traffic with PSK.</li>
+                <li>Analyzed SSDP/UPnP, HTTP flows; device-scoped filters.</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="#" aria-disabled="true">Case Study (PDF)</a>
+                <a class="smalllink" href="https://github.com/CyberbyKayvon/Network-Exploitation" target="_blank" rel="noopener noreferrer" aria-disabled="false">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Wildlife -->
+          <article class="card">
+            <div class="card-body">
+              <h4>Wildlife Sensor Encryption &amp; RFID</h4>
+              <ul class="tidy">
+                <li>Designed lightweight encryption flow for field sensors.</li>
+                <li>RFID threat model; migration plan for rangers.</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="#" aria-disabled="true">Summary</a>
+                <a class="smalllink" href="https://github.com/CyberbyKayvon/Panda-Encryption-Project-Encryption-in-the-Wild" target="_blank" rel="noopener noreferrer" aria-disabled="false">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Wazuh -->
+          <article class="card">
+            <div class="card-body">
+              <h4>Wazuh Alerts on VPN Client Login</h4>
+              <ul class="tidy">
+                <li>AWS + Pi-hole + WireGuard; custom rules for auth events.</li>
+                <li>Webhook notifications on client connect.</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="#" aria-disabled="true">Write-up</a>
+                <a class="smalllink" href="#" aria-disabled="true">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Kali Bypass GRUB -->
+          <article class="card">
+            <div class="card-body">
+              <h4>Bypass Kali Linux Login via GRUB</h4>
+              <ul class="tidy">
+                <li>Implemented GRUB bootloader authentication bypass on Kali Linux</li>
+                <li>Conducted remediation to a forgotten Kali password</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="#" aria-disabled="true">Notes</a>
+                <a class="smalllink" href="https://github.com/CyberbyKayvon/Kali-Linux-GRUB-password-bypass-project" target="_blank" rel="noopener noreferrer" aria-disabled="false">GitHub</a>
+
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+<!-- Experience -->
+<section id="experience" class="section">
+  <div class="container">
+    <h3 class="title">Experience</h3>
+    <p class="lead">Selected professional roles and accomplishments.</p>
+
+    <div class="cards" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <article class="card">
+        <div class="card-body">
+          <h4>Court Crate — Founder (Part-Time Seasonal)</h4>
+          <p class="muted">Oct 2019 – Present · courtcrate.com</p>
+          <ul class="tidy">
+            <li>Built subscription e-commerce with full-stack WordPress, CRM integration, and secure payments.</li>
+            <li>Scaled to 700+ members; implemented SSL/TLS and plugin vulnerability patching.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <h4>Tennis Professional — Broadstone Sports Club</h4>
+          <p class="muted">May 2023 – Present · Folsom, CA</p>
+          <ul class="tidy">
+            <li>Mentored players of all levels, emphasizing mental focus and strategic discipline.</li>
+            <li>Converted technical instruction into actionable, repeatable performance drills.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <h4>Real Estate Agent — Golden Gate Realty</h4>
+          <p class="muted">Jan 2020 – Nov 2022 · Dallas, TX</p>
+          <ul class="tidy">
+            <li>Closed $10M+ cumulative sales via data-driven client acquisition and retention strategy.</li>
+            <li>Completed 467 hours of professional training emphasizing analytics and client engagement.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <h4>Web Developer — Tri-Force Marketing</h4>
+          <p class="muted">Feb 2015 – May 2021 · Dallas, TX</p>
+          <ul class="tidy">
+            <li>Delivered 100+ secure, responsive websites hardened against XSS and SQL Injection.</li>
+            <li>Reduced client incidents 30% by embedding cybersecurity awareness in development cycles.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- Media -->
+<section id="media" class="section">
+  <div class="container">
+    <h3 class="title">Media</h3>
+    <p class="lead">Images and highlights from cybersecurity builds and projects.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-body" style="text-align:center;">
+          <img src="media/portfoliomedia9.png" alt="Portfolio Image 1" style="width:100%; border-radius:12px;">
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body" style="text-align:center;">
+          <img src="media/portfoliomedia2.png" alt="Portfolio Image 2" style="width:100%; border-radius:12px;">
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body" style="text-align:center;">
+          <img src="media/portfoliomedia3.png" alt="Portfolio Image 3" style="width:100%; border-radius:12px;">
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body" style="text-align:center;">
+          <img src="media/portfoliomedia4.png" alt="Portfolio Image 4" style="width:100%; border-radius:12px;">
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body" style="text-align:center;">
+          <img src="media/portfoliomedia10.png" alt="Portfolio Image 5" style="width:100%; border-radius:12px;">
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body" style="text-align:center;">
+          <img src="media/portfoliomedia8.png" alt="Portfolio Image 6" style="width:100%; border-radius:12px;">
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+  </main>
+<!-- Connect with Me -->
+<section id="connect" class="section" style="text-align:center; padding:3rem 0; background-color:#fafafa;">
+  <div class="container">
+    <h3 style="font-size:1.8rem; margin-bottom:0.75rem; color:#111;">Connect with Me</h3>
+    <p style="color:#555; margin-bottom:1.5rem;">
+      Let’s connect and collaborate — I share cybersecurity projects, tutorials, and insights regularly.
+    </p>
+
+    <div style="display:flex; justify-content:center; align-items:center; gap:2rem; flex-wrap:wrap;">
+
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@CyberbyKayvon" target="_blank" rel="noopener"
+         style="text-decoration:none; color:#333; font-weight:600; display:inline-flex; align-items:center; gap:8px;">
+        <img src="assets/youtube.svg" alt="YouTube" style="width:28px; vertical-align:middle;">
+        YouTube
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/kayvon-karimi-3b2334134" target="_blank" rel="noopener"
+         style="text-decoration:none; color:#333; font-weight:600; display:inline-flex; align-items:center; gap:8px;">
+        <img src="assets/linkedin.svg" alt="LinkedIn" style="width:26px; vertical-align:middle;">
+        LinkedIn
+      </a>
+
+      <!-- GitHub (inline SVG so no broken icon ever again) -->
+      <a href="https://github.com/CyberbyKayvon" target="_blank" rel="noopener"
+         style="text-decoration:none; color:#333; font-weight:600; display:inline-flex; align-items:center; gap:8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.94.58.1.79-.25.79-.55v-2.02c-3.2.69-3.87-1.37-3.87-1.37-.53-1.35-1.29-1.71-1.29-1.71-1.06-.72.08-.71.08-.71 1.18.08 1.8 1.22 1.8 1.22 1.04 1.8 2.74 1.28 3.4.98.1-.76.41-1.28.74-1.57-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.51.11-3.15 0 0 .98-.31 3.2 1.18a11.15 11.15 0 0 1 2.91-.39c.99 0 1.99.13 2.91.39 2.22-1.49 3.2-1.18 3.2-1.18.63 1.64.23 2.85.11 3.15.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.4-5.25 5.68.42.37.8 1.1.8 2.22v3.3c0 .3.21.65.79.55A10.97 10.97 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/>
+        </svg>
+        GitHub
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+    </div>
+  </div>
+</section>
+
+  <footer>
+    <div class="container">© <span id="y"></span> Kayvon Karimi</div>
+  </footer>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
