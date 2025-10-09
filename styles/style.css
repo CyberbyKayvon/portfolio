@@ -313,4 +313,34 @@ footer {
     width: 100%;
     max-width: 280px;
   }
+
+/* --- Cleaner mobile header menu --- */
+@media (max-width: 820px){
+  .topbar{ align-items:stretch; gap:12px; }
+  /* 2-column grid, tighter spacing */
+  nav{
+    display:grid !important;
+    grid-template-columns: repeat(2, minmax(120px,1fr));
+    gap:10px 12px;
+    width:100%;
+  }
+  nav a{
+    margin:0 !important;
+    padding:8px 10px;
+    font-size:0.95rem;
+    text-align:center;
+    background:#f7faff;
+    border:1px solid var(--line);
+    border-radius:10px;
+  }
+}
+
+@media (max-width: 420px){
+  /* On very narrow phones, stack to one column */
+  nav{ grid-template-columns: 1fr; }
+  .brand{ font-size:1.35rem; }
+  .tagline{ font-size:.82rem; }
+}
+
+
 }
