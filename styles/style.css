@@ -228,15 +228,24 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
   }
 }
 
-/* Even grid for Skills pills (keeps items unchanged) */
+/* Desktop / default */
 .pills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0.6rem;
-  justify-items: center;    /* centers each pill within its cell */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
+.pill { /* your existing visuals stay */ }
 
-.pill {
-  width: 100%;              /* equal cell widths → tidy left/right edges */
-  text-align: center;
+/* ✅ Mobile/tablet only: make pills even columns */
+@media (max-width: 900px) {
+  .pills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.6rem;
+    justify-items: center;
+  }
+  .pill {
+    width: 100%;
+    text-align: center;
+  }
 }
