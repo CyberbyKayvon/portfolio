@@ -321,3 +321,24 @@ body::after{
   position: fixed; bottom: 6px; right: 8px;
   font-size: 10px; opacity: .4; pointer-events:none;
 }
+
+/* Smooth scroll + anchor offset so titles are visible */
+html { scroll-behavior: smooth; }
+:root { --anchor: 96px; }           /* desktop header height */
+section[id], .hero-band { scroll-margin-top: var(--anchor); }
+
+/* mobile header is taller -> bigger offset */
+@media (max-width: 820px){
+  :root { --anchor: 168px; }        /* tune if you want more/less gap */
+}
+
+/* Center social icons under the bullets */
+.social-links{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center !important;
+  margin: 1.25rem auto 0 !important;
+  width: 100%;
+}
+.social-links img{ height: 28px; width: 28px; }
