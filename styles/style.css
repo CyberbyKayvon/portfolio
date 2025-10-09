@@ -47,7 +47,7 @@ header.site {
   display:flex;
   flex-direction:column;
   gap:.25rem;
-  margin-left:32px; /* indent the title + tagline */
+  margin-left:32px;
 }
 .brand {
   font-size:1.7rem;
@@ -120,7 +120,7 @@ p.lead { margin:6px 0 10px 0; color:var(--muted); }
   font-weight:600;
 }
 
-/* ---------- Cards grid (Projects & Videos) ---------- */
+/* ---------- Cards grid ---------- */
 .grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -137,7 +137,7 @@ p.lead { margin:6px 0 10px 0; color:var(--muted); }
 .card h4 { margin:6px 0; font-size:1.12rem; }
 .tidy li { margin:6px 0; }
 
-/* ---------- Buttons / Links ---------- */
+/* ---------- Buttons ---------- */
 .btnrow {
   display:flex;
   gap:10px;
@@ -181,7 +181,7 @@ footer {
   text-align:center;
 }
 
-/* ---------- Uniform Media Cards ---------- */
+/* ---------- Media cards ---------- */
 #media .card-body {
   height:220px;
   overflow:hidden;
@@ -202,51 +202,7 @@ footer {
   transform:scale(1.03);
 }
 
-/* ---------- Education Entries ---------- */
-.edu-entry { margin-bottom:2.5rem; }
-.edu-entry h4 {
-  font-size:1.05rem;
-  font-weight:bold;
-  margin-bottom:0.3rem;
-  display:flex;
-  justify-content:space-between;
-}
-.edu-entry p {
-  margin:0.2rem 0 0.8rem;
-  line-height:1.5;
-}
-.edu-entry ul {
-  padding-left:1.5rem;
-  margin-top:0.4rem;
-}
-.edu-entry li {
-  margin-bottom:0.3rem;
-  line-height:1.5;
-}
-.edu-entry .right {
-  font-weight:normal;
-  font-size:0.9rem;
-  color:#555;
-}
-
-/* ---------- Social links ---------- */
-.social-links {
-  margin-top:1rem;
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.social-links img {
-  width:26px;
-  height:26px;
-  transition:transform 0.2s ease-in-out;
-}
-.social-links img:hover {
-  transform:scale(1.1);
-  opacity:0.85;
-}
-
-/* ---------- Section Card ---------- */
+/* ---------- Education section ---------- */
 .section-card {
   background-color:#f9fafb;
   border:1px solid #e0e0e0;
@@ -259,88 +215,57 @@ footer {
   box-shadow:0 6px 16px rgba(0,0,0,0.06);
 }
 
-/* ---------- Mobile Responsive Fixes ---------- */
-@media (max-width: 820px) {
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 16px;
-  }
-
-  .brandwrap {
-    margin-left: 0;
-    text-align: left;
-  }
-
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    justify-content: flex-start;
-  }
-
-  nav a {
-    margin: 0;
-    padding: 6px 10px;
-    font-size: 0.95rem;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 20px 0;
-  }
-
-  .hero .profileimg {
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .hero h2 { font-size: 1.6rem; }
-  .hero p { font-size: 0.95rem; }
-}
-
-@media (max-width: 480px) {
-  .topbar { padding: 14px; }
-
-  .brand { font-size: 1.4rem; }
-  .tagline { font-size: 0.8rem; }
-
-  nav { flex-direction: column; align-items: flex-start; }
-  nav a { padding: 6px 0; }
-
-  .hero .profileimg {
-    width: 100%;
-    max-width: 280px;
-  }
-
-/* --- Cleaner mobile header menu --- */
+/* ---------- Mobile layout ---------- */
 @media (max-width: 820px){
-  .topbar{ align-items:stretch; gap:12px; }
-  /* 2-column grid, tighter spacing */
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    padding:14px 16px;
+  }
+  .brandwrap{ margin-left:0; }
+
+  /* horizontal, two-column nav */
   nav{
-    display:grid !important;
-    grid-template-columns: repeat(2, minmax(120px,1fr));
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px 12px;
     width:100%;
   }
   nav a{
-    margin:0 !important;
-    padding:8px 10px;
-    font-size:0.95rem;
+    margin:0;
+    padding:8px 12px;
     text-align:center;
-    background:#f7faff;
+    background:#fff;
     border:1px solid var(--line);
     border-radius:10px;
+    font-weight:700;
   }
+  .hero{
+    grid-template-columns:1fr;
+    padding:20px 0;
+  }
+  .hero .profileimg{
+    max-width:320px;
+    margin:0 auto;
+  }
+  .hero h2{ font-size:1.6rem; }
+  .hero p{ font-size:0.95rem; }
 }
 
+/* ---------- Force 2-column even on small phones ---------- */
 @media (max-width: 420px){
-  /* On very narrow phones, stack to one column */
-  nav{ grid-template-columns: 1fr; }
+  nav{
+    display:grid !important;
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:10px 12px !important;
+  }
+  nav a{
+    width:auto !important;
+    margin:0 !important;
+    padding:8px 12px !important;
+    border-radius:10px !important;
+  }
   .brand{ font-size:1.35rem; }
   .tagline{ font-size:.82rem; }
-}
-
-
 }
