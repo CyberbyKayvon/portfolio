@@ -135,3 +135,27 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
   .brand{font-size:1.35rem}
   .tagline{font-size:.82rem}
 }
+
+/* --- About section: mobile spacing + cleaner bullets --- */
+@media (max-width: 820px) {
+  /* add a touch more side padding only in the About hero */
+  #about .container {
+    padding-left: calc(var(--pad) + 10px);
+    padding-right: calc(var(--pad) + 10px);
+  }
+
+  /* tidy the paragraph + list rhythm */
+  #about p { margin-bottom: 12px; }
+
+  /* cleaner bullets: more indent + consistent spacing */
+  #about ul {
+    padding-left: 28px;    /* was ~22px via .hero ul */
+    margin-top: 10px;
+    margin-bottom: 12px;
+    list-style-position: outside;
+  }
+  #about li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+}
