@@ -183,3 +183,60 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
     text-wrap: pretty;         /* nicer line breaks on long bullets */
   }
 }
+
+/* --- Mobile nav height + scroll offset fix --- */
+@media (max-width: 820px) {
+  header.site {
+    padding-bottom: 0.25rem;          /* slightly tighter topbar */
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 0.4rem;                      /* less vertical stacking */
+    padding: 0.6rem var(--pad);       /* reduced overall height */
+  }
+
+  nav a {
+    font-size: 0.9rem;                /* smaller buttons */
+    margin-left: 0.6rem;
+  }
+
+  /* scroll offset so "About" titles aren't hidden behind header */
+  :target {
+    scroll-margin-top: 90px;          /* tweak as needed */
+  }
+}
+
+/* --- Mobile: shrink header a bit + fix anchor offset --- */
+@media (max-width: 820px) {
+  /* tighten header so it takes less space */
+  header.site { padding-bottom: 0.25rem; }
+  .topbar { flex-direction: column; gap: .4rem; padding: .6rem var(--pad); }
+  nav a { font-size: .95rem; margin-left: .6rem; }
+
+  /* 1) Global offset for #hash jumps (iOS Safari supports this) */
+  html { scroll-padding-top: 120px; }  /* tweak value if needed */
+
+  /* 2) Fallback: add margin for targeted sections */
+  #about,
+  #skills,
+  #education,
+  #projects,
+  #media,
+  #connect {
+    scroll-margin-top: 120px;  /* same value as above */
+  }
+}
+
+/* Even grid for Skills pills (keeps items unchanged) */
+.pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.6rem;
+  justify-items: center;    /* centers each pill within its cell */
+}
+
+.pill {
+  width: 100%;              /* equal cell widths → tidy left/right edges */
+  text-align: center;
+}
