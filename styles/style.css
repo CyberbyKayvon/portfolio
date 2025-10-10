@@ -114,26 +114,32 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
   .tagline{font-size:.85rem}
 
   /* three-column compact nav (2 rows × 3 columns) */
-nav{
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px 10px; width:100%; padding:0 var(--pad) 2px;
-}
+  nav{
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px 10px; width:100%; padding:0 var(--pad) 2px;
+  }
 
-nav a{
-  margin:0; padding:8px 8px; text-align:center;
-  background:#f4f7ff; border:1px solid var(--line); border-radius:10px; font-weight:700;
-  font-size:0.92rem;
-}
+  nav a{
+    margin:0; padding:8px 6px; text-align:center;
+    background:#f4f7ff; border:1px solid var(--line); border-radius:10px; font-weight:700;
+    font-size:0.88rem;
+  }
 
   .hero{grid-template-columns:1fr; padding:20px 0}
   .hero .profileimg{max-width:320px; margin:0 auto}
   .hero h2{font-size:1.6rem}
   .hero p{font-size:.95rem}
+
+  /* scroll offset */
+  html { scroll-padding-top: 120px; }
+  #about, #skills, #education, #projects, #media, #connect {
+    scroll-margin-top: 120px;
+  }
 }
 
-/* tiny phones: slightly smaller pills */
+/* tiny phones: slightly smaller */
 @media (max-width:420px){
-  nav a{padding:6px 10px; font-size:.86rem}
+  nav a{padding:6px 8px; font-size:.82rem}
   .brand{font-size:1.35rem}
   .tagline{font-size:.82rem}
 }
