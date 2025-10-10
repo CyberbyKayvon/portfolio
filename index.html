@@ -199,8 +199,10 @@
   <li>Skills in penetration testing, SIEM tools, IDS/IPS, and VPN/firewall configuration.</li>
 </ul>
 
-<p><strong>CompTIA Security+</strong> November 2025<br>Scheduled</p>
-
+<p><strong>CompTIA Security+</strong> </p>
+<ul>
+  <li>Scheduled November 2025</li>
+</ul>
 <p><strong>Google: Foundations of Cybersecurity</strong> August 2023</p>
 <ul>
   <li>Explored key cybersecurity concepts, threats, and risk mitigation strategies.</li>
@@ -425,47 +427,72 @@
 <section id="media" class="section">
   <div class="container">
     <h3 class="title">Media</h3>
-    <p class="lead">Images and highlights from cybersecurity builds and projects.</p>
+    <p class="lead">Images and highlights from cybersecurity builds and projects. Click to enlarge.</p>
 
     <div class="grid">
       <article class="card">
         <div class="card-body" style="text-align:center;">
-          <img src="media/portfoliomedia9.png" alt="Portfolio Image 1" style="width:100%; border-radius:12px;">
+          <img src="media/portfoliomedia9.png" alt="Portfolio Image 1" style="width:100%; border-radius:12px; cursor:pointer;" onclick="openLightbox(this.src, this.alt)">
         </div>
       </article>
 
       <article class="card">
         <div class="card-body" style="text-align:center;">
-          <img src="media/portfoliomedia2.png" alt="Portfolio Image 2" style="width:100%; border-radius:12px;">
+          <img src="media/portfoliomedia2.png" alt="Portfolio Image 2" style="width:100%; border-radius:12px; cursor:pointer;" onclick="openLightbox(this.src, this.alt)">
         </div>
       </article>
 
       <article class="card">
         <div class="card-body" style="text-align:center;">
-          <img src="media/portfoliomedia3.png" alt="Portfolio Image 3" style="width:100%; border-radius:12px;">
+          <img src="media/portfoliomedia3.png" alt="Portfolio Image 3" style="width:100%; border-radius:12px; cursor:pointer;" onclick="openLightbox(this.src, this.alt)">
         </div>
       </article>
 
       <article class="card">
         <div class="card-body" style="text-align:center;">
-          <img src="media/portfoliomedia4.png" alt="Portfolio Image 4" style="width:100%; border-radius:12px;">
+          <img src="media/portfoliomedia4.png" alt="Portfolio Image 4" style="width:100%; border-radius:12px; cursor:pointer;" onclick="openLightbox(this.src, this.alt)">
         </div>
       </article>
 
       <article class="card">
         <div class="card-body" style="text-align:center;">
-          <img src="media/portfoliomedia10.png" alt="Portfolio Image 5" style="width:100%; border-radius:12px;">
+          <img src="media/portfoliomedia10.png" alt="Portfolio Image 5" style="width:100%; border-radius:12px; cursor:pointer;" onclick="openLightbox(this.src, this.alt)">
         </div>
       </article>
 
       <article class="card">
         <div class="card-body" style="text-align:center;">
-          <img src="media/portfoliomedia8.png" alt="Portfolio Image 6" style="width:100%; border-radius:12px;">
+          <img src="media/portfoliomedia8.png" alt="Portfolio Image 6" style="width:100%; border-radius:12px; cursor:pointer;" onclick="openLightbox(this.src, this.alt)">
         </div>
       </article>
     </div>
   </div>
 </section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="" style="max-width:90%; max-height:90%; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,0.5);">
+  <span style="position:absolute; top:20px; right:30px; color:white; font-size:40px; font-weight:bold; cursor:pointer;">&times;</span>
+</div>
+
+<script>
+function openLightbox(src, alt) {
+  document.getElementById('lightbox').style.display = 'flex';
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt;
+  document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = 'auto'; // Re-enable scrolling
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
 
 
 
