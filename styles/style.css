@@ -113,12 +113,13 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
   .brandwrap{margin-left:0; padding:0 var(--pad)}
   .tagline{font-size:.85rem}
 
-  /* two-column compact nav */
-  nav{
-    display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px 12px; width:100%; padding:0 var(--pad) 2px;
-  }
-  nav a{
+  /* three-column compact nav (2 rows × 3 columns) */
+nav{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px 10px; width:100%; padding:0 var(--pad) 2px;
+}
+
+nav a{
     margin:0; padding:8px 12px; text-align:center;
     background:#f4f7ff; border:1px solid var(--line); border-radius:10px; font-weight:700;
   }
