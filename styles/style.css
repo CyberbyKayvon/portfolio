@@ -526,6 +526,116 @@ h3.title {
   font-weight: 700 !important;
 }
 
+  color: #0f172a !important;
+}
+
+#connect a[href*="github"] svg {
+  color: #0f172a !important;
+}
+
+
+/* ========================================
+   2. REMOVE HOVER EFFECT - DARK MODE ONLY (DESKTOP)
+   ======================================== */
+@media (min-width: 821px) {
+  [data-theme="dark"] #education div[style*="transition"]:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* ========================================
+   3. FIX NAV TABS - DARKER TEXT IN BOTH MODES (MOBILE)
+   ======================================== */
+@media (max-width:820px){
+  nav a {
+    color: #0f172a !important;
+    background: #f4f7ff !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* ========================================
+   4. CENTER SECTION TITLES & SUBTITLES (DESKTOP & MOBILE)
+   ======================================== */
+h3.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Center subtitle/lead text */
+p.lead {
+  text-align: center;
+}
+
+/* Center About section content on mobile */
+@media (max-width: 820px) {
+  #about section {
+    text-align: center;
+  }
+
+  #about h2 {
+    text-align: center;
+  }
+
+  #about p {
+    text-align: center;
+  }
+
+  #about ul {
+    text-align: left;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center social icons on mobile - more specific */
+  #about div[style*="display: flex"] {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+/* ========================================
+   5. SKILLS & TOOLS - STYLING & COLORS
+   ======================================== */
+/* Make category titles (h4) clearly different from main titles (h3) */
+#skills h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Dark mode - make pills darker/more distinct */
+[data-theme="dark"] .pill {
+  background: #0f3460 !important;
+  border: 1px solid #1e5a8e !important;
+  color: #a8d5ff !important;
+}
+
+/* Dark mode - make category titles pop more */
+[data-theme="dark"] #skills h4 {
+  color: #f1f5f9 !important;
+}
+
+/* Light mode - NEON BLUE pills */
+[data-theme="light"] .pill {
+  background: #0066ff !important;
+  border: 1px solid #0052cc !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Light mode - make category titles darker/pop more */
+[data-theme="light"] #skills h4 {
+  color: #1e293b !important;
+}
 
 
 
