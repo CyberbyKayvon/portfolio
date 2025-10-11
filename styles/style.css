@@ -752,3 +752,22 @@ p.lead {
   padding-right: 0 !important;
   margin-right: 70px;
 }
+
+p.lead {
+  margin: 6px 0 10px 0;
+  color: var(--muted);
+}
+
+[data-theme="dark"] p.lead {
+  color: #b0c4ff;
+}
+
+[data-theme="light"] p.lead {
+  color: #1e2a38;
+}
+
+@media (max-width: 640px) {
+  .connect-label {
+    display: none;
+  }
+}
