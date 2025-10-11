@@ -456,6 +456,8 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
 
 /* Make sure the SVG icon also updates */
 [data-theme="dark"] #connect a[href*="github"] svg {
-  color: #e2e8f0 !important;
+  color: #36454F !important;
 }
+
+
 
