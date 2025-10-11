@@ -972,3 +972,123 @@ footer {
 #about a span {
   pointer-events: none !important;
 }
+
+/* ========================================
+   MOBILE ABOUT SECTION - CENTERED & CLEAN
+   Add this to your style.css
+   ======================================== */
+
+@media (max-width: 820px) {
+  /* Center all About content */
+  #about .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #about section {
+    text-align: center !important;
+    max-width: 90% !important;
+  }
+
+  #about h2 {
+    text-align: center !important;
+  }
+
+  #about p {
+    text-align: center !important;
+    text-align: justify !important;
+    text-align-last: center !important;
+    hyphens: auto !important;
+  }
+
+  /* Center bullets as block with bullets visible */
+  #about ul {
+    display: inline-block !important;
+    text-align: left !important;
+    margin: 1rem auto !important;
+    padding-left: 0 !important;
+    list-style-type: none !important;
+  }
+
+  #about li {
+    margin-bottom: 0.5rem !important;
+    padding-left: 1.2rem !important;
+    position: relative !important;
+  }
+
+  /* Add bullet points back */
+  #about li::before {
+    content: "•" !important;
+    position: absolute !important;
+    left: 0 !important;
+  }
+
+  /* Center social icons */
+  #about div[style*="display: flex"] {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Profile image below content on mobile */
+  #about .profile {
+    order: 2;
+    margin-top: 2rem;
+  }
+
+  #about .profileimg {
+    max-width: 320px !important;
+  }
+}
+
+
+/* ========================================
+   FIX EDUCATION CARDS - BOTH MOBILE & DESKTOP
+   ======================================== */
+
+/* Remove min-height that's causing the issue */
+#education div[style*="min-height: 3.6rem"] h3 {
+  min-height: auto !important;
+}
+
+/* Fix card layout */
+#education > div > div > div > div {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Ensure cards use full width */
+#education .section-card > div {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 2rem !important;
+}
+
+#education .section-card > div > div {
+  flex: 1 !important;
+  min-width: 280px !important;
+}
+
+/* Fix h3 in education cards */
+#education h3 {
+  min-height: auto !important;
+  padding-right: 60px !important;
+}
+
+#education h3 span {
+  display: block !important;
+  float: right !important;
+  margin-top: 0 !important;
+}
+
+/* Mobile education cards */
+@media (max-width: 820px) {
+  #education .section-card > div {
+    flex-direction: column !important;
+  }
+
+  #education .section-card > div > div {
+    min-width: 100% !important;
+  }
+}
