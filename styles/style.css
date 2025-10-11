@@ -411,14 +411,24 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
 
 /* Fix mobile nav text in dark mode - keep white background */
 @media (max-width:820px){
-  [data-theme="dark"] nav a {
-    color: #0f172a !important;
-    background: #f4f7ff !important;
+  #theme-toggle {
+    padding: 6px 8px;
+    font-size: 1rem;
+    min-width: 36px;
   }
 
-  [data-theme="light"] nav a {
-    color: #0f172a !important;
-    background: #f4f7ff !important;
+  #theme-icon {
+    font-size: 1rem;
+  }
+
+  /* Give tagline more breathing room */
+  .brandwrap {
+    padding-right: 50px; /* Reduced from 60px */
+  }
+
+  .tagline {
+    font-size: 0.82rem; /* Slightly smaller to fit on one line */
+    white-space: nowrap; /* Prevent wrapping */
   }
 }
 
@@ -429,3 +439,23 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
   height: auto;
   line-height: 1;
 }
+
+/* Remove the inline hover effects and add this instead: */
+#education div[style*="box-shadow"] {
+  transition: none !important;
+}
+
+/* Even lighter option if you want more pop: */
+[data-theme="dark"] #skills h4 {
+  color: #e2e8f0 !important; /* Almost white */
+}
+
+[data-theme="dark"] #connect a[href*="github"] {
+  color: #e2e8f0 !important;
+}
+
+/* Make sure the SVG icon also updates */
+[data-theme="dark"] #connect a[href*="github"] svg {
+  color: #e2e8f0 !important;
+}
+
