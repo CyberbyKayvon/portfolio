@@ -702,5 +702,53 @@ p.lead {
   }
 }
 
+/* University logo styling */
+#education img[alt*="Logo"] {
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
 
+#education img[alt*="Logo"]:hover {
+  opacity: 1;
+}
 
+/* Dark mode - adjust if logos are too bright/dark */
+[data-theme="dark"] #education img[alt*="Logo"] {
+  opacity: 0.75;
+  filter: brightness(0.9);
+}
+
+/* Add this NEW CSS to fix the logo layout issue */
+
+/* Fix education card logos - better visibility and spacing */
+#education img[alt*="Logo"] {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: all 0.3s;
+  background: rgba(0,0,0,0.05);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Dark mode - make white logos visible */
+[data-theme="dark"] #education img[alt*="Logo"] {
+  background: rgba(255,255,255,0.1) !important;
+  opacity: 0.9;
+  filter: brightness(1.3) invert(0.05);
+}
+
+/* Ensure card content doesn't overlap logo */
+#education .section-card > div > div h3,
+#education .section-card > div > div p {
+  padding-right: 70px !important;
+}
+
+#education .section-card > div > div h3 span {
+  padding-right: 0 !important;
+  margin-right: 70px;
+}

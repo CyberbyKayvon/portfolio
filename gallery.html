@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/style.css?v=36">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Media Gallery — Kayvon Karimi</title>
+  <meta name="description" content="Cybersecurity project images and highlights from Kayvon Karimi's portfolio." />
+  <style>
+    /* Masonry collage layout */
+    .masonry-grid {
+      column-count: 3;
+      column-gap: 1.5rem;
+      padding: 2rem 0;
+    }
+
+    @media (max-width: 1024px) {
+      .masonry-grid {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .masonry-grid {
+        column-count: 1;
+      }
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .masonry-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15,23,42,0.2);
+    }
+
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .masonry-caption {
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--fg);
+      background: var(--card);
+    }
+
+    [data-theme="dark"] .masonry-caption {
+      color: #e8f1ff;
+    }
+
+    [data-theme="light"] .masonry-caption {
+      color: #0f172a;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    #lightbox-img {
+      max-width: 85%;
+      max-height: 75%;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      margin-bottom: 1rem;
+      object-fit: contain;
+    }
+
+    #lightbox-description {
+      color: #fff;
+      font-size: 1.05rem;
+      max-width: 700px;
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      line-height: 1.6;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      #lightbox-img {
+        max-width: 95%;
+        max-height: 60%;
+      }
+
+      #lightbox-description {
+        font-size: 0.95rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site">
+    <div class="topbar container">
+      <div class="brandwrap">
+        <span class="brand">Kayvon Karimi</span>
+        <span class="tagline">Cybersecurity Engineer | Web Security | Pen Test</span>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#education">Education</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#media">Media</a>
+        <a href="index.html#connect">Connect</a>
+
+        <button id="theme-toggle" aria-label="Toggle dark mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0; margin-left: 12px;">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <a href="index.html#media" class="back-link">← Back to Main Portfolio</a>
+
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; text-align: center;">Project Gallery</h1>
+        <p class="lead">Complete collection of cybersecurity projects, labs, and technical demonstrations. Click any image to view full size with details.</p>
+
+        <div class="masonry-grid">
+
+          <!-- Media 1 -->
+          <div class="masonry-item" onclick="openLightbox(0)">
+            <img src="media/media1.png" alt="DNS Queries Wireshark Capture">
+            <div class="masonry-caption">DNS Queries Wireshark Capture</div>
+          </div>
+
+          <!-- Media 2 -->
+          <div class="masonry-item" onclick="openLightbox(1)">
+            <img src="media/media2.png" alt="WireGuard VPN Architecture Diagram">
+            <div class="masonry-caption">WireGuard VPN Architecture Diagram</div>
+          </div>
+
+          <!-- Media 3 -->
+          <div class="masonry-item" onclick="openLightbox(2)">
+            <img src="media/media3.png" alt="WPA2 Handshake Capture in Kali Linux">
+            <div class="masonry-caption">WPA2 Handshake Capture in Kali Linux</div>
+          </div>
+
+          <!-- Media 4 -->
+          <div class="masonry-item" onclick="openLightbox(3)">
+            <img src="media/media4.png" alt="Kali Linux GRUB Boot Login Bypass">
+            <div class="masonry-caption">Kali Linux GRUB Boot Login Bypass</div>
+          </div>
+
+          <!-- Media 5 -->
+          <div class="masonry-item" onclick="openLightbox(4)">
+            <img src="media/media5.png" alt="Conducting a Self-Signed Certificate">
+            <div class="masonry-caption">Conducting a Self-Signed Certificate</div>
+          </div>
+
+          <!-- Media 6 -->
+          <div class="masonry-item" onclick="openLightbox(5)">
+            <img src="media/media6.png" alt="Aircrack-ng WPA2 Key Found">
+            <div class="masonry-caption">Aircrack-ng WPA2 Key Found</div>
+          </div>
+
+          <!-- Media 7 -->
+          <div class="masonry-item" onclick="openLightbox(6)">
+            <img src="media/media7.png" alt="Configuring Snort Event Summary Dashboard">
+            <div class="masonry-caption">Configuring Snort Event Summary Dashboard</div>
+          </div>
+
+          <!-- Media 8 -->
+          <div class="masonry-item" onclick="openLightbox(7)">
+            <img src="media/media8.png" alt="Snort Configuration in Nano Editor">
+            <div class="masonry-caption">Snort Configuration in Nano Editor</div>
+          </div>
+
+          <!-- Media 9 -->
+          <div class="masonry-item" onclick="openLightbox(8)">
+            <img src="media/media9.png" alt="Configuring TLS Session Key Capture in Wireshark">
+            <div class="masonry-caption">Configuring TLS Session Key Capture in Wireshark</div>
+          </div>
+
+          <!-- Media 10 -->
+          <div class="masonry-item" onclick="openLightbox(9)">
+            <img src="media/media10.png" alt="Wireshark TLS Packet Capture">
+            <div class="masonry-caption">Wireshark TLS Packet Capture</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-description"></div>
+  </div>
+
+  <footer>
+    <div class="container">© <span id="y"></span> Kayvon Karimi</div>
+  </footer>
+
+  <script>
+    const projectData = [
+      {
+        src: 'media/media1.png',
+        title: 'DNS Queries Wireshark Capture',
+        desc: 'Capturing and analyzing DNS traffic using Wireshark, demonstrating DNS query patterns, resolution processes, and network behavior analysis.'
+      },
+      {
+        src: 'media/media2.png',
+        title: 'WireGuard VPN Architecture Diagram',
+        desc: 'Network architecture design implementing WireGuard VPN for secure encrypted communications and remote access.'
+      },
+      {
+        src: 'media/media3.png',
+        title: 'WPA2 Handshake Capture in Kali Linux',
+        desc: 'Capturing WPA2 authentication handshakes using Kali Linux tools, essential for wireless security assessment and penetration testing.'
+      },
+      {
+        src: 'media/media4.png',
+        title: 'Kali Linux GRUB Boot Login Bypass',
+        desc: 'Demonstrating bootloader security vulnerabilities through GRUB authentication bypass with remediation strategies.'
+      },
+      {
+        src: 'media/media5.png',
+        title: 'Conducting a Self-Signed Certificate',
+        desc: 'Creating and implementing self-signed certificates for testing SSL/TLS configurations and certificate authority operations.'
+      },
+      {
+        src: 'media/media6.png',
+        title: 'Aircrack-ng WPA2 Key Found',
+        desc: 'Offline WPA2 password cracking using aircrack-ng, demonstrating the importance of strong wireless encryption credentials.'
+      },
+      {
+        src: 'media/media7.png',
+        title: 'Configuring Snort Event Summary Dashboard',
+        desc: 'Building a Snort IDS event summary dashboard for real-time intrusion detection and threat monitoring.'
+      },
+      {
+        src: 'media/media8.png',
+        title: 'Snort Configuration in Nano Editor',
+        desc: 'Configuring Snort rules and detection settings using command-line editors for intrusion detection system customization.'
+      },
+      {
+        src: 'media/media9.png',
+        title: 'Configuring TLS Session Key Capture in Wireshark',
+        desc: 'Setting up TLS pre-shared keys in Wireshark to decrypt and analyze encrypted traffic for security research.'
+      },
+      {
+        src: 'media/media10.png',
+        title: 'Wireshark TLS Packet Capture',
+        desc: 'Capturing and analyzing TLS handshakes and encrypted communications using Wireshark packet analysis tools.'
+      }
+    ];
+
+    function openLightbox(index) {
+      const data = projectData[index];
+      document.getElementById('lightbox-img').src = data.src;
+      document.getElementById('lightbox-description').innerHTML = '<strong>' + data.title + '</strong><br><br>' + data.desc;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Dark mode toggle
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const html = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme');
+      const currentTheme = savedTheme || 'dark';
+
+      html.setAttribute('data-theme', currentTheme);
+      themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+      themeToggle.addEventListener('click', function() {
+        const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      });
+    })();
+  </script>
+</body>
+</html>
