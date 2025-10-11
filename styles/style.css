@@ -771,3 +771,34 @@ p.lead {
     display: none;
   }
 }
+
+footer {
+  border-top: 1px solid var(--line);
+  color: #6b7a90;
+  padding: 18px 0;
+  margin-top: 10px;
+}
+
+[data-theme="dark"] .footer-email {
+  color: #b0c4ff;
+}
+
+[data-theme="light"] .footer-email {
+  color: #1f2d5d;
+}
+
+@media (max-width: 640px) {
+  .about-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-social-links a:nth-child(3) {
+    order: 4;
+  }
+
+  .about-social-links a:nth-child(4) {
+    order: 3;
+  }
+}

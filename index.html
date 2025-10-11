@@ -600,8 +600,11 @@ document.addEventListener('keydown', function(e) {
 </section>
 
   <footer>
-    <div class="container">© <span id="y"></span> Kayvon Karimi</div>
-  </footer>
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <span>© <span id="y"></span> Kayvon Karimi</span>
+    <a href="mailto:cyberbykayvon@gmail.com" style="text-decoration: none; color: inherit; font-weight: 600;" class="footer-email">cyberbykayvon@gmail.com</a>
+  </div>
+</footer>
 
   <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 <script>
