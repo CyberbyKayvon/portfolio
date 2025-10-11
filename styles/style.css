@@ -787,22 +787,6 @@ footer {
   color: #1f2d5d;
 }
 
-@media (max-width: 640px) {
-  .about-social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .about-social-links a:nth-child(3) {
-    order: 4;
-  }
-
-  .about-social-links a:nth-child(4) {
-    order: 3;
-  }
-}
-
 /* Fix About section on mobile - remove centering */
 @media (max-width: 820px) {
   #about section {
