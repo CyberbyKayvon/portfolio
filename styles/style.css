@@ -830,3 +830,82 @@ footer {
     margin-left: 0 !important;
   }
 }
+
+/* ========================================
+   FIX ABOUT ME SECTION - MOBILE CENTERING
+   Add this to your style.css
+   ======================================== */
+
+/* Mobile: Center everything in About section */
+@media (max-width: 820px) {
+  #about section {
+    text-align: center !important;
+  }
+
+  #about h2 {
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #about p {
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Keep bullets left-aligned but centered as a block */
+  #about ul {
+    text-align: left !important;
+    display: inline-block !important;
+    margin: 1rem auto !important;
+    padding-left: 1.5rem !important;
+  }
+
+  #about li {
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Center social icons - more specific selector */
+  #about section > div:last-child,
+  #about div[style*="display: flex"] {
+    display: flex !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Desktop: Fix Gmail link clickability */
+@media (min-width: 821px) {
+  /* Ensure Gmail link is clickable on desktop */
+  #about a[href*="mail.google.com"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    z-index: 100 !important;
+    position: relative !important;
+  }
+
+  /* Prevent child elements from blocking click */
+  #about a[href*="mail.google.com"] svg,
+  #about a[href*="mail.google.com"] span {
+    pointer-events: none !important;
+  }
+
+  /* Make sure link is visible and not covered */
+  #about div[style*="display: flex"] {
+    position: relative !important;
+    z-index: 50 !important;
+  }
+}
+
+/* Both desktop and mobile: Ensure all social links work */
+#about a {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+#about a svg,
+#about a img,
+#about a span {
+  pointer-events: none !important;
+}
