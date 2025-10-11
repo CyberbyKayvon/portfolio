@@ -92,7 +92,6 @@ p.lead{margin:6px 0 10px 0; color:var(--muted)}
 
 /* ---------- Section card ---------- */
 .section-card{background:#f9fafb; border:1px solid #e0e0e0; border-radius:12px; padding:2.5rem; box-shadow:0 4px 12px rgba(0,0,0,.03); transition:box-shadow .3s ease}
-.section-card:hover{box-shadow:0 6px 16px rgba(0,0,0,.06)}
 
 /* ---------- Footer ---------- */
 footer{border-top:1px solid var(--line); color:#6b7a90; padding:18px 0; margin-top:10px; text-align:center}
@@ -395,4 +394,17 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
 /* Make project card titles pop more */
 [data-theme="dark"] .card h4 {
   color: #f1f5f9 !important;
+}
+
+/* Fix GitHub icon color for both modes */
+[data-theme="light"] #about a[href*="github"] {
+  color: #0f172a !important;
+}
+
+[data-theme="dark"] #about a[href*="github"] {
+  color: #e2e8f0 !important;
+}
+/* Fix Skills category titles in light mode */
+[data-theme="light"] #skills h4 {
+  color: #475569 !important;
 }
