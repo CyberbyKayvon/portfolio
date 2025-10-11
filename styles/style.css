@@ -362,3 +362,22 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
 [data-theme="dark"] #education div[style*="background"] strong {
   color: #e2e8f0 !important;
 }
+
+/* Position toggle button on mobile */
+@media (max-width:820px){
+  #theme-toggle {
+    position: absolute;
+    top: 12px;
+    right: var(--pad);
+    z-index: 100;
+  }
+
+  .topbar {
+    position: relative;
+  }
+
+  /* Make room for the button */
+  .brandwrap {
+    padding-right: 60px;
+  }
+}
