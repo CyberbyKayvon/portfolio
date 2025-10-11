@@ -363,13 +363,18 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
 }
 
 /* Position toggle button on mobile */
-@media (max-width:820px){
+@media (max-width: 820px) {
   #theme-toggle {
-    position: absolute;
-    top: 12px;
-    right: var(--pad);
-    z-index: 100;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    gap: 4px;
   }
+
+  #theme-icon {
+    font-size: 1rem; /* adjust icon size if needed */
+  }
+}
 
   .topbar {
     position: relative;
