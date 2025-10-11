@@ -409,11 +409,11 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
   color: #475569 !important;
 }
 
-/* Fix mobile nav text in dark mode - more specific */
+/* Fix mobile nav text in dark mode - keep white background */
 @media (max-width:820px){
   [data-theme="dark"] nav a {
-    color: #e2e8f0 !important;
-    background: #1e293b !important;
+    color: #0f172a !important;
+    background: #f4f7ff !important;
   }
 
   [data-theme="light"] nav a {
