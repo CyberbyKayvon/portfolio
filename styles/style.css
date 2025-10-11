@@ -408,3 +408,10 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
 [data-theme="light"] #skills h4 {
   color: #475569 !important;
 }
+
+/* Fix mobile nav text in dark mode */
+@media (max-width:820px){
+  [data-theme="dark"] nav a {
+    color: #e2e8f0 !important;
+  }
+}
