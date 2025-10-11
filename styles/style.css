@@ -381,3 +381,18 @@ section[id], .hero-band{ scroll-margin-top: var(--anchor) }
     padding-right: 60px;
   }
 }
+
+/* Fix light mode nav text on mobile */
+[data-theme="light"] nav a {
+  color: #0f172a !important;
+}
+
+/* Keep dark mode nav text light */
+[data-theme="dark"] nav a {
+  color: #e2e8f0 !important;
+}
+
+/* Make project card titles pop more */
+[data-theme="dark"] .card h4 {
+  color: #f1f5f9 !important;
+}
