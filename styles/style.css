@@ -637,6 +637,62 @@ p.lead {
   color: #1e293b !important;
 }
 
+/* ========================================
+   TYPEWRITER EFFECT FOR TAGLINE
+   ======================================== */
+
+/* Add this CSS to your style.css */
+.tagline {
+  overflow: hidden;
+  border-right: 2px solid var(--accent);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent); }
+}
+
+/* Stop the animation after it completes once */
+.tagline.typed {
+  animation: none;
+  border-right: none;
+}
+
+/* Mobile adjustments */
+@media (max-width:820px){
+  .tagline {
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+}
+
+/* ========================================
+   3. FIX NAV TABS - VISIBLE IN BOTH MODES (MOBILE)
+   ======================================== */
+@media (max-width:820px){
+  /* Light mode - dark text on light bg */
+  [data-theme="light"] nav a {
+    color: #0f172a !important;
+    background: #f4f7ff !important;
+    font-weight: 700 !important;
+  }
+
+  /* Dark mode - light text on dark bg */
+  [data-theme="dark"] nav a {
+    color: #e2e8f0 !important;
+    background: #334155 !important;
+    font-weight: 700 !important;
+    border: 1px solid #475569 !important;
+  }
+}
 
 
 
