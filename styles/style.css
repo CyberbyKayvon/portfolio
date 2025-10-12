@@ -221,7 +221,14 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
 #education h3.title {
   text-align: center !important;
   font-size: 2rem !important;
+}
+
+[data-theme="dark"] #education h3.title {
   color: #ffffff !important;
+}
+
+[data-theme="light"] #education h3.title {
+  color: #0f172a !important;
 }
 
 #education h4 {
@@ -233,12 +240,14 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
 }
 
 [data-theme="light"] #education h4 {
-  color: #0f172a !important;
+  color: #ffffff !important;
 }
 
-[data-theme="dark"] #education p,
-[data-theme="dark"] #education strong {
-  color: #cbd5e1 !important;
+/* Ensure card titles stay white on mobile too */
+@media (max-width: 820px) {
+  #education h4 {
+    color: #ffffff !important;
+  }
 }
 
 /* ---------- About section ---------- */
@@ -352,6 +361,15 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
     gap: 1.5rem !important;
   }
 
+  #about div[style*="display: flex"][style*="gap: 1.5rem"] {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 1.5rem auto !important;
+  padding: 0 !important;
+}
+
   #about section {
   padding: 0 1.5rem !important;
 }
@@ -441,4 +459,14 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50% { border-color: var(--accent); }
+}
+
+/* Desktop centering for About social icons */
+@media (min-width: 821px) {
+  #about div[style*="display: flex"][style*="gap: 1.5rem"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 1.5rem 0 !important;
+  }
 }
