@@ -1054,29 +1054,6 @@ footer {
   min-width: 280px !important;
 }
 
-/* Fix h3 in education cards */
-#education h3 {
-  min-height: auto !important;
-  padding-right: 60px !important;
-}
-
-#education h3 span {
-  display: block !important;
-  float: right !important;
-  margin-top: 0 !important;
-}
-
-/* Mobile education cards */
-@media (max-width: 820px) {
-  #education .section-card > div {
-    flex-direction: column !important;
-  }
-
-  #education .section-card > div > div {
-    min-width: 100% !important;
-  }
-}
-
 h3.title {
   text-align: center;
   font-size: 2rem;
