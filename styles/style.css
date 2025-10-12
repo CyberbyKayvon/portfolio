@@ -362,12 +362,13 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   }
 
   #about div[style*="display: flex"][style*="gap: 1.5rem"] {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  margin: 1.5rem auto !important;
-  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem !important;
+  max-width: 300px !important;
+  margin: 0 auto !important;
+  padding: 0 var(--pad) !important;
+  justify-items: center !important;
 }
 
   #about section {
@@ -461,12 +462,3 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   50% { border-color: var(--accent); }
 }
 
-/* Desktop centering for About social icons */
-@media (min-width: 821px) {
-  #about div[style*="display: flex"][style*="gap: 1.5rem"] {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 1.5rem 0 !important;
-  }
-}
