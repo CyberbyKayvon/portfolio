@@ -59,7 +59,7 @@ setTimeout(function() {
 </p>
       <ul style="margin: 0 0 1.75rem 0; padding-left: 1.5rem; line-height: 1.8;">
   <li style="margin-bottom: 0.5rem;">Master's in Cybersecurity Engineering – University of San Diego</li>
-  <li style="margin-bottom: 0.5rem;">Graduate of Cybersecurity Pre-Apprenticeship – Cyber Proud</li>
+  <li style="margin-bottom: 0.5rem;">Graduate of Cyber Proud – Cybersecurity Pre-Apprenticeship Program</li>
   <li style="margin-bottom: 0.5rem;">Bachelor's in Psychology &amp; Business – Texas A&amp;M University</li>
   <li style="margin-bottom: 0.5rem;">Hands-on cybersecurity experience</li>
 </ul>
@@ -220,34 +220,24 @@ setTimeout(function() {
 
 
 <!-- Education cards layout -->
-<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; align-items: stretch;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+
   <!-- Card: USD -->
-  <div style="flex: 1; min-width: 280px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1.5rem; transition: all 0.3s ease;"
-    onmouseover="this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)'; this.style.transform='translateY(-4px)'"
-    onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)'">
-    <h3 style="margin-bottom: 0.5rem; min-height: 3.6rem;">
-      Master of Science in Cybersecurity Engineering
-      <span style="float:right; font-weight: normal;">May 2026</span>
-    </h3>
-    <p style="margin: 0;">
-      <strong>University of San Diego</strong><br>
-      GPA: 4.00 <em>(The Cybersecurity Student Club)</em>
-    </p>
+  <div style="background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1.5rem; transition: all 0.3s ease;">
+    <h4 style="margin: 0 0 0.75rem 0; font-size: 1.1rem; font-weight: 700; color: var(--fg);">Master of Science in Cybersecurity Engineering</h4>
+    <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: var(--fg);">University of San Diego</p>
+    <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: var(--muted);">May 2026</p>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--muted);">GPA: 4.00 • Cybersecurity Student Club</p>
   </div>
 
   <!-- Card: Texas A&M -->
-  <div style="flex: 1; min-width: 280px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1.5rem; transition: all 0.3s ease;"
-    onmouseover="this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)'; this.style.transform='translateY(-4px)'"
-    onmouseout="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)'">
-    <h3 style="margin-bottom: 0.5rem; min-height: 3.6rem;">
-      Bachelor of Arts in Psychology, Minor in Business
-      <span style="float:right; font-weight: normal;">May 2012</span>
-    </h3>
-    <p style="margin: 0;">
-      <strong>Texas A&M University</strong><br>
-      GPA: 3.4 <em>(Men's D1 Tennis Team)</em>
-    </p>
+  <div style="background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 1.5rem; transition: all 0.3s ease;">
+    <h4 style="margin: 0 0 0.75rem 0; font-size: 1.1rem; font-weight: 700; color: var(--fg);">Bachelor of Arts in Psychology, Minor in Business</h4>
+    <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: var(--fg);">Texas A&M University</p>
+    <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: var(--muted);">May 2012</p>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--muted);">GPA: 3.4 • Men's D1 Tennis Team</p>
   </div>
+
 </div>
 
 <!-- Training & Certifications -->
@@ -595,6 +585,12 @@ document.addEventListener('keydown', function(e) {
 
       <!-- Gmail -->
 <a href="mailto:cyberbykayvon@gmail.com?subject=Hello%20Kayvon"
+   onclick="
+     if(window.innerWidth > 820) {
+       window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&to=cyberbykayvon@gmail.com', '_blank');
+       return false;
+     }
+   "
    style="text-decoration:none; color:#333; font-weight:600; display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:#ea4335;">
     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
