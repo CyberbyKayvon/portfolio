@@ -1119,3 +1119,25 @@ h3.title {
     text-align: center !important;
   }
 }
+
+#education h3.title {
+  text-align: center !important;
+  font-size: 2rem !important;
+}
+
+.tagline {
+  font-size: .9rem;
+  color: #57b3ff !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .tagline {
+  color: #57b3ff !important;
+}
+
+[data-theme="light"] .tagline {
+  color: #64748b !important;
+}
+
+
