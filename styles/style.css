@@ -1140,4 +1140,22 @@ h3.title {
   color: #64748b !important;
 }
 
+/* Mobile: Center Education title and make tagline smaller */
+@media (max-width: 820px) {
+  #education > div > h3.title {
+    text-align: center !important;
+    font-size: 2rem !important;
+  }
 
+  .tagline {
+    font-size: 0.75rem !important;
+    white-space: normal !important;
+  }
+}
+
+/* Desktop: Keep tagline normal size */
+@media (min-width: 821px) {
+  .tagline {
+    font-size: 0.9rem !important;
+  }
+}
