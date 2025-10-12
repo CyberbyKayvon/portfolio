@@ -358,12 +358,17 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   }
 
   #education .section-card > div {
-    flex-direction: column !important;
-  }
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 2rem !important;
+}
 
-  #education .section-card > div > div {
-    min-width: 100% !important;
-  }
+#education .section-card > div > div {
+  min-width: 100% !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
 
   .pills {
     display: grid;
