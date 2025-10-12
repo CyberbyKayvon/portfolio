@@ -1113,4 +1113,9 @@ h3.title {
     text-overflow: ellipsis !important;
   }
 }
-
+@media (max-width: 820px) {
+  #education > div > h3 {
+    font-size: 1.8rem !important;
+    text-align: center !important;
+  }
+}
