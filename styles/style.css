@@ -352,6 +352,23 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
     gap: 1.5rem !important;
   }
 
+  #about section {
+  padding: 0 1.5rem !important;
+}
+
+#about div[style*="margin: 1.5rem 0"] {
+  padding: 0 1rem !important;
+}
+
+#about div[style*="display: flex"][style*="gap: 1.5rem"] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem !important;
+  max-width: 300px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
   #education > div > h3.title {
     text-align: center !important;
     font-size: 2rem !important;
