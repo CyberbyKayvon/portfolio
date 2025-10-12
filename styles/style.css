@@ -1080,7 +1080,7 @@ footer {
 h3.title {
   text-align: center;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 12px 0;
   color: #ffffff;
 }
@@ -1127,7 +1127,7 @@ h3.title {
 
 .tagline {
   font-size: .9rem;
-  color: #57b3ff !important;
+  color: #b5d9f7 !important;
   font-weight: 500 !important;
   letter-spacing: 0.5px;
 }
