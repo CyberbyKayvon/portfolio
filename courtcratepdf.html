@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Crate Vulnerability Assessment Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Calibri', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f9f9f9;
+            padding: 20px;
+        }
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 0.75in 1in;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .page-header {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .page-footer {
+            text-align: center;
+            font-size: 9px;
+            color: #666;
+            margin-top: 20px;
+            padding-top: 8px;
+            border-top: 1px solid #ddd;
+        }
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            text-align: center;
+            padding: 2in 1in;
+        }
+        .cover-box {
+            border-top: 2px solid #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding: 40px 30px;
+            max-width: 90%;
+        }
+        .cover-page .page-header {
+            display: none;
+        }
+        .cover-page .page-footer {
+            position: absolute;
+            bottom: 1in;
+            width: calc(100% - 2in);
+        }
+        .cover-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a252f;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+        .cover-subtitle {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 60px;
+            line-height: 1.8;
+        }
+        .cover-meta {
+            font-size: 12px;
+            color: #666;
+            line-height: 2;
+            margin-top: 80px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .toc-page {
+            page-break-after: always;
+        }
+        .toc-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a252f;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .toc-item {
+            font-size: 12px;
+            line-height: 2;
+            color: #333;
+            border-bottom: 1px dotted #999;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a252f;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 8px;
+        }
+        .subsection-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+        p {
+            font-size: 11px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 10px;
+        }
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #1a252f;
+        }
+        td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .severity-critical {
+            background: #dc3545;
+            color: white;
+            font-weight: 600;
+        }
+        .severity-high {
+            background: #ff6b6b;
+            color: white;
+            font-weight: 600;
+        }
+        .severity-medium {
+            background: #ffc107;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        .severity-low {
+            background: #28a745;
+            color: white;
+            font-weight: 600;
+        }
+        .severity-info {
+            background: #17a2b8;
+            color: white;
+            font-weight: 600;
+        }
+        .finding-box {
+            border-left: 4px solid #2c3e50;
+            background: #f9f9f9;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        .finding-title {
+            font-weight: 600;
+            color: #1a252f;
+            margin-bottom: 6px;
+        }
+        .recommendation {
+            background: #e8f4f8;
+            border-left: 4px solid #17a2b8;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        .exec-summary {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER PAGE -->
+    <div class="page cover-page">
+        <div class="cover-title">Vulnerability Assessment Report</div>
+        <div class="cover-subtitle">Court Crate<br/>courtcrate.com</div>
+        <div class="cover-meta">
+            <strong>Prepared by:</strong> Kayvon Karimi<br/>
+            <strong>Assessment Date:</strong> August 6, 2024<br/>
+            <strong>Report Version:</strong> 1.0 (Final)
+        </div>
+        <div class="page-footer">
+            Cyber by Kayvon (Date: October 14, 2025)
+        </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="page toc-page">
+        <div class="page-header">Court Crate Vulnerability Assessment Report</div>
+        <div class="toc-title">Table of Contents</div>
+        <div class="toc-item">1. Executive Summary</div>
+        <div class="toc-item">2. Scope & Objectives</div>
+        <div class="toc-item">3. Target Inventory</div>
+        <div class="toc-item">4. Tools & Methodology</div>
+        <div class="toc-item">5. Vulnerability Summary</div>
+        <div class="toc-item">6. Open Ports & Services</div>
+        <div class="toc-item">7. Detailed Findings & Recommendations</div>
+        <div class="toc-item">8. Conclusion & Next Steps</div>
+        <div class="toc-item">9. Appendix A – Glossary</div>
+        <div class="toc-item">10. Appendix B – Evidence & References</div>
+    </div>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="page">
+        <div class="page-header">Court Crate Vulnerability Assessment Report</div>
+        <div class="section-title">1. Executive Summary</div>
+        <p>This report presents the results of a comprehensive vulnerability assessment conducted against Court Crate's public-facing infrastructure (courtcrate.com). The assessment was performed on August 6, 2024, utilizing industry-standard tools including Nmap for network reconnaissance, Tenable Nessus Essentials for vulnerability scanning, and Selenium for browser-based verification. Manual validation was conducted using curl and browser developer tools.</p>
+        
+        <div class="exec-summary">
+            <strong>Key Findings:</strong><br/>
+            • 0 Critical vulnerabilities identified<br/>
+            • 0 High-severity vulnerabilities identified<br/>
+            • 2 Medium-severity vulnerabilities requiring timely remediation<br/>
+            • 1 Low-severity vulnerability<br/>
+            • 23 Informational findings for hardening
+        </div>
+
+        <p>The assessment identified moderate but correctable security risks. No critical flaws were discovered that would allow immediate exploitation or system compromise. However, the presence of missing security headers (anti-clickjacking and HSTS), WordPress user enumeration capabilities, and permissive HTTP method configurations present exploitable weaknesses that warrant prompt remediation.</p>
+        
+        <p>The primary medium-severity finding is the lack of clickjacking protections (X-Frame-Options and Content-Security-Policy frame-ancestors headers), which could allow attackers to overlay invisible iframes and trick users into unintended actions. The secondary medium finding is WordPress user enumeration via the ?author= parameter, exposing administrator usernames to potential brute-force attacks.</p>
+        
+        <p>Implementation of the recommended configuration hardening measures will significantly strengthen the organization's security posture and align the system with OWASP Top 10 mitigations and CISA web-server baseline standards.</p>
+    </div>
+
+    <!-- SCOPE & OBJECTIVES -->
+    <div class="page">
+        <div class="section-title">2. Scope & Objectives</div>
+        
+        <div class="subsection-title">2.1 Scope</div>
+        <p><strong>In Scope:</strong> Public-facing web host (courtcrate.com), externally reachable services, DNS resolution, TLS/SSL configuration, HTTP response headers, and WordPress application-level exposure.</p>
+        <p><strong>Out of Scope:</strong> Internal network infrastructure, authenticated scanning, exploitation attempts, social engineering, physical security testing, and backend database systems.</p>
+
+        <div class="subsection-title">2.2 Objectives</div>
+        <ul style="margin-left: 20px; font-size: 11px;">
+            <li>Identify and document all exposed network ports and running services</li>
+            <li>Detect security vulnerabilities, misconfigurations, and missing security controls</li>
+            <li>Verify TLS/SSL certificate validity and encryption strength</li>
+            <li>Document HTTP response headers and identify missing security policies</li>
+            <li>Provide prioritized, actionable remediation recommendations</li>
+            <li>Establish baseline security metrics for ongoing compliance monitoring</li>
+        </ul>
+    </div>
+
+    <!-- TARGET INVENTORY -->
+    <div class="page">
+        <div class="section-title">3. Target Inventory</div>
+        
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Domain</td>
+                <td>courtcrate.com</td>
+            </tr>
+            <tr>
+                <td>IP Address</td>
+                <td>74.208.236.198</td>
+            </tr>
+            <tr>
+                <td>Reverse DNS</td>
+                <td>74-208-236-198.elastic-ssl.ui-r.com</td>
+            </tr>
+            <tr>
+                <td>OS (Scanner Reported)</td>
+                <td>AIX 5.3 (likely false positive; actual OS unavailable)</td>
+            </tr>
+            <tr>
+                <td>Hosting Provider</td>
+                <td>IONOS Hosting</td>
+            </tr>
+            <tr>
+                <td>CMS Platform</td>
+                <td>WordPress 6.x</td>
+            </tr>
+            <tr>
+                <td>Web Server</td>
+                <td>Apache / LiteSpeed</td>
+            </tr>
+            <tr>
+                <td>Application Environment</td>
+                <td>PHP 8.x / MySQL 5.7+</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- TOOLS & METHODOLOGY -->
+    <div class="page">
+        <div class="section-title">4. Tools & Methodology</div>
+        
+        <div class="subsection-title">4.1 Network Reconnaissance (Nmap)</div>
+        <p>Nmap was used to perform non-intrusive host discovery and service enumeration. Scans identified all accessible TCP ports, running services, and service version information. Multiple scan profiles were executed including SYN stealth scans, service version detection (-sV), and top-1000 port enumeration.</p>
+
+        <div class="subsection-title">4.2 Vulnerability Scanning (Nessus Essentials)</div>
+        <p>Tenable Nessus Essentials conducted comprehensive vulnerability scanning, identifying 26 distinct findings across multiple severity levels. The scanner performed banner grabbing, service fingerprinting, and configuration analysis to detect known vulnerabilities, missing patches, and security misconfigurations.</p>
+
+        <div class="subsection-title">4.3 Browser-Based Verification (Selenium)</div>
+        <p>Automated browser testing via Selenium was performed to verify the presence or absence of security headers and to confirm UI elements that could be vulnerable to frame-overlay attacks. This testing simulated real-world user interactions with the web application.</p>
+
+        <div class="subsection-title">4.4 Manual Validation</div>
+        <p>Manual verification using curl command-line requests and browser Developer Tools confirmed TLS protocol versions, cipher suites, HTTP response headers, session cookie attributes, and server banner information.</p>
+    </div>
+
+    <!-- VULNERABILITY SUMMARY -->
+    <div class="page">
+        <div class="section-title">5. Vulnerability Summary</div>
+        
+        <div class="subsection-title">5.1 Severity Classification</div>
+        <table>
+            <tr>
+                <th>Severity</th>
+                <th>Count</th>
+                <th>Key Findings</th>
+            </tr>
+            <tr>
+                <td><span class="severity-critical">Critical</span></td>
+                <td>0</td>
+                <td>None identified</td>
+            </tr>
+            <tr>
+                <td><span class="severity-high">High</span></td>
+                <td>0</td>
+                <td>None identified</td>
+            </tr>
+            <tr>
+                <td><span class="severity-medium">Medium</span></td>
+                <td>2</td>
+                <td>Clickjacking, WordPress User Enumeration</td>
+            </tr>
+            <tr>
+                <td><span class="severity-low">Low</span></td>
+                <td>1</td>
+                <td>Basic Authentication Without HTTPS</td>
+            </tr>
+            <tr>
+                <td><span class="severity-info">Informational</span></td>
+                <td>23</td>
+                <td>Missing HSTS, Insecure Cookie Flags, Server Version Disclosure, Permissive HTTP Methods</td>
+            </tr>
+        </table>
+
+        <div class="subsection-title">5.2 Vulnerability Analysis</div>
+        <table>
+            <tr>
+                <th>Severity</th>
+                <th>Count</th>
+                <th>Remediation Timeline</th>
+            </tr>
+            <tr>
+                <td><span class="severity-medium">Medium</span></td>
+                <td>2</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><span class="severity-low">Low</span></td>
+                <td>1</td>
+                <td>60 days</td>
+            </tr>
+            <tr>
+                <td><span class="severity-info">Informational</span></td>
+                <td>23</td>
+                <td>90 days (ongoing hardening)</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- OPEN PORTS -->
+    <div class="page">
+        <div class="section-title">6. Open Ports & Services</div>
+        
+        <p>Network reconnaissance identified the following open TCP ports and associated services on the target host:</p>
+        
+        <table>
+            <tr>
+                <th>Port</th>
+                <th>State</th>
+                <th>Service</th>
+                <th>Protocol</th>
+            </tr>
+            <tr>
+                <td>20/tcp</td>
+                <td>Closed</td>
+                <td>FTP Data</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>21/tcp</td>
+                <td>Open</td>
+                <td>FTP</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>25/tcp</td>
+                <td>Open</td>
+                <td>SMTP</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>53/tcp</td>
+                <td>Open</td>
+                <td>DNS</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>80/tcp</td>
+                <td>Open</td>
+                <td>HTTP</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>110/tcp</td>
+                <td>Open</td>
+                <td>POP3</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>143/tcp</td>
+                <td>Open</td>
+                <td>IMAP</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>443/tcp</td>
+                <td>Open</td>
+                <td>HTTPS</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>465/tcp</td>
+                <td>Open</td>
+                <td>SMTPS</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>587/tcp</td>
+                <td>Open</td>
+                <td>Submission</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>993/tcp</td>
+                <td>Open</td>
+                <td>IMAPS</td>
+                <td>TCP</td>
+            </tr>
+            <tr>
+                <td>995/tcp</td>
+                <td>Open</td>
+                <td>POP3S</td>
+                <td>TCP</td>
+            </tr>
+        </table>
+
+        <p><strong>Observation:</strong> The presence of open mail-related ports (SMTP, IMAP, POP3 and their encrypted variants) expands the attack surface and creates potential vectors for credential brute-forcing, relay abuse, and information gathering. The legacy FTP service (port 21) should be disabled in favor of SFTP/FTPS for secure file transfers.</p>
+    </div>
+
+    <!-- DETAILED FINDINGS - PAGE 1 -->
+    <div class="page">
+        <div class="section-title">7. Detailed Findings & Recommendations</div>
+        
+        <div class="subsection-title">7.1 Finding #1: Clickjacking Vulnerability (Nessus Plugin 85582)</div>
+        <div class="finding-box">
+            <div class="finding-title">Severity: MEDIUM | CVSS v2: 4.3 | Plugin ID: 85582</div>
+            <p><strong>Description:</strong> The web application fails to implement frame-restriction headers (X-Frame-Options or Content-Security-Policy frame-ancestors directives). This allows attackers to embed the target page within a malicious webpage using HTML iframes, enabling UI Redress or Clickjacking attacks.</p>
+            
+            <p><strong>Attack Vector:</strong> An attacker creates a malicious website that invisibly overlays the target site's interactive elements (buttons, links, forms) on top of attacker-controlled content. When a victim visits the malicious site, they unknowingly interact with the hidden target site, potentially causing them to:</p>
+            <ul style="margin-left: 20px; font-size: 10px;">
+                <li>Transfer funds or change account settings</li>
+                <li>Click on advertisements, inflating attacker revenue</li>
+                <li>Perform unintended actions while logged into the target application</li>
+                <li>Disclose sensitive information via implicit trust in the framed context</li>
+            </ul>
+
+            <p><strong>Affected Pages:</strong> All pages with interactive elements including login forms, transaction interfaces, account settings, and administrative functions.</p>
+
+            <p><strong>Root Cause:</strong> The web server is not sending appropriate HTTP response headers to restrict frame embedding. Both the X-Frame-Options header and the Content-Security-Policy frame-ancestors directive are absent from all observed responses.</p>
+        </div>
+
+        <div class="recommendation">
+            <strong>Remediation (Priority: IMMEDIATE – 7 days):</strong><br/><br/>
+            <strong>Option A: Using X-Frame-Options Header (Recommended for broad compatibility)</strong><br/>
+            Add the following HTTP header to all responses from the web server:<br/>
+            <code>X-Frame-Options: SAMEORIGIN</code><br/><br/>
+            This directive instructs browsers to only allow the page to be framed by pages from the same origin. Alternative values:<br/>
+            • <code>DENY</code> – prevent framing entirely (most restrictive)<br/>
+            • <code>SAMEORIGIN</code> – allow framing only from same domain (recommended for most applications)<br/>
+            • <code>ALLOW-FROM uri</code> – allow framing only from specified domain (deprecated; use CSP instead)<br/><br/>
+            
+            <strong>Option B: Using Content-Security-Policy Header (Modern standard, more flexible)</strong><br/>
+            Add or update the Content-Security-Policy header:<br/>
+            <code>Content-Security-Policy: frame-ancestors 'self';</code><br/><br/>
+            This restricts framing to the same origin and provides more granular control than X-Frame-Options.<br/><br/>
+
+            <strong>Recommended Implementation (Option A + Option B for defense-in-depth):</strong><br/>
+            For Apache web server, add to .htaccess or apache2.conf:<br/>
+            <code style="background:#f0f0f0; padding:4px; display:block; margin:4px 0;">Header always set X-Frame-Options "SAMEORIGIN"<br/>Header always set Content-Security-Policy "frame-ancestors 'self';"</code><br/><br/>
+
+            For WordPress/PHP applications, add to functions.php or appropriate header file:<br/>
+            <code style="background:#f0f0f0; padding:4px; display:block; margin:4px 0;">header("X-Frame-Options: SAMEORIGIN");<br/>header("Content-Security-Policy: frame-ancestors 'self';");</code><br/><br/>
+
+            <strong>Validation Steps:</strong><br/>
+            1. Deploy headers to production<br/>
+            2. Verify headers using curl: <code>curl -I https://courtcrate.com</code><br/>
+            3. Confirm X-Frame-Options and CSP frame-ancestors appear in response<br/>
+            4. Test in browser: attempt to frame page in external iframe (should be blocked)<br/>
+            5. Re-run Nessus scan to confirm remediation<br/><br/>
+
+            <strong>Timeline:</strong> 7 days to implementation and validation
+        </div>
+    </div>
+
+    <!-- DETAILED FINDINGS - PAGE 2 -->
+    <div class="page">
+        <div class="subsection-title">7.2 Finding #2: WordPress User Enumeration (Nessus Plugin 90067)</div>
+        <div class="finding-box">
+            <div class="finding-title">Severity: MEDIUM | CVSS v2: 5.0 | Plugin ID: 90067</div>
+            <p><strong>Description:</strong> The WordPress installation exposes administrator usernames through the ?author= parameter. Attackers can enumerate valid user accounts by iterating through numeric author IDs, leaking information required for targeted brute-force or social engineering attacks.</p>
+            <p><strong>Attack Vector:</strong> By accessing URLs such as <code>courtcrate.com/?author=1</code>, <code>?author=2</code>, etc., attackers receive HTTP 301 redirects to author archive pages that disclose the actual username. This allows systematic enumeration of all WordPress user accounts.</p>
+        </div>
+
+        <div class="recommendation">
+            <strong>Remediation (Priority: HIGH – 14 days):</strong><br/>
+            1. Install security hardening plugin (e.g., Wordfence, iThemes Security) to disable author archives<br/>
+            2. Add .htaccess rewrite rule to block author parameter queries:<br/>
+            <code style="background:#f0f0f0; padding:4px; display:block;">RewriteCond %{QUERY_STRING} ^author=\d <br/>RewriteRule ^(.*)$ – [L,F]</code><br/>
+            3. Enforce strong password policy and implement two-factor authentication (2FA) for all admin accounts<br/>
+            4. Deploy rate-limiting on login endpoints to prevent brute-force attacks<br/>
+            5. Regularly audit WordPress user list; remove inactive accounts
+        </div>
+
+        <div class="subsection-title">7.3 Finding #3: Basic Authentication Without HTTPS (Nessus Plugin 34850)</div>
+        <div class="finding-box">
+            <div class="finding-title">Severity: LOW | CVSS v2: 2.6 | Plugin ID: 34850</div>
+            <p><strong>Description:</strong> Legacy services on ports 110 (POP3) and potentially others accept Basic Authentication over unencrypted connections, allowing credential interception via man-in-the-middle (MITM) attacks.</p>
+        </div>
+
+        <div class="recommendation">
+            <strong>Remediation (Priority: MEDIUM – 30 days):</strong><br/>
+            1. Disable unencrypted protocols: FTP (21), SMTP (25), POP3 (110), IMAP (143)<br/>
+            2. Enforce encrypted alternatives: SFTP/FTPS, SMTPS (465), POP3S (995), IMAPS (993)<br/>
+            3. Redirect all HTTP traffic to HTTPS; disable plaintext HTTP for sensitive operations<br/>
+            4. Implement HSTS (HTTP Strict-Transport-Security) to force HTTPS-only connections
+        </div>
+
+        <div class="subsection-title">7.4 Finding #4: Missing Security Headers (Informational)</div>
+        <div class="finding-box">
+            <div class="finding-title">Severity: INFORMATIONAL | Plugin ID: 69826, 85601, 43111</div>
+            <p><strong>Missing Headers:</strong> HTTP Strict-Transport-Security (HSTS), Secure/HttpOnly/SameSite cookie flags, X-Content-Type-Options, X-XSS-Protection</p>
+            <p><strong>Impact:</strong> Cookies vulnerable to XSS and CSRF; browsers may downgrade to HTTP; server fingerprinting enables targeted attacks.</p>
+        </div>
+
+        <div class="recommendation">
+            <strong>Remediation:</strong><br/>
+            Add the following headers to all web server responses:<br/><br/>
+            <code style="background:#f0f0f0; padding:4px; display:block;">Strict-Transport-Security: max-age=31536000; includeSubDomains; preload<br/>X-Content-Type-Options: nosniff<br/>X-XSS-Protection: 1; mode=block<br/>X-Frame-Options: SAMEORIGIN<br/>Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'</code>
+        </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="page">
+        <div class="section-title">8. Conclusion & Next Steps</div>
+        <p>Court Crate's web infrastructure presents moderate but fully correctable security risks. No critical or high-severity vulnerabilities were identified that would allow immediate system compromise. However, the two medium-severity findings—clickjacking and WordPress user enumeration—warrant prompt remediation to prevent exploitation.</p>
+        
+        <div class="subsection-title">Immediate Actions (0–30 days):</div>
+        <ul style="margin-left: 20px; font-size: 11px;">
+            <li>Deploy X-Frame-Options and CSP frame-ancestors headers</li>
+            <li>Implement WordPress user enumeration blocking</li>
+            <li>Enable HSTS and security headers</li>
+            <li>Apply Secure/HttpOnly/SameSite cookie flags</li>
+        </ul>
+
+        <div class="subsection-title">Short-term Actions (30–60 days):</div>
+        <ul style="margin-left: 20px; font-size: 11px;">
+            <li>Disable legacy unencrypted protocols (FTP, SMTP, POP3, IMAP)</li>
+            <li>Restrict HTTP methods to GET and POST only</li>
+            <li>Deploy WordPress security hardening plugin with WAF/rate-limiting</li>
+            <li>Force HTTPS redirects for all traffic</li>
+        </ul>
+
+        <div class="subsection-title">Long-term Actions (60–90 days & ongoing):</div>
+        <ul style="margin-left: 20px; font-size: 11px;">
+            <li>Schedule quarterly Nessus authenticated scans</li>
+            <li>Maintain monthly patch and security update cycles</li>
+            <li>Implement security monitoring and incident response procedures</li>
+            <li>Integrate security verification into change management processes</li>
+        </ul>
+
+        <p><strong>Conclusion:</strong> By implementing the recommended remediations, Court Crate can significantly enhance its security posture, align with industry best practices, and reduce exposure to common web-based attacks. Regular assessment and maintenance will ensure that improvements persist as the environment evolves.</p>
+    </div>
+
+    <!-- GLOSSARY -->
+    <div class="page">
+        <div class="section-title">9. Appendix A – Glossary</div>
+        
+        <table>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td><strong>CVSS</strong></td>
+                <td>Common Vulnerability Scoring System – standardized method for rating severity of vulnerabilities (0–10 scale)</td>
+            </tr>
+            <tr>
+                <td><strong>Clickjacking</strong></td>
+                <td>UI redress attack where attacker overlays invisible iframes to trick users into unintended actions</td>
+            </tr>
+            <tr>
+                <td><strong>CSP</strong></td>
+                <td>Content Security Policy – HTTP header controlling which content sources (scripts, iframes) browsers can load</td>
+            </tr>
+            <tr>
+                
