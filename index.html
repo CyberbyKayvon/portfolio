@@ -128,7 +128,15 @@ setTimeout(function() {
         </a>
 
       </div>
-      <!-- /Social links -->
+      <!-- Add this right after your social links div in the About section -->
+<div style="margin-top: 1.5rem;">
+  <a href="resume.pdf" target="_blank" rel="noopener noreferrer"
+     style="display: inline-block; padding: 12px 24px; background: var(--accent); color: white;
+            text-decoration: none; border-radius: 8px; font-weight: 700; transition: opacity 0.2s;"
+     onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+    📄 View Resume
+  </a>
+</div>
 
     </section>
 
@@ -375,53 +383,49 @@ setTimeout(function() {
 
 
           <!-- Wi-Fi -->
-          <article class="card">
-            <div class="card-body">
-              <h4>Wi-Fi Capture &amp; WPA2 Decryption (Wireshark/Kali)</h4>
-              <ul class="tidy">
-                <li>Monitor mode + packet injection; decrypted WPA2 traffic with PSK.</li>
-                <li>Analyzed SSDP/UPnP, HTTP flows; device-scoped filters.</li>
-              </ul>
-              <div class="btnrow">
-                <a class="btn" href="https://docs.google.com/document/d/1m5HpAhsAJyL82pfe8usn_25rwLe2SZY-LmlFxY4PWIo/edit?tab=t.0#heading=h.4db41zisdymc" target="_blank" rel="noopener noreferrer">Case Study (Google Doc)</a>
-                <a class="smalllink" href="https://github.com/CyberbyKayvon/Network-Exploitation" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </div>
-            </div>
-          </article>
+<article class="card">
+  <div class="card-body">
+    <h4>Wi-Fi Capture &amp; WPA2 Decryption (Wireshark/Kali)</h4>
+    <ul class="tidy">
+      <li>Monitor mode + packet injection; decrypted WPA2 traffic with PSK.</li>
+      <li>Analyzed SSDP/UPnP, HTTP flows; device-scoped filters.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn" href="networkexploitreport.pdf" target="_blank" rel="noopener noreferrer">Case Study (PDF)</a>
+      <a class="smalllink" href="https://github.com/CyberbyKayvon/Network-Exploitation" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</article>
 
           <!-- VPN Server Setup -->
           <article class="card">
-            <div class="card-body">
-              <h4>VPN Server Setup with AWS, Pi-hole, and PiVPN</h4>
-              <ul class="tidy">
-                <li>Configured secure VPN server using AWS EC2, Pi-hole, and PiVPN.</li>
-                <li>Implemented DNS-level ad blocking and encrypted remote access.</li>
-              </ul>
-              <div class="btnrow">
-                <a class="btn" href="https://docs.google.com/document/d/1jLvo4L27is8mBw-wjyzWYqFH24gfdE-06XrbjvRfNHk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Setup Guide (Google Doc)</a>
-                <a class="smalllink" href="https://github.com/CyberbyKayvon/VPN-Server-Setup-with-AWS-Pi-hole-and-PiVPN/blob/main/README.md" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </div>
-            </div>
-          </article>
+  <div class="card-body">
+    <h4>VPN Server Setup with AWS, Pi-hole, and PiVPN</h4>
+    <ul class="tidy">
+      <li>Configured secure VPN server using AWS EC2, Pi-hole, and PiVPN.</li>
+      <li>Implemented DNS-level ad blocking and encrypted remote access.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn" href="vpn_aws.pdf" target="_blank" rel="noopener noreferrer">Setup Guide (PDF)</a>
+      <a class="smalllink" href="https://github.com/CyberbyKayvon/VPN-Server-Setup-with-AWS-Pi-hole-and-PiVPN/blob/main/README.md" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</article>
 
           <!-- Wazuh -->
-          <article class="card">
-            <div class="card-body">
-              <h4>Implementation and Configuration of Wazuh Server</h4>
-              <ul class="tidy">
-                <li>AWS + Pi-hole + WireGuard; custom rules for auth events.</li>
-                <li>Webhook notifications on client connect.</li>
-              </ul>
-              <div class="btnrow">
-                <a class="btn"
-                  href="https://docs.google.com/document/d/1cDrr5bQQtb5HWOmu5lK5nSpxW_GhlYo-phc9Zvwd73M/view"
-                  target="_blank" rel="noopener noreferrer">
-                  Write-up (Google Doc)
-                </a>
-                <a class="smalllink" href="https://github.com/CyberbyKayvon/Implementing-and-Configuring-a-Wazuh-SIEM-for-VPN-Client-Connection-Alerts-AWS-Pi-hole-WireGuard-/blob/main/README.md" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </div>
-            </div>
-          </article>
+<article class="card">
+  <div class="card-body">
+    <h4>Implementation and Configuration of Wazuh Server</h4>
+    <ul class="tidy">
+      <li>AWS + Pi-hole + WireGuard; custom rules for auth events.</li>
+      <li>Webhook notifications on client connect.</li>
+    </ul>
+    <div class="btnrow">
+      <a class="btn" href="wazuhconfigreport.pdf" target="_blank" rel="noopener noreferrer">Write-up (PDF)</a>
+      <a class="smalllink" href="https://github.com/CyberbyKayvon/Implementing-and-Configuring-a-Wazuh-SIEM-for-VPN-Client-Connection-Alerts-AWS-Pi-hole-WireGuard-/blob/main/README.md" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</article>
 
           <!-- Kali Bypass GRUB -->
           <article class="card">
