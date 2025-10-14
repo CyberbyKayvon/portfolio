@@ -3,81 +3,101 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles/style.css?v=36">
+  <link rel="stylesheet" href="styles/style.css?v=56">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon.ico">
-  <title>Media Gallery — Kayvon Karimi</title>
-  <meta name="description" content="Cybersecurity project images and highlights from Kayvon Karimi's portfolio." />
+  <title>Media Gallery – Kayvon Karimi</title>
   <style>
-    /* Masonry collage layout */
+    /* Modern Masonry Grid */
     .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
       padding: 2rem 0;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       .masonry-grid {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .masonry-grid {
-        column-count: 1;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
       }
     }
 
     .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: 12px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
     .masonry-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15,23,42,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(15,23,42,0.25);
+      border-color: var(--accent);
+    }
+
+    [data-theme="dark"] .masonry-item:hover {
+      box-shadow: 0 16px 48px rgba(59,130,246,0.3);
     }
 
     .masonry-item img {
       width: 100%;
-      height: auto;
+      height: 240px;
+      object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .masonry-item:hover img {
+      transform: scale(1.05);
     }
 
     .masonry-caption {
-      padding: 1rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--fg);
+      padding: 1.25rem;
       background: var(--card);
     }
 
-    [data-theme="dark"] .masonry-caption {
+    .caption-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 0.75rem 0;
+      line-height: 1.4;
+    }
+
+    .caption-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    [data-theme="dark"] .caption-title {
       color: #e8f1ff;
     }
 
-    [data-theme="light"] .masonry-caption {
-      color: #0f172a;
+    [data-theme="dark"] .caption-desc {
+      color: #94a3b8;
     }
 
     .back-link {
-      display: inline-block;
-      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      transition: gap 0.2s ease;
     }
 
     .back-link:hover {
-      text-decoration: underline;
+      gap: 0.75rem;
     }
 
     /* Lightbox */
@@ -90,63 +110,105 @@
       height: 100%;
       background: rgba(0,0,0,0.95);
       z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
       padding: 2rem;
       overflow-y: auto;
     }
 
     #lightbox.active {
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
     }
 
     #lightbox-img {
-      max-width: 85%;
-      max-height: 75%;
+      max-width: 90%;
+      max-height: 70vh;
       border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-      margin-bottom: 1rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
       object-fit: contain;
     }
 
-    #lightbox-description {
-      color: #fff;
-      font-size: 1.05rem;
-      max-width: 700px;
+    #lightbox-info {
+      max-width: 800px;
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.5rem 2rem;
       background: rgba(255,255,255,0.1);
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.15);
-      line-height: 1.6;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    #lightbox-title {
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+    }
+
+    #lightbox-description {
+      color: #e2e8f0;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
     }
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 30px;
+      top: 24px;
+      right: 32px;
       color: white;
-      font-size: 40px;
+      font-size: 42px;
       font-weight: bold;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: transform 0.2s ease;
+      z-index: 10000;
     }
 
     .lightbox-close:hover {
-      opacity: 0.7;
+      transform: scale(1.15);
     }
 
     @media (max-width: 768px) {
       #lightbox-img {
         max-width: 95%;
-        max-height: 60%;
+        max-height: 60vh;
+      }
+
+      #lightbox-info {
+        padding: 1.25rem;
+      }
+
+      #lightbox-title {
+        font-size: 1.15rem;
       }
 
       #lightbox-description {
-        font-size: 0.95rem;
-        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .lightbox-close {
+        top: 16px;
+        right: 20px;
+        font-size: 36px;
+      }
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery-header h1 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-header h1 {
+        font-size: 2rem;
       }
     }
   </style>
@@ -169,7 +231,7 @@
         <a href="index.html#media">Media</a>
         <a href="index.html#connect">Connect</a>
 
-        <button id="theme-toggle" aria-label="Toggle dark mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0; margin-left: 12px;">
+        <button id="theme-toggle" aria-label="Toggle dark mode">
           <span id="theme-icon">🌙</span>
         </button>
       </nav>
@@ -179,71 +241,175 @@
   <main>
     <section class="section">
       <div class="container">
-        <a href="index.html#media" class="back-link">← Back to Main Portfolio</a>
+        <a href="index.html#media" class="back-link">← Back to Portfolio</a>
 
-        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; text-align: center;">Media Gallery</h1>
-        <p class="lead">Complete collection of cybersecurity projects, labs, and technical demonstrations. Click any image to view full size with details.</p>
+        <div class="gallery-header">
+          <h1>Media Gallery</h1>
+          <p class="lead">Complete collection of cybersecurity projects, labs, and technical demonstrations. Click any image to view details.</p>
+        </div>
 
         <div class="masonry-grid">
 
           <!-- Media 1 -->
           <div class="masonry-item" onclick="openLightbox(0)">
-            <img src="media/media1.png" alt="DNS Queries Wireshark Capture">
-            <div class="masonry-caption">DNS Queries Wireshark Capture</div>
+            <img src="media/media1.png" alt="DNS Traffic Analysis in Wireshark" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">DNS and TLS Traffic Analysis in Wireshark</h3>
+              <p class="caption-desc">Packet capture analysis of DNS queries and responses during TLS session monitoring on owned devices.</p>
+            </div>
           </div>
 
           <!-- Media 2 -->
           <div class="masonry-item" onclick="openLightbox(1)">
-            <img src="media/media2.png" alt="WireGuard VPN Architecture Diagram">
-            <div class="masonry-caption">WireGuard VPN Architecture Diagram</div>
+            <img src="media/media2.png" alt="WireGuard VPN Network Architecture" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">WireGuard VPN Network Architecture</h3>
+              <p class="caption-desc">Network topology diagram showing AWS EC2 VPN server with Wazuh SIEM integration and client routing.</p>
+            </div>
           </div>
 
           <!-- Media 3 -->
           <div class="masonry-item" onclick="openLightbox(2)">
-            <img src="media/media3.png" alt="WPA2 Handshake Capture in Kali Linux">
-            <div class="masonry-caption">WPA2 Handshake Capture in Kali Linux</div>
+            <img src="media/media3.png" alt="WPA2 Handshake Capture with Airodump-ng" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">WPA2 Handshake Capture with Airodump-ng</h3>
+              <p class="caption-desc">Successful four-way handshake capture on WPA2-PSK network using monitor mode in Kali Linux.</p>
+            </div>
           </div>
 
           <!-- Media 4 -->
           <div class="masonry-item" onclick="openLightbox(3)">
-            <img src="media/media4.png" alt="Kali Linux GRUB Boot Login Bypass">
-            <div class="masonry-caption">Kali Linux GRUB Boot Login Bypass</div>
+            <img src="media/media4.png" alt="GRUB Bootloader Authentication Bypass" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">GRUB Bootloader Authentication Bypass</h3>
+              <p class="caption-desc">Demonstration of gaining root access by modifying kernel parameters through GRUB boot menu.</p>
+            </div>
           </div>
 
           <!-- Media 5 -->
           <div class="masonry-item" onclick="openLightbox(4)">
-            <img src="media/media5.png" alt="Conducting a Self-Signed Certificate">
-            <div class="masonry-caption">Conducting a Self-Signed Certificate</div>
+            <img src="media/media5.png" alt="RSA Self-Signed Certificate Generation" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">RSA Self-Signed Certificate Generation</h3>
+              <p class="caption-desc">Creating SHA256withRSA encrypted certificate with 4096-bit public key for SSL/TLS testing.</p>
+            </div>
           </div>
 
           <!-- Media 6 -->
           <div class="masonry-item" onclick="openLightbox(5)">
-            <img src="media/media6.png" alt="Aircrack-ng WPA2 Key Found">
-            <div class="masonry-caption">Aircrack-ng WPA2 Key Found</div>
+            <img src="media/media6.png" alt="Successful WPA2 Password Cracking" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">Successful WPA2 Key and Wi-Fi Password Cracking</h3>
+              <p class="caption-desc">Dictionary attack using Aircrack-ng revealing WPA2 pre-shared key after testing 993,611 keys.</p>
+            </div>
           </div>
 
           <!-- Media 7 -->
           <div class="masonry-item" onclick="openLightbox(6)">
-            <img src="media/media7.png" alt="Configuring Snort Event Summary Dashboard">
-            <div class="masonry-caption">Configuring Snort Event Summary Dashboard</div>
+            <img src="media/media7.png" alt="Snort IDS Event Summary Dashboard" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">Snort IDS Event Summary Dashboard</h3>
+              <p class="caption-desc">Real-time intrusion detection monitoring showing 2,769 security events across 4 source IPs.</p>
+            </div>
           </div>
 
           <!-- Media 8 -->
           <div class="masonry-item" onclick="openLightbox(7)">
-            <img src="media/media8.png" alt="Snort Configuration in Nano Editor">
-            <div class="masonry-caption">Snort Configuration in Nano Editor</div>
+            <img src="media/media8.png" alt="Snort Configuration File Customization" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">Snort Configuration File Customization</h3>
+              <p class="caption-desc">Editing Snort detection engine settings, preprocessors, and output plugins in nano editor.</p>
+            </div>
           </div>
 
           <!-- Media 9 -->
           <div class="masonry-item" onclick="openLightbox(8)">
-            <img src="media/media9.png" alt="Configuring TLS Session Key Capture in Wireshark">
-            <div class="masonry-caption">Configuring TLS Session Key Capture in Wireshark</div>
+            <img src="media/media9.png" alt="TLS Session Key Pre-Master Secret Setup" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">TLS Session Key Pre-Master Secret Setup</h3>
+              <p class="caption-desc">Configuring Wireshark with encryption keys to decrypt and analyze HTTPS traffic flows.</p>
+            </div>
           </div>
 
           <!-- Media 10 -->
           <div class="masonry-item" onclick="openLightbox(9)">
-            <img src="media/media10.png" alt="Wireshark TLS Packet Capture">
-            <div class="masonry-caption">Wireshark TLS Packet Capture</div>
+            <img src="media/media10.png" alt="TLS Protocol Traffic Packet Analysis" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">TLS Protocol Traffic Packet Analysis in Wireshark</h3>
+              <p class="caption-desc">Deep packet inspection of TLS 1.2/1.3 encrypted sessions showing handshake and data exchange.</p>
+            </div>
+          </div>
+
+          <!-- Media 11 -->
+          <div class="masonry-item" onclick="openLightbox(10)">
+            <img src="media/media11.png" alt="VirtualBox Security Lab Environment" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">VirtualBox Security Lab Environment</h3>
+              <p class="caption-desc">Multi-VM sandbox configuration with Kali, Debian, Ubuntu, and Windows for penetration testing.</p>
+            </div>
+          </div>
+
+          <!-- Media 12 -->
+          <div class="masonry-item" onclick="openLightbox(11)">
+            <img src="media/media12.png" alt="UDP Protocol Network Traffic Capture" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">UDP Protocol Network Traffic Capture</h3>
+              <p class="caption-desc">Analyzing UDP datagram packets including MDNS, SSDP, and NetBIOS name service broadcasts.</p>
+            </div>
+          </div>
+
+          <!-- Media 13 -->
+          <div class="masonry-item" onclick="openLightbox(12)">
+            <img src="media/media13.png" alt="UPnP Device Discovery Protocol Analysis" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">UPnP Device Discovery Protocol Analysis</h3>
+              <p class="caption-desc">SSDP multicast packet examination revealing device location and service advertisement data.</p>
+            </div>
+          </div>
+
+          <!-- Media 14 -->
+          <div class="masonry-item" onclick="openLightbox(13)">
+            <img src="media/media14.png" alt="OpenSSL Certificate Signing Request" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">OpenSSL Certificate Signing Request</h3>
+              <p class="caption-desc">Generating CSR with RSA encryption and subject alternative name for SSL certificate authority.</p>
+            </div>
+          </div>
+
+          <!-- Media 15 -->
+          <div class="masonry-item" onclick="openLightbox(14)">
+            <img src="media/media15.png" alt="Cyber Proud Pre-Apprenticeship Certificate" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">Cyber Proud Pre-Apprenticeship Certificate</h3>
+              <p class="caption-desc">Official completion certificate for comprehensive cybersecurity training program (May 2025).</p>
+            </div>
+          </div>
+
+          <!-- Media 16 -->
+          <div class="masonry-item" onclick="openLightbox(15)">
+            <img src="media/media16.png" alt="Wireless Network Reconnaissance Scan" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">Wireless Network Reconnaissance Scan</h3>
+              <p class="caption-desc">Airodump-ng monitoring showing target SSID, connected stations, and WPA2-CCMP encryption details.</p>
+            </div>
+          </div>
+
+          <!-- Media 17 -->
+          <div class="masonry-item" onclick="openLightbox(16)">
+            <img src="media/media17.png" alt="USB WiFi Adapter Monitor Mode Setup" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">USB WiFi Adapter Monitor Mode Setup</h3>
+              <p class="caption-desc">VirtualBox USB passthrough configuration enabling packet injection for wireless security testing.</p>
+            </div>
+          </div>
+
+          <!-- Media 18 -->
+          <div class="masonry-item" onclick="openLightbox(17)">
+            <img src="media/media18.png" alt="Network Interface Configuration for VSFTPD" loading="lazy">
+            <div class="masonry-caption">
+              <h3 class="caption-title">Network Interface Configuration for VSFTPD</h3>
+              <p class="caption-desc">VM network setup showing interface addressing for VSFTPD backdoor exploitation assessment.</p>
+            </div>
           </div>
 
         </div>
@@ -255,74 +421,118 @@
   <div id="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="">
-    <div id="lightbox-description"></div>
+    <div id="lightbox-info">
+      <h2 id="lightbox-title"></h2>
+      <p id="lightbox-description"></p>
+    </div>
   </div>
 
   <footer>
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-    <span>© <span id="y"></span> Kayvon Karimi</span>
-    <a href="mailto:cyberbykayvon@gmail.com" style="text-decoration: none; color: inherit; font-weight: 600;" class="footer-email">cyberbykayvon@gmail.com</a>
-  </div>
-</footer>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <span>© <span id="y"></span> Kayvon Karimi</span>
+      <a href="mailto:cyberbykayvon@gmail.com" style="text-decoration: none; color: inherit; font-weight: 600;" class="footer-email">cyberbykayvon@gmail.com</a>
+    </div>
+  </footer>
 
   <script>
-    const projectData = [
+    const mediaData = [
       {
         src: 'media/media1.png',
-        title: 'DNS Queries Wireshark Capture',
-        desc: 'Capturing and analyzing DNS traffic using Wireshark, demonstrating DNS query patterns, resolution processes, and network behavior analysis.'
+        title: 'DNS Traffic Analysis in Wireshark',
+        desc: 'Comprehensive packet capture analysis demonstrating DNS query and response patterns during an active TLS session. This capture was performed on authorized, personally-owned devices to examine how DNS resolution requests are made and handled across the network, revealing domain lookups, response times, and the relationship between DNS and subsequent encrypted traffic flows.'
       },
       {
         src: 'media/media2.png',
-        title: 'WireGuard VPN Architecture Diagram',
-        desc: 'Network architecture design implementing WireGuard VPN for secure encrypted communications and remote access.'
+        title: 'WireGuard VPN Network Architecture',
+        desc: 'Detailed network topology diagram illustrating the implementation of a secure VPN infrastructure using WireGuard protocol on AWS EC2. The architecture includes a Ubuntu-based VPN server with Wazuh SIEM agent installed, demonstrating proper network segmentation between public internet routing, VPN tunnel encryption (UDP port 51820), and internal LAN traffic monitoring with automated security event alerting to the Wazuh server.'
       },
       {
         src: 'media/media3.png',
-        title: 'WPA2 Handshake Capture in Kali Linux',
-        desc: 'Capturing WPA2 authentication handshakes using Kali Linux tools, essential for wireless security assessment and penetration testing.'
+        title: 'WPA2 Handshake Capture with Airodump-ng',
+        desc: 'Successful capture of the WPA2 four-way authentication handshake using airodump-ng in monitor mode on Kali Linux. The highlighted "WPA handshake" indicator confirms that all four EAPOL frames were captured from the target access point (BSSID 58:07:F8:0D:9C:14), which is essential for offline password cracking attempts. This demonstrates the vulnerability of WPA2-PSK networks when weak passwords are used and emphasizes the importance of strong, complex passphrases.'
       },
       {
         src: 'media/media4.png',
-        title: 'Kali Linux GRUB Boot Login Bypass',
-        desc: 'Demonstrating bootloader security vulnerabilities through GRUB authentication bypass with remediation strategies.'
+        title: 'GRUB Bootloader Authentication Bypass',
+        desc: 'Demonstration of a physical security vulnerability where an attacker with physical access can bypass login authentication by modifying kernel boot parameters through the GNU GRUB bootloader menu. By editing the boot configuration and appending "init=/bin/bash" or "single" to kernel parameters, an attacker can gain root shell access without knowing user credentials. This highlights the critical importance of BIOS/UEFI passwords, GRUB password protection, and full disk encryption as defense layers.'
       },
       {
         src: 'media/media5.png',
-        title: 'Conducting a Self-Signed Certificate',
-        desc: 'Creating and implementing self-signed certificates for testing SSL/TLS configurations and certificate authority operations.'
+        title: 'RSA Self-Signed Certificate Generation',
+        desc: 'Creation of an X.509 self-signed digital certificate using RSA encryption with a 4096-bit public key and SHA-256 hashing algorithm. The certificate includes organizational details for a local Certificate Authority (CYBR-504) based in San Diego, California. This demonstrates the foundational cryptographic process used in SSL/TLS certificate creation for secure communications, commonly employed in development environments and internal network security testing before deploying commercially-signed certificates.'
       },
       {
         src: 'media/media6.png',
-        title: 'Aircrack-ng WPA2 Key Found',
-        desc: 'Offline WPA2 password cracking using aircrack-ng, demonstrating the importance of strong wireless encryption credentials.'
+        title: 'Successful WPA2 Password Cracking',
+        desc: 'Aircrack-ng successfully recovered the WPA2 pre-shared key (PSK) after testing 993,611 password candidates at a rate of approximately 2,095 keys per second. The tool displays the recovered Master Key, Transient Key, and EAPOL HMAC values that prove successful authentication. This practical demonstration illustrates why strong, random passwords (20+ characters) are essential for wireless network security, as dictionary attacks can compromise weak passwords in hours or days depending on computational resources.'
       },
       {
         src: 'media/media7.png',
-        title: 'Configuring Snort Event Summary Dashboard',
-        desc: 'Building a Snort IDS event summary dashboard for real-time intrusion detection and threat monitoring.'
+        title: 'Snort IDS Event Summary Dashboard',
+        desc: 'Real-time Snort intrusion detection system dashboard displaying aggregated security events over a three-day period. The visualization shows 2,769 total security events detected from 4 unique source IP addresses, with event spikes correlating to specific timeframes. The time-series graph helps security analysts identify patterns, potential attack campaigns, and periods of heightened network activity that require further investigation. This dashboard provides crucial situational awareness for security operations center (SOC) monitoring.'
       },
       {
         src: 'media/media8.png',
-        title: 'Snort Configuration in Nano Editor',
-        desc: 'Configuring Snort rules and detection settings using command-line editors for intrusion detection system customization.'
+        title: 'Snort Configuration File Customization',
+        desc: 'Manual editing of the core Snort configuration file (/etc/snort/snort.conf) using the nano text editor. This configuration includes essential setup steps such as setting network variables, configuring decoders, enabling the base detection engine, loading dynamic libraries, configuring preprocessors, defining output plugins (alert_full), and customizing detection rule sets. Proper Snort configuration is critical for effective intrusion detection, ensuring the IDS correctly analyzes network traffic and generates actionable security alerts.'
       },
       {
         src: 'media/media9.png',
-        title: 'Configuring TLS Session Key Capture in Wireshark',
-        desc: 'Setting up TLS pre-shared keys in Wireshark to decrypt and analyze encrypted traffic for security research.'
+        title: 'TLS Session Key Pre-Master Secret Setup',
+        desc: 'Configuring Wireshark to decrypt TLS/SSL encrypted traffic by loading pre-master secret session keys. The preferences window shows the setup for importing encryption keys that allow Wireshark to decrypt HTTPS traffic for legitimate security analysis purposes. This technique is invaluable for security researchers, penetration testers, and network analysts who need to inspect encrypted application-layer traffic during security assessments of their own systems or with proper authorization.'
       },
       {
         src: 'media/media10.png',
-        title: 'Wireshark TLS Packet Capture',
-        desc: 'Capturing and analyzing TLS handshakes and encrypted communications using Wireshark packet analysis tools.'
+        title: 'TLS Protocol Traffic Packet Analysis',
+        desc: 'Deep packet inspection of Transport Layer Security (TLS) protocol communications showing encrypted sessions between multiple hosts. The capture displays TLS versions 1.2 and 1.3 traffic including handshake protocols, encrypted application data, and connection establishments between various IP addresses. This level of analysis is essential for identifying protocol anomalies, certificate issues, cipher suite weaknesses, and potential man-in-the-middle attacks during network security assessments.'
+      },
+      {
+        src: 'media/media11.png',
+        title: 'VirtualBox Security Lab Environment',
+        desc: 'Oracle VirtualBox Manager showing a comprehensive virtualized security testing laboratory with multiple operating systems including Debian, Kali Linux, Ubuntu, Windows Server 2019, and specialized security distributions like Security Onion and Wazuh. This isolated virtual environment allows for safe penetration testing, malware analysis, vulnerability research, and network security experimentation without risking production systems. The snapshot functionality visible in the interface enables rapid rollback to clean states after testing.'
+      },
+      {
+        src: 'media/media12.png',
+        title: 'UDP Protocol Network Traffic Capture',
+        desc: 'Wireshark capture analyzing User Datagram Protocol (UDP) traffic on the network, highlighting various service discovery protocols including MDNS (Multicast DNS), SSDP (Simple Service Discovery Protocol), LLMNR (Link-Local Multicast Name Resolution), NBNS (NetBIOS Name Service), and standard DNS queries. The highlighted UDP packet shows SSDP multicast traffic on port 1900, commonly used for UPnP device discovery. Understanding UDP traffic patterns is crucial for network security as these connectionless protocols can be exploited for amplification attacks and information disclosure.'
+      },
+      {
+        src: 'media/media13.png',
+        title: 'UPnP Device Discovery Protocol Analysis',
+        desc: 'Detailed Wireshark analysis of Simple Service Discovery Protocol (SSDP) and Universal Plug and Play (UPnP) HTTP NOTIFY messages. The packet detail pane reveals the HTTP/1.1 request structure, including the Location header pointing to the device description XML file, which contains information about networked devices and their capabilities. This analysis is critical for identifying potentially vulnerable IoT devices on the network, as UPnP can be exploited for unauthorized remote access if not properly secured with firewall rules and network segmentation.'
+      },
+      {
+        src: 'media/media14.png',
+        title: 'OpenSSL Certificate Signing Request',
+        desc: 'Command-line generation of a Certificate Signing Request (CSR) using OpenSSL with RSA encryption for a certificate authority named "ubuntuclean-ssl". The terminal output displays the certificate request data including version, subject information (Country: US, State: California, Locality: San Diego, Organization: USD, OU: CYBR-504), public key algorithm (rsaEncryption with 2048-bit modulus), and the SHA256withRSAEncryption signature algorithm. This CSR would be submitted to a CA for digital certificate issuance in production environments.'
+      },
+      {
+        src: 'media/media15.png',
+        title: 'Cyber Proud Pre-Apprenticeship Certificate',
+        desc: 'Official Certificate of Completion awarded by Cyber Proud, Inc. and Apprentice Now for successful completion of the comprehensive Cyber Security Pre-Apprenticeship program on May 11, 2025. This intensive training program covered cybersecurity fundamentals, cloud security, cryptography, penetration testing, SIEM tools (Splunk, Wazuh), IDS/IPS systems, VPN/firewall configuration, Active Directory administration, and hands-on experience with AWS, Docker, Kubernetes, PowerShell, and Linux/Windows security hardening techniques.'
+      },
+      {
+        src: 'media/media16.png',
+        title: 'Wireless Network Reconnaissance Scan',
+        desc: 'Airodump-ng actively monitoring wireless networks and capturing detailed information about access points and connected clients. The scan reveals network BSSID (MAC addresses), signal strength (PWR), beacon counts, data packets, encryption types (WPA2 CCMP PSK), ESSID names, and associated stations with their MAC addresses and connection rates. The highlighted networks show various SSIDs including "VP-Office", "ATTK2", "length:", and others, providing reconnaissance data essential for wireless security assessments and identifying potential attack surfaces.'
+      },
+      {
+        src: 'media/media17.png',
+        title: 'USB WiFi Adapter Monitor Mode Setup',
+        desc: 'Comprehensive configuration workflow showing VirtualBox USB device passthrough for a wireless network adapter, enabling monitor mode and packet injection capabilities in Kali Linux. The multi-panel screenshot demonstrates: (1) VirtualBox USB controller configuration, (2) enabling the USB device for guest VM access, (3) the wireless adapter appearing as "wlan0mon" in monitor mode within Kali, and (4) verification via iwconfig showing "Mode: Monitor" status. This setup is essential for wireless penetration testing, allowing the capture of raw 802.11 frames and injection of custom packets.'
+      },
+      {
+        src: 'media/media18.png',
+        title: 'Network Interface Configuration for VSFTPD',
+        desc: 'Network interface reconnaissance using ifconfig across three virtual machines (Ubuntu, Kali, Metasploitable 2) showing IP addressing, subnet masks, MAC addresses, and network statistics. This configuration documentation was prepared for a VSFTPD backdoor exploitation assessment. Each VM shows different network configurations with Ubuntu on 10.0.2.15, Kali on 10.0.2.4, and Metasploitable on 10.0.2.5, all within the same 255.255.255.0 subnet. Understanding network topology and interface configurations is fundamental for penetration testing and vulnerability exploitation exercises.'
       }
     ];
 
     function openLightbox(index) {
-      const data = projectData[index];
+      const data = mediaData[index];
       document.getElementById('lightbox-img').src = data.src;
-      document.getElementById('lightbox-description').innerHTML = '<strong>' + data.title + '</strong><br><br>' + data.desc;
+      document.getElementById('lightbox-title').textContent = data.title;
+      document.getElementById('lightbox-description').textContent = data.desc;
       document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -337,7 +547,17 @@
     });
 
     document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target.id === 'lightbox') closeLightbox();
+      if (e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')) {
+        closeLightbox();
+      }
+    });
+
+    // Prevent closing when clicking on image or info box
+    document.getElementById('lightbox-img').addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+    document.getElementById('lightbox-info').addEventListener('click', (e) => {
+      e.stopPropagation();
     });
 
     document.getElementById('y').textContent = new Date().getFullYear();
