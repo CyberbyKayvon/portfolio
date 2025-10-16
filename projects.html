@@ -1,495 +1,783 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project Gallery — Kayvon Karimi</title>
-  <meta name="description" content="Cybersecurity projects and technical demonstrations gallery." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayvon Karimi - Projects Gallery</title>
   <style>
     :root {
-      --bg: #f9f9ff;
-      --fg: #0f172a;
-      --muted: #454b6b;
-      --line: #dee6ef;
-      --card: #fff;
-      --accent: #0b5bd3;
-      --shadow: 0 10px 30px rgba(15,23,42,.08);
-      --radius: 16px;
-      --pad: clamp(18px, 5vw, 32px);
+      --bg: #0a0e1a;
+      --fg: #e2e8f0;
+      --card: #1a1f35;
+      --accent: #3b82f6;
+      --hover: #2563eb;
+      --border: #2d3548;
+      --muted: #94a3b8;
     }
 
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
       color: var(--fg);
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      line-height: 1.6;
     }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
     header {
       background: var(--card);
-      border-bottom: 1px solid var(--line);
-      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--border);
+      padding: 1.5rem 0;
       position: sticky;
       top: 0;
-      z-index: 10;
-      padding: 14px 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .header-content {
-      max-width: 1100px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 var(--pad);
+      padding: 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand-section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
     .brand {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      color: var(--fg);
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s;
     }
 
-    .tagline {
-      font-size: 0.9rem;
-      color: var(--muted);
+    .brand:hover {
+      opacity: 0.8;
     }
 
     .back-link {
-      display: inline-block;
-      padding: 8px 14px;
-      background: #eef4ff;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      color: var(--accent);
-      font-weight: 600;
+      color: var(--fg);
       text-decoration: none;
-      transition: background 0.2s;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
     }
 
     .back-link:hover {
-      background: #e0e9ff;
-      text-decoration: none;
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
     }
 
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px var(--pad);
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin: 0 0 12px 0;
-      line-height: 1.2;
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .intro {
+    .hero p {
+      font-size: 1.3rem;
       color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 40px;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    /* Masonry Gallery */
-    .gallery-grid {
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .section {
+      margin-bottom: 5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      gap: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
 
-    .gallery-item {
+    .project-card {
       background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
-    .gallery-item:hover {
-      box-shadow: 0 15px 40px rgba(15,23,42,0.15);
-      transform: translateY(-4px);
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+      border-color: var(--accent);
     }
 
-    .gallery-image {
+    .thumbnail {
+      position: relative;
       width: 100%;
       height: 240px;
-      object-fit: cover;
-      display: block;
-      background: #f0f0f0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     }
 
-    .gallery-info {
-      padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .gallery-info h3 {
-      margin: 0 0 8px 0;
-      font-size: 1.15rem;
-      line-height: 1.3;
-      color: var(--fg);
-    }
-
-    .gallery-info p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.5;
-      flex: 1;
-    }
-
-    .view-btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 8px 12px;
-      background: #e6f1ff;
-      border: 1px solid #b7d8ff;
-      color: #0f3b82;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      width: fit-content;
-    }
-
-    .view-btn:hover {
-      background: #d0e6ff;
-      text-decoration: none;
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
+    .thumbnail img {
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-y: auto;
+      object-fit: cover;
+      transition: transform 0.4s;
     }
 
-    .lightbox.active {
+    .project-card:hover .thumbnail img {
+      transform: scale(1.05);
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(239, 68, 68, 0.95);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
       display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
-    .lightbox-content {
-      max-width: 90vw;
-      max-height: 90vh;
+    .card-content {
+      padding: 1.75rem;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 20px;
     }
 
-    .lightbox-image {
-      max-width: 100%;
-      max-height: 70vh;
-      border-radius: 8px;
-      object-fit: contain;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--fg);
+      line-height: 1.3;
     }
 
-    .lightbox-info {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: white;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    .lightbox-info h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.5rem;
-    }
-
-    .lightbox-info p {
-      margin: 0;
-      color: rgba(255,255,255,0.85);
+    .project-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
       line-height: 1.6;
+      flex: 1;
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.85rem;
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
       color: white;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: opacity 0.2s;
+      border: 2px solid var(--accent);
     }
 
-    .lightbox-close:hover {
-      opacity: 0.7;
+    .btn-primary:hover {
+      background: var(--hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--fg);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(59, 130, 246, 0.1);
     }
 
     footer {
-      border-top: 1px solid var(--line);
-      color: #6b7a90;
-      padding: 18px 0;
-      margin-top: 10px;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
       text-align: center;
+      color: var(--muted);
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 16px;
+      .projects-grid {
+        grid-template-columns: 1fr;
       }
 
-      h1 {
-        font-size: 1.8rem;
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
       }
 
       .header-content {
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-direction: column;
+        gap: 1rem;
       }
 
-      .brand-section {
-        flex: 1;
+      .card-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   </style>
 </head>
-
 <body>
+
   <header>
     <div class="header-content">
-      <div class="brand-section">
-        <span class="brand">Kayvon Karimi</span>
-        <span class="tagline">Cybersecurity Engineer | Web Security</span>
-      </div>
-      <a href="./" class="back-link">← Back to Portfolio</a>
+      <a href="index.html" class="brand">Kayvon Karimi</a>
+      <a href="index.html" class="back-link">← Back to Portfolio</a>
     </div>
   </header>
 
-  <main>
-    <h1>Media Gallery</h1>
-    <p class="intro">Detailed technical demonstrations and security implementations. Click any image to view full details.</p>
+  <div class="hero">
+    <h1>Projects Gallery</h1>
+    <p>Comprehensive collection of cybersecurity assessments, penetration tests, and technical demonstrations</p>
+  </div>
 
-    <div class="gallery-grid">
-      <!-- Gallery 1 -->
-      <div class="gallery-item" onclick="openLightbox(0)">
-        <img src="media/gallery1.png" alt="WiFi & HTTPS Packet Analysis" class="gallery-image">
-        <div class="gallery-info">
-          <h3>WiFi & HTTPS Packet Analysis</h3>
-          <p>Capturing and analyzing encrypted network traffic with Wireshark, demonstrating protocol inspection and traffic filtering techniques.</p>
-          <span class="view-btn">View Details</span>
-        </div>
+  <div class="container">
+
+    <!-- Web Application Security -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Web Application Security</h2>
+        <div class="section-line"></div>
       </div>
 
-      <!-- Gallery 2 -->
-      <div class="gallery-item" onclick="openLightbox(1)">
-        <img src="media/gallery2.png" alt="AWS VPN Network Architecture" class="gallery-image">
-        <div class="gallery-info">
-          <h3>AWS VPN Network Architecture</h3>
-          <p>Network diagram illustrating a secure home VPN setup using AWS EC2, Pi-hole DNS filtering, and WireGuard encryption protocols.</p>
-          <span class="view-btn">View Details</span>
-        </div>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <defs>
+                <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <rect width="1280" height="720" fill="url(#bg1)"/>
+              <g transform="translate(180, 220)">
+                <rect x="10" y="10" width="100" height="100" rx="8" fill="none" stroke="#3b82f6" stroke-width="4"/>
+                <circle cx="35" cy="135" r="12" fill="#3b82f6"/>
+                <circle cx="85" cy="135" r="12" fill="#3b82f6"/>
+                <path d="M 20 30 L 30 30 L 45 90 L 95 90 L 105 50 L 40 50" fill="none" stroke="#3b82f6" stroke-width="4"/>
+              </g>
+              <g transform="translate(900, 200)">
+                <path d="M 60 20 L 100 35 L 100 80 Q 100 120 60 140 Q 20 120 20 80 L 20 35 Z" fill="none" stroke="#10b981" stroke-width="4"/>
+                <path d="M 45 70 L 55 80 L 75 55" fill="none" stroke="#10b981" stroke-width="4"/>
+              </g>
+              <text x="640" y="320" font-family="system-ui" font-size="64" font-weight="800" fill="#3b82f6" text-anchor="middle">COURT CRATE</text>
+              <text x="640" y="370" font-family="system-ui" font-size="32" font-weight="600" fill="#94a3b8" text-anchor="middle">Security Assessment</text>
+              <rect x="400" y="450" width="480" height="60" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+              <text x="420" y="488" font-family="system-ui" font-size="24" font-weight="700" fill="#ef4444">⚠ CRITICAL FINDINGS</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Court Crate – E-commerce Vulnerability Assessment</h3>
+            <p class="project-desc">Comprehensive security assessment of e-commerce platform. Scanned and enumerated endpoints using industry-standard tools, mapped vulnerabilities to ASVS framework, and provided detailed remediation recommendations.</p>
+            <div class="tech-tags">
+              <span class="tag">Nmap</span>
+              <span class="tag">Nikto</span>
+              <span class="tag">Nessus</span>
+              <span class="tag">ASVS</span>
+            </div>
+            <div class="card-actions">
+              <a href="courtcratepdf.html" target="_blank" class="btn btn-primary">
+                📄 Assessment Report
+              </a>
+              <a href="https://github.com/CyberbyKayvon/Web-Vulnerability-Assessment-Court-Crate---E-Commerce-Website" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <defs>
+                <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <rect width="1280" height="720" fill="url(#bg2)"/>
+              <g transform="translate(200, 140)">
+                <rect x="0" y="0" width="880" height="440" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+                <rect x="0" y="0" width="880" height="50" rx="12" fill="#334155"/>
+                <circle cx="25" cy="25" r="8" fill="#ef4444"/>
+                <circle cx="50" cy="25" r="8" fill="#f59e0b"/>
+                <circle cx="75" cy="25" r="8" fill="#10b981"/>
+                <rect x="110" y="15" width="600" height="20" rx="10" fill="#1e293b"/>
+                <text x="120" y="31" font-family="monospace" font-size="16" fill="#64748b">https://designworld.com</text>
+                <rect x="40" y="90" width="200" height="30" rx="4" fill="#3b82f6" opacity="0.3"/>
+                <circle cx="680" cy="97" r="20" fill="#ef4444"/>
+                <text x="680" y="105" font-family="system-ui" font-size="24" font-weight="700" fill="white" text-anchor="middle">!</text>
+                <rect x="40" y="250" width="380" height="120" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+                <text x="60" y="280" font-family="monospace" font-size="14" fill="#f59e0b">WEAK TLS</text>
+                <rect x="460" y="250" width="380" height="120" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+                <text x="480" y="280" font-family="monospace" font-size="14" fill="#ef4444">INSECURE HEADERS</text>
+              </g>
+              <text x="640" y="80" font-family="system-ui" font-size="72" font-weight="800" fill="#8b5cf6" text-anchor="middle">DESIGN WORLD</text>
+              <text x="640" y="120" font-family="system-ui" font-size="28" font-weight="600" fill="#94a3b8" text-anchor="middle">Web Application Assessment</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Design World – Web App Vulnerability Assessment</h3>
+            <p class="project-desc">Comprehensive route enumeration and access control testing. Detected insecure HTTP headers and weak TLS configuration. Utilized fuzzing tools for endpoint discovery and security analysis.</p>
+            <div class="tech-tags">
+              <span class="tag">FFUF</span>
+              <span class="tag">Gobuster</span>
+              <span class="tag">Burp Suite</span>
+              <span class="tag">SSL/TLS</span>
+            </div>
+            <div class="card-actions">
+              <a href="designworld.pdf" target="_blank" class="btn btn-primary">
+                📄 Assessment Report
+              </a>
+              <a href="https://github.com/CyberbyKayvon/Design-World---Vulnerability-Assessment" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Network Security -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Network Security & Exploitation</h2>
+        <div class="section-line"></div>
       </div>
 
-      <!-- Gallery 3 -->
-      <div class="gallery-item" onclick="openLightbox(2)">
-        <img src="media/gallery3.png" alt="WPA Handshake Capture & Analysis" class="gallery-image">
-        <div class="gallery-info">
-          <h3>WPA Handshake Capture & Analysis</h3>
-          <p>Capturing WPA2 authentication handshakes using airodump-ng with deauthentication attacks to facilitate wireless network penetration testing.</p>
-          <span class="view-btn">View Details</span>
-        </div>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="thumbnail">
+    <img src="https://i.ytimg.com/vi/EWGMDg7hSDQ/hqdefault.jpg" alt="WiFi Security">
+    <span class="video-badge">▶ VIDEO</span>
+</div>
+          <div class="card-content">
+            <h3 class="project-title">Wi-Fi Capture & WPA2 Decryption</h3>
+            <p class="project-desc">Implemented monitor mode with packet injection to capture and decrypt WPA2 traffic. Analyzed SSDP/UPnP and HTTP flows with device-scoped filters in Wireshark. Comprehensive network traffic analysis demonstration.</p>
+            <div class="tech-tags">
+              <span class="tag">Wireshark</span>
+              <span class="tag">Kali Linux</span>
+              <span class="tag">WPA2</span>
+              <span class="tag">Aircrack-ng</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://www.youtube.com/watch?v=EWGMDg7hSDQ&t=32s" target="_blank" class="btn btn-primary">
+                ▶ Watch Video
+              </a>
+              <a href="https://github.com/CyberbyKayvon/Network-Exploitation" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <rect width="1280" height="720" fill="#0f172a"/>
+              <g transform="translate(300, 200)">
+                <rect x="0" y="0" width="680" height="320" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="3"/>
+                <text x="340" y="50" font-family="system-ui" font-size="32" font-weight="700" fill="#ef4444" text-anchor="middle">INTERNAL NETWORK</text>
+                <circle cx="150" cy="140" r="40" fill="#334155" stroke="#3b82f6" stroke-width="3"/>
+                <text x="150" y="150" font-family="system-ui" font-size="14" fill="#94a3b8" text-anchor="middle">SMBv1</text>
+                <circle cx="340" cy="140" r="40" fill="#334155" stroke="#f59e0b" stroke-width="3"/>
+                <text x="340" y="150" font-family="system-ui" font-size="14" fill="#94a3b8" text-anchor="middle">RDP</text>
+                <circle cx="530" cy="140" r="40" fill="#334155" stroke="#ef4444" stroke-width="3"/>
+                <text x="530" y="150" font-family="system-ui" font-size="14" fill="#94a3b8" text-anchor="middle">AD</text>
+                <rect x="100" y="220" width="480" height="60" rx="8" fill="#991b1b"/>
+                <text x="340" y="258" font-family="monospace" font-size="20" font-weight="700" fill="white" text-anchor="middle">CRITICAL VULNERABILITIES</text>
+              </g>
+              <text x="640" y="600" font-family="system-ui" font-size="56" font-weight="800" fill="#8b5cf6" text-anchor="middle">PENETRATION TEST</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Design World – Internal Penetration Test</h3>
+            <p class="project-desc">Identified critical SMBv1 vulnerabilities and weak SSL cipher suites. Assessed Active Directory exposure and RDP security posture. Comprehensive internal network security assessment with exploit validation.</p>
+            <div class="tech-tags">
+              <span class="tag">Metasploit</span>
+              <span class="tag">Active Directory</span>
+              <span class="tag">SMB</span>
+              <span class="tag">RDP</span>
+            </div>
+            <div class="card-actions">
+              <a href="designpentest.pdf" target="_blank" class="btn btn-primary">
+                📄 View Report
+              </a>
+              <a href="https://github.com/CyberbyKayvon/Internal-Penetration-Test---Design-World" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Cloud & Infrastructure -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Cloud & Infrastructure Security</h2>
+        <div class="section-line"></div>
       </div>
 
-      <!-- Gallery 4 -->
-      <div class="gallery-item" onclick="openLightbox(3)">
-        <img src="media/gallery4.png" alt="Kali Linux GRUB Authentication Bypass" class="gallery-image">
-        <div class="gallery-info">
-          <h3>Kali Linux GRUB Authentication Bypass</h3>
-          <p>Demonstrating bootloader security vulnerabilities by bypassing GRUB authentication on Kali Linux systems and implementing remediation steps.</p>
-          <span class="view-btn">View Details</span>
-        </div>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <rect width="1280" height="720" fill="#0f172a"/>
+              <rect x="200" y="150" width="300" height="200" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="3"/>
+              <text x="350" y="200" font-family="system-ui" font-size="24" font-weight="700" fill="#f97316" text-anchor="middle">AWS EC2</text>
+              <circle cx="350" cy="250" r="30" fill="#f97316" opacity="0.2"/>
+              <rect x="780" y="150" width="300" height="200" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="3"/>
+              <text x="930" y="200" font-family="system-ui" font-size="24" font-weight="700" fill="#10b981" text-anchor="middle">Pi-hole</text>
+              <circle cx="930" cy="250" r="30" fill="#10b981" opacity="0.2"/>
+              <rect x="490" y="350" width="300" height="200" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+              <text x="640" y="400" font-family="system-ui" font-size="24" font-weight="700" fill="#3b82f6" text-anchor="middle">WireGuard</text>
+              <circle cx="640" cy="450" r="30" fill="#3b82f6" opacity="0.2"/>
+              <line x1="500" y1="250" x2="780" y2="250" stroke="#94a3b8" stroke-width="3" stroke-dasharray="10,5"/>
+              <line x1="640" y1="350" x2="350" y2="350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="10,5"/>
+              <line x1="640" y1="350" x2="930" y2="350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="10,5"/>
+              <text x="640" y="80" font-family="system-ui" font-size="64" font-weight="800" fill="#3b82f6" text-anchor="middle">VPN SERVER</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">VPN Server Setup with AWS, Pi-hole & PiVPN</h3>
+            <p class="project-desc">Configured secure VPN server using AWS EC2 infrastructure. Implemented DNS-level ad blocking with Pi-hole and encrypted remote access via WireGuard for privacy protection and secure connectivity.</p>
+            <div class="tech-tags">
+              <span class="tag">AWS EC2</span>
+              <span class="tag">Pi-hole</span>
+              <span class="tag">PiVPN</span>
+              <span class="tag">WireGuard</span>
+            </div>
+            <div class="card-actions">
+              <a href="vpn_aws.pdf" target="_blank" class="btn btn-primary">
+                📄 Setup Guide
+              </a>
+              <a href="https://github.com/CyberbyKayvon/VPN-Server-Setup-with-AWS-Pi-hole-and-PiVPN" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <rect width="1280" height="720" fill="#0f172a"/>
+              <rect x="150" y="100" width="980" height="520" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+              <rect x="150" y="100" width="980" height="60" rx="12" fill="#334155"/>
+              <text x="640" y="145" font-family="system-ui" font-size="36" font-weight="700" fill="#3b82f6" text-anchor="middle">WAZUH SIEM</text>
+              <rect x="200" y="200" width="400" height="200" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <text x="400" y="240" font-family="system-ui" font-size="20" font-weight="600" fill="#10b981" text-anchor="middle">Security Events</text>
+              <rect x="220" y="260" width="360" height="30" rx="4" fill="#134e4a"/>
+              <text x="240" y="282" font-family="monospace" font-size="14" fill="#10b981">✓ Authentication Success</text>
+              <rect x="220" y="300" width="360" height="30" rx="4" fill="#7c2d12"/>
+              <text x="240" y="322" font-family="monospace" font-size="14" fill="#f59e0b">⚠ Failed Login Attempt</text>
+              <rect x="220" y="340" width="360" height="30" rx="4" fill="#134e4a"/>
+              <text x="240" y="362" font-family="monospace" font-size="14" fill="#10b981">✓ VPN Connection</text>
+              <rect x="680" y="200" width="400" height="200" rx="8" fill="#0f172a" stroke="#8b5cf6" stroke-width="2"/>
+              <text x="880" y="240" font-family="system-ui" font-size="20" font-weight="600" fill="#8b5cf6" text-anchor="middle">Alert Dashboard</text>
+              <circle cx="780" cy="290" r="35" fill="none" stroke="#10b981" stroke-width="4"/>
+              <text x="780" y="300" font-family="system-ui" font-size="24" font-weight="700" fill="#10b981" text-anchor="middle">87%</text>
+              <text x="780" y="340" font-family="system-ui" font-size="14" fill="#94a3b8" text-anchor="middle">System Health</text>
+              <rect x="200" y="450" width="880" height="50" rx="8" fill="#1e3a8a"/>
+              <text x="640" y="483" font-family="system-ui" font-size="20" font-weight="700" fill="#60a5fa" text-anchor="middle">Real-time Monitoring Active</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Wazuh SIEM Implementation & Configuration</h3>
+            <p class="project-desc">Deployed Wazuh SIEM on AWS with Pi-hole and WireGuard integration. Configured real-time security monitoring, custom detection rules, and automated alerting for comprehensive threat detection and incident response.</p>
+            <div class="tech-tags">
+              <span class="tag">Wazuh</span>
+              <span class="tag">AWS</span>
+              <span class="tag">SIEM</span>
+              <span class="tag">Security Monitoring</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://cyberbykayvon.com/wazuhconfigreport.pdf" target="_blank" class="btn btn-primary">
+                📄 Configuration Report
+              </a>
+              <a href="https://github.com/CyberbyKayvon/Internal-Penetration-Test---Design-World/blob/main/README.md" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <rect width="1280" height="720" fill="#0f172a"/>
+              <rect x="100" y="80" width="1080" height="560" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+              <text x="640" y="50" font-family="system-ui" font-size="56" font-weight="800" fill="#3b82f6" text-anchor="middle">NMAP</text>
+              <g transform="translate(200, 150)">
+                <circle cx="200" cy="100" r="60" fill="#334155" stroke="#10b981" stroke-width="3"/>
+                <text x="200" y="110" font-family="system-ui" font-size="16" fill="#10b981" text-anchor="middle">TARGET</text>
+                <circle cx="450" cy="100" r="60" fill="#334155" stroke="#f59e0b" stroke-width="3"/>
+                <text x="450" y="110" font-family="system-ui" font-size="16" fill="#f59e0b" text-anchor="middle">HOST</text>
+                <circle cx="700" cy="100" r="60" fill="#334155" stroke="#ef4444" stroke-width="3"/>
+                <text x="700" y="110" font-family="system-ui" font-size="16" fill="#ef4444" text-anchor="middle">SERVER</text>
+              </g>
+              <g transform="translate(150, 350)">
+                <rect x="0" y="0" width="980" height="200" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="2"/>
+                <text x="20" y="35" font-family="monospace" font-size="16" fill="#10b981">$ nmap -sV -sC 192.168.1.0/24</text>
+                <text x="20" y="70" font-family="monospace" font-size="14" fill="#94a3b8">PORT     STATE    SERVICE</text>
+                <text x="20" y="95" font-family="monospace" font-size="14" fill="#60a5fa">22/tcp   open     ssh</text>
+                <text x="20" y="120" font-family="monospace" font-size="14" fill="#60a5fa">80/tcp   open     http</text>
+                <text x="20" y="145" font-family="monospace" font-size="14" fill="#60a5fa">443/tcp  open     https</text>
+                <text x="20" y="175" font-family="monospace" font-size="14" fill="#10b981">Scan complete: 3 hosts up</text>
+              </g>
+            </svg>
+            <span class="video-badge">▶ VIDEO</span>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Nmap - Network Scanning & Enumeration</h3>
+            <p class="project-desc">Complete demonstration of Nmap network scanning techniques including host discovery, port scanning, service detection, and OS fingerprinting. Covers advanced scanning strategies and stealth techniques for security assessments.</p>
+            <div class="tech-tags">
+              <span class="tag">Nmap</span>
+              <span class="tag">Network Scanning</span>
+              <span class="tag">Service Detection</span>
+              <span class="tag">Enumeration</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://www.youtube.com/watch?v=EWGMDg7hSDQ&t=30s" target="_blank" class="btn btn-primary">
+                ▶ Watch Video
+              </a>
+              <a href="https://github.com/CyberbyKayvon" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <rect width="1280" height="720" fill="#0f172a"/>
+              <text x="640" y="80" font-family="system-ui" font-size="64" font-weight="800" fill="#ef4444" text-anchor="middle">METASPLOIT</text>
+              <text x="640" y="120" font-family="system-ui" font-size="24" font-weight="600" fill="#94a3b8" text-anchor="middle">Framework</text>
+              <rect x="150" y="160" width="980" height="450" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="3"/>
+              <rect x="180" y="190" width="920" height="60" rx="8" fill="#0f172a"/>
+              <text x="200" y="228" font-family="monospace" font-size="18" fill="#ef4444">msf6 > use exploit/windows/smb/ms17_010_eternalblue</text>
+              <rect x="180" y="270" width="450" height="320" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+              <text x="200" y="300" font-family="system-ui" font-size="18" font-weight="600" fill="#f59e0b">EXPLOIT MODULE</text>
+              <text x="210" y="340" font-family="monospace" font-size="14" fill="#94a3b8">Name: EternalBlue</text>
+              <text x="210" y="370" font-family="monospace" font-size="14" fill="#94a3b8">Platform: Windows</text>
+              <text x="210" y="400" font-family="monospace" font-size="14" fill="#94a3b8">Rank: Average</text>
+              <rect x="220" y="430" width="390" height="40" rx="6" fill="#7c2d12"/>
+              <text x="240" y="456" font-family="monospace" font-size="14" fill="#f59e0b">⚠ CVE-2017-0144</text>
+              <rect x="220" y="485" width="390" height="90" rx="6" fill="#134e4a"/>
+              <text x="240" y="510" font-family="monospace" font-size="13" fill="#10b981">✓ Payload: windows/x64/</text>
+              <text x="252" y="535" font-family="monospace" font-size="13" fill="#10b981">meterpreter/reverse_tcp</text>
+              <text x="240" y="560" font-family="monospace" font-size="13" fill="#10b981">✓ Target: 192.168.1.100</text>
+              <rect x="650" y="270" width="450" height="320" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+              <text x="670" y="300" font-family="system-ui" font-size="18" font-weight="600" fill="#10b981">EXECUTION</text>
+              <text x="680" y="340" font-family="monospace" font-size="14" fill="#94a3b8">[*] Started reverse TCP</text>
+              <text x="680" y="370" font-family="monospace" font-size="14" fill="#94a3b8">[*] Connecting to target</text>
+              <text x="680" y="400" font-family="monospace" font-size="14" fill="#f59e0b">[+] Target vulnerable!</text>
+              <text x="680" y="430" font-family="monospace" font-size="14" fill="#10b981">[*] Sending exploit...</text>
+              <text x="680" y="460" font-family="monospace" font-size="14" fill="#10b981">[*] Meterpreter session</text>
+              <text x="680" y="490" font-family="monospace" font-size="14" fill="#10b981">[+] EXPLOIT SUCCESS</text>
+              <rect x="670" y="510" width="410" height="50" rx="6" fill="#991b1b"/>
+              <text x="690" y="543" font-family="system-ui" font-size="16" font-weight="700" fill="white">SHELL OBTAINED</text>
+            </svg>
+            <span class="video-badge">▶ VIDEO</span>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Metasploit Framework - Exploitation Demo</h3>
+            <p class="project-desc">Step-by-step exploitation demonstration using Metasploit Framework. Covers vulnerability scanning, payload generation, exploitation techniques, and post-exploitation activities in a controlled lab environment.</p>
+            <div class="tech-tags">
+              <span class="tag">Metasploit</span>
+              <span class="tag">Exploitation</span>
+              <span class="tag">Penetration Testing</span>
+              <span class="tag">Post-Exploitation</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://www.youtube.com/watch?v=0bu_kN53izE" target="_blank" class="btn btn-primary">
+                ▶ Watch Video
+              </a>
+              <a href="https://github.com/CyberbyKayvon" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- System Security -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">System Security & Physical Access</h2>
+        <div class="section-line"></div>
       </div>
 
-      <!-- Gallery 5 -->
-      <div class="gallery-item" onclick="openLightbox(4)">
-        <img src="media/gallery5.png" alt="Public Key Infrastructure Setup" class="gallery-image">
-        <div class="gallery-info">
-          <h3>Public Key Infrastructure Setup</h3>
-          <p>Building and managing a certificate authority (CA) infrastructure for secure certificate generation, signing, and deployment in enterprise environments.</p>
-          <span class="view-btn">View Details</span>
-        </div>
-      </div>
+      <div class="projects-grid">
 
-      <!-- Gallery 6 -->
-      <div class="gallery-item" onclick="openLightbox(5)">
-        <img src="media/gallery6.png" alt="WiFi Password Cracking with Aircrack-ng" class="gallery-image">
-        <div class="gallery-info">
-          <h3>WiFi Password Cracking with Aircrack-ng</h3>
-          <p>Offline WPA2 password cracking using captured handshakes and aircrack-ng, illustrating the importance of strong wireless security credentials.</p>
-          <span class="view-btn">View Details</span>
-        </div>
-      </div>
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <rect width="1280" height="720" fill="#0f172a"/>
+              <rect x="100" y="50" width="1080" height="620" rx="12" fill="#000000" stroke="#10b981" stroke-width="3"/>
+              <text x="640" y="120" font-family="monospace" font-size="48" font-weight="700" fill="#10b981" text-anchor="middle">GNU GRUB</text>
+              <rect x="200" y="180" width="880" height="80" rx="8" fill="#1a1a1a" stroke="#10b981" stroke-width="2"/>
+              <text x="220" y="220" font-family="monospace" font-size="24" fill="#ffffff">*Kali GNU/Linux</text>
+              <text x="220" y="245" font-family="monospace" font-size="18" fill="#94a3b8">Advanced options for Kali GNU/Linux</text>
+              <rect x="200" y="280" width="880" height="60" rx="8" fill="#1a1a1a"/>
+              <text x="220" y="315" font-family="monospace" font-size="18" fill="#64748b">System setup</text>
+              <rect x="150" y="380" width="980" height="250" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="3"/>
+              <text x="170" y="420" font-family="monospace" font-size="18" fill="#ef4444" font-weight="700">⚠ BOOT PARAMETER MODIFICATION</text>
+              <rect x="180" y="445" width="920" height="160" rx="6" fill="#0f172a"/>
+              <text x="200" y="475" font-family="monospace" font-size="16" fill="#94a3b8">linux /boot/vmlinuz-5.10.0-kali root=UUID=...</text>
+              <text x="200" y="505" font-family="monospace" font-size="16" fill="#f59e0b">ro quiet splash</text>
+              <text x="200" y="535" font-family="monospace" font-size="16" fill="#ef4444" font-weight="700">init=/bin/bash</text>
+              <text x="200" y="580" font-family="monospace" font-size="14" fill="#10b981">Press Ctrl+X or F10 to boot with modified config</text>
+              <text x="640" y="670" font-family="system-ui" font-size="20" font-weight="600" fill="#ef4444" text-anchor="middle">ROOT SHELL ACCESS OBTAINED</text>
+            </svg>
+            <span class="video-badge">▶ VIDEO</span>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Bypassing Kali Linux Login Via GRUB</h3>
+            <p class="project-desc">Demonstrates GRUB bootloader exploitation to bypass user authentication and gain root shell access. Modifies boot parameters to reset account passwords without original credentials, highlighting the critical importance of physical security and full disk encryption.</p>
+            <div class="tech-tags">
+              <span class="tag">GRUB</span>
+              <span class="tag">Kali Linux</span>
+              <span class="tag">Physical Security</span>
+              <span class="tag">Boot Exploitation</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://www.youtube.com/watch?v=0bu_kN53izE" target="_blank" class="btn btn-primary">
+                ▶ Watch Video
+              </a>
+              <a href="https://github.com/CyberbyKayvon/Kali-Linux-GRUB-password-bypass-project" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
 
-      <!-- Gallery 7 -->
-      <div class="gallery-item" onclick="openLightbox(6)">
-        <img src="media/gallery7.png" alt="Snort IDS Event Monitoring" class="gallery-image">
-        <div class="gallery-info">
-          <h3>Snort IDS Event Monitoring</h3>
-          <p>Implementing and analyzing Snort intrusion detection system events, demonstrating real-time network threat detection and alert generation.</p>
-          <span class="view-btn">View Details</span>
-        </div>
       </div>
+    </section>
 
-      <!-- Gallery 8 -->
-      <div class="gallery-item" onclick="openLightbox(7)">
-        <img src="media/gallery8.png" alt="Security Event Dashboard Configuration" class="gallery-image">
-        <div class="gallery-info">
-          <h3>Security Event Dashboard Configuration</h3>
-          <p>Building a comprehensive SIEM dashboard for centralized event monitoring, alert visualization, and security incident response coordination.</p>
-          <span class="view-btn">View Details</span>
-        </div>
-      </div>
-
-      <!-- Gallery 9 -->
-      <div class="gallery-item" onclick="openLightbox(8)">
-        <img src="media/gallery9.png" alt="802.11 TLS Session Key Configuration" class="gallery-image">
-        <div class="gallery-info">
-          <h3>802.11 TLS Session Key Configuration</h3>
-          <p>Configuring TLS pre-shared keys in Wireshark to decrypt 802.11 wireless traffic, enabling deeper analysis of encrypted network communications.</p>
-          <span class="view-btn">View Details</span>
-        </div>
-      </div>
-
-      <!-- Gallery 10 -->
-      <div class="gallery-item" onclick="openLightbox(9)">
-        <img src="media/gallery10.png" alt="TLS Session Key Packet Capture" class="gallery-image">
-        <div class="gallery-info">
-          <h3>TLS Session Key Packet Capture</h3>
-          <p>Capturing and analyzing TLS handshakes and session keys in network traffic, demonstrating cryptographic protocol analysis and key extraction techniques.</p>
-          <span class="view-btn">View Details</span>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Lightbox Modal -->
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content">
-      <img id="lightbox-image" src="" alt="" class="lightbox-image">
-      <div class="lightbox-info">
-        <h2 id="lightbox-title"></h2>
-        <p id="lightbox-description"></p>
-      </div>
-    </div>
   </div>
 
   <footer>
-    <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--pad);">
-      © <span id="year"></span> Kayvon Karimi
-    </div>
+    <p>© 2024 Kayvon Karimi | <a href="mailto:kayvon@cyberbykayvon.com">kayvon@cyberbykayvon.com</a></p>
   </footer>
 
-  <script>
-    const galleryData = [
-      {
-        src: 'media/gallery1.png',
-        title: 'WiFi & HTTPS Packet Analysis',
-        desc: 'Advanced packet capture and analysis using Wireshark to examine encrypted WiFi and HTTPS traffic, demonstrating protocol-level inspection, traffic filtering, and network behavior identification.'
-      },
-      {
-        src: 'media/gallery2.png',
-        title: 'AWS VPN Network Architecture',
-        desc: 'Secure home network architecture leveraging AWS EC2, Pi-hole DNS filtering, and WireGuard encryption. This setup provides remote access, ad-blocking, and encrypted tunneling for all network traffic.'
-      },
-      {
-        src: 'media/gallery3.png',
-        title: 'WPA Handshake Capture & Analysis',
-        desc: 'Wireless security assessment using airodump-ng to capture WPA2 authentication handshakes and targeted deauthentication attacks, essential for penetration testing and wireless vulnerability assessment.'
-      },
-      {
-        src: 'media/gallery4.png',
-        title: 'Kali Linux GRUB Authentication Bypass',
-        desc: 'Demonstration of bootloader security vulnerabilities by bypassing GRUB authentication. Includes remediation steps to secure the boot process and prevent unauthorized system access.'
-      },
-      {
-        src: 'media/gallery5.png',
-        title: 'Public Key Infrastructure Setup',
-        desc: 'Building and managing a certificate authority infrastructure for generating, signing, and distributing digital certificates in enterprise environments with proper key management and certificate lifecycle policies.'
-      },
-      {
-        src: 'media/gallery6.png',
-        title: 'WiFi Password Cracking with Aircrack-ng',
-        desc: 'Offline WPA2 password cracking using captured handshakes and aircrack-ng, demonstrating the critical importance of strong wireless credentials and the efficiency of modern password cracking techniques.'
-      },
-      {
-        src: 'media/gallery7.png',
-        title: 'Snort IDS Event Monitoring',
-        desc: 'Snort intrusion detection system implementation showing real-time network threat detection, alert generation, and event analysis for identifying and responding to security incidents.'
-      },
-      {
-        src: 'media/gallery8.png',
-        title: 'Security Event Dashboard Configuration',
-        desc: 'Comprehensive SIEM dashboard design for centralized security event monitoring, alert visualization, incident correlation, and automated response workflows in enterprise environments.'
-      },
-      {
-        src: 'media/gallery9.png',
-        title: '802.11 TLS Session Key Configuration',
-        desc: 'Configuring pre-shared keys in Wireshark to decrypt 802.11 wireless traffic and analyze TLS communications, enabling deeper inspection of encrypted wireless network data.'
-      },
-      {
-        src: 'media/gallery10.png',
-        title: 'TLS Session Key Packet Capture',
-        desc: 'Advanced packet capture and analysis of TLS handshakes and session keys, demonstrating cryptographic protocol analysis and key extraction techniques for security research and forensic investigation.'
-      }
-    ];
-
-    function openLightbox(index) {
-      const data = galleryData[index];
-      document.getElementById('lightbox-image').src = data.src;
-      document.getElementById('lightbox-title').textContent = data.title;
-      document.getElementById('lightbox-description').textContent = data.desc;
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target.id === 'lightbox') closeLightbox();
-    });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
