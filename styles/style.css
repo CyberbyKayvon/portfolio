@@ -483,13 +483,41 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
    CERTIFICATION LOGOS - RESPONSIVE
    ======================================== */
 
-/* Mobile: Hide inline logos, show logos after bullets */
 @media (max-width: 768px) {
-  .cert-logo-inline {
-    display: none !important;
+  .cert-header-wrapper {
+    display: flex;
+    flex-direction: column;
   }
 
-  .cert-logo-mobile {
-    display: block !important;
+  .cert-header-wrapper p {
+    order: 1;
+  }
+
+  .cert-header-wrapper p .cert-logo {
+    display: none;
+  }
+
+  .cert-header-wrapper::after {
+    content: '';
+    display: block;
+    order: 3;
+    height: 40px;
+    width: 40px;
+    margin: 0.75rem auto 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .cert-header-wrapper:has(img[alt="Cyber Proud"])::after {
+    background-image: url('media/cyberproud-small.png');
+  }
+
+  .cert-header-wrapper:has(img[alt="Google"])::after {
+    background-image: url('media/google-small.png');
+  }
+
+  .cert-header-wrapper:has(img[alt="Harvard"])::after {
+    background-image: url('media/harvard-small.png');
   }
 }
