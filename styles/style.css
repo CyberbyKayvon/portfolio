@@ -479,3 +479,68 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   50% { border-color: var(--accent); }
 }
 
+/* ========================================
+   EDUCATION SECTION RESPONSIVE FIXES
+   ======================================== */
+
+/* Training item layout */
+.training-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.training-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.training-date {
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.training-logo {
+  height: 45px;
+  width: 45px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  /* Make education card logos smaller on mobile */
+  .edu-logo {
+    width: 55px !important;
+    height: 55px !important;
+    bottom: 8px !important;
+    right: 8px !important;
+  }
+
+  /* Adjust padding so text doesn't overlap logo */
+  .edu-card p {
+    padding-right: 65px !important;
+  }
+
+  /* Stack training items vertically on mobile */
+  .training-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .training-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .training-logo {
+    align-self: center;
+    margin-top: 0.5rem;
+  }
+}
