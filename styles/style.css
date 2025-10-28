@@ -479,3 +479,33 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   50% { border-color: var(--accent); }
 }
 
+/* ========================================
+   CERTIFICATION LOGOS - INLINE WITH DATE
+   ======================================== */
+
+.training-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.training-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.training-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Mobile: stack if needed */
+@media (max-width: 768px) {
+  .training-item {
+    flex-wrap: wrap;
+  }
+}
