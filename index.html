@@ -280,73 +280,93 @@ setTimeout(function() {
     <!-- Wrap only the content in the card -->
     <div class="section-card">
 
-<!-- Education cards layout -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+<section id="education" class="section" style="padding-top: 2rem;">
+  <div class="container">
 
- <!-- Card: USD -->
-  <div class="edu-card" style="background: #0f3460; border: 1px solid #1e5a8e; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); padding: 1.5rem; position: relative; transition: all 0.3s ease;">
-    <h4 style="margin: 0 0 0.75rem 0; font-size: 1.15rem; font-weight: 700; color: #ffffff;">Master of Science in Cybersecurity Engineering</h4>
-    <p style="margin: 0 0 0.5rem 0; font-weight: 900; color: #00d9ff !important; font-size: 0.95rem;">University of San Diego</p>
-    <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #93c5fd;">Dec 2025</p>
-    <p style="margin: 0; font-size: 0.9rem; color: #93c5fd; padding-right: 100px;">GPA: 4.00 • Cybersecurity Student Club</p>
-    <img class="edu-logo" src="media/usd-logo-final.png" alt="USD" style="position: absolute; bottom: 12px; right: 12px; width: 80px; height: 80px; object-fit: contain; opacity: 0.9;">
-  </div>
+    <!-- Title outside the card -->
+    <h3 class="title">Education</h3>
 
-  <!-- Card: Texas A&M -->
-  <div class="edu-card" style="background: #0f3460; border: 1px solid #1e5a8e; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); padding: 1.5rem; position: relative; transition: all 0.3s ease;">
-    <h4 style="margin: 0 0 0.75rem 0; font-size: 1.15rem; font-weight: 700; color: #ffffff;">Bachelor of Arts in Psychology, Minor in Buss.</h4>
-    <p style="margin: 0 0 0.5rem 0; font-weight: 900; color: #00d9ff !important; font-size: 0.95rem;">Texas A&M University</p>
-    <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #93c5fd;">May 2012</p>
-    <p style="margin: 0; font-size: 0.9rem; color: #93c5fd; padding-right: 100px;">GPA: 3.4 • Men's D1 Tennis Team</p>
-    <img class="edu-logo" src="media/am-logo-final.png" alt="Texas A&M" style="position: absolute; bottom: 12px; right: 12px; width: 80px; height: 80px; object-fit: contain; opacity: 0.9;">
-  </div>
+    <!-- Wrap only the content in the card -->
+    <div class="section-card">
 
-</div>
+      <!-- Education cards layout -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
 
-<!-- Training & Certifications -->
-<div class="training-item">
-  <p class="training-header">
-    <strong>Cyber Proud: Cybersecurity Pre-Apprenticeship Program</strong>
-    <span class="training-date">May 2025</span>
-  </p>
-  <img class="training-logo" src="media/cyberproud-small.png" alt="Cyber Proud">
-</div>
-<ul>
-  <li>Completed training in fundamentals, cloud security, and cryptography.</li>
-  <li>Hands-on with Windows/Linux, PowerShell, Active Directory, AWS, Docker, Kubernetes.</li>
-  <li>Skills in penetration testing, SIEM tools, IDS/IPS, and VPN/firewall configuration.</li>
-</ul>
+        <!-- Card: USD -->
+        <div class="edu-card" style="background: #0f3460; border: 1px solid #1e5a8e; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); padding: 1.5rem; position: relative; transition: all 0.3s ease;">
+          <h4 style="margin: 0 0 0.75rem 0; font-size: 1.15rem; font-weight: 700; color: #ffffff;">Master of Science in Cybersecurity Engineering</h4>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 900; color: #00d9ff !important; font-size: 0.95rem;">University of San Diego</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #93c5fd;">Dec 2025</p>
+          <p style="margin: 0; font-size: 0.9rem; color: #93c5fd; padding-right: 100px;">GPA: 4.00 • Cybersecurity Student Club</p>
+          <img class="edu-logo" src="media/usd-logo-final.png" alt="USD">
+        </div>
 
-<p><strong>CompTIA Security+ Certification</strong></p>
-<ul>
-  <li>Scheduled November 2025</li>
-</ul>
+        <!-- Card: Texas A&M -->
+        <div class="edu-card" style="background: #0f3460; border: 1px solid #1e5a8e; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); padding: 1.5rem; position: relative; transition: all 0.3s ease;">
+          <h4 style="margin: 0 0 0.75rem 0; font-size: 1.15rem; font-weight: 700; color: #ffffff;">Bachelor of Arts in Psychology, Minor in Buss.</h4>
+          <p style="margin: 0 0 0.5rem 0; font-weight: 900; color: #00d9ff !important; font-size: 0.95rem;">Texas A&M University</p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: #93c5fd;">May 2012</p>
+          <p style="margin: 0; font-size: 0.9rem; color: #93c5fd; padding-right: 100px;">GPA: 3.4 • Men's D1 Tennis Team</p>
+          <img class="edu-logo" src="media/am-logo-final.png" alt="Texas A&M">
+        </div>
 
-<div class="training-item">
-  <p class="training-header">
-    <strong>Google: Foundations of Cybersecurity</strong>
-    <span class="training-date">August 2023</span>
-  </p>
-  <img class="training-logo" src="media/google-small.png" alt="Google">
-</div>
-<ul>
-  <li>Explored key cybersecurity concepts, threats, and risk mitigation strategies.</li>
-</ul>
+      </div>
 
-<div class="training-item">
-  <p class="training-header">
-    <strong>Harvard: VPAL Cybersecurity – Managing Risk in the Information Age</strong>
-    <span class="training-date">July 2023</span>
-  </p>
-  <img class="training-logo" src="media/harvard-small.png" alt="Harvard">
-</div>
-<ul>
-  <li>Studied governance, threat response, and risk management frameworks.</li>
-</ul>
+      <!-- Training & Certifications -->
+      <div style="margin-top: 2.5rem;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--fg); font-weight: 700;">Training & Certifications</h4>
 
-    </div> <!-- ✅ this is your bordered section -->
-  </div>
-</section>
+        <!-- Cyber Proud -->
+        <div class="cert-item">
+          <div class="cert-header">
+            <strong>Cyber Proud: Cybersecurity Pre-Apprenticeship Program</strong>
+            <span class="cert-date">May 2025</span>
+            <img src="media/cyberproud-small.png" alt="Cyber Proud" class="cert-logo">
+          </div>
+          <ul class="cert-list">
+            <li>Completed training in fundamentals, cloud security, and cryptography.</li>
+            <li>Hands-on with Windows/Linux, PowerShell, Active Directory, AWS, Docker, Kubernetes.</li>
+            <li>Skills in penetration testing, SIEM tools, IDS/IPS, and VPN/firewall configuration.</li>
+          </ul>
+        </div>
+
+        <!-- Google -->
+        <div class="cert-item">
+          <div class="cert-header">
+            <strong>Google: Foundations of Cybersecurity</strong>
+            <span class="cert-date">August 2023</span>
+            <img src="media/google-small.png" alt="Google" class="cert-logo">
+          </div>
+          <ul class="cert-list">
+            <li>Explored key cybersecurity concepts, threats, and risk mitigation strategies.</li>
+          </ul>
+        </div>
+
+        <!-- Harvard -->
+        <div class="cert-item">
+          <div class="cert-header">
+            <strong>Harvard: VPAL Cybersecurity – Managing Risk in the Information Age</strong>
+            <span class="cert-date">July 2023</span>
+            <img src="media/harvard-small.png" alt="Harvard" class="cert-logo">
+          </div>
+          <ul class="cert-list">
+            <li>Studied governance, threat response, and risk management frameworks.</li>
+          </ul>
+        </div>
+
+        <!-- CompTIA (at bottom, no logo) -->
+        <div class="cert-item">
+          <div class="cert-header">
+            <strong>CompTIA Security+ Certification</strong>
+            <span class="cert-date">Scheduled November 2025</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div> <!-- ✅ END of section-card -->
+  </div> <!-- ✅ END of container -->
+</section> <!-- ✅ END of education section -->
 
 <!-- Projects in Development -->
 <section id="projects-dev" class="section">
