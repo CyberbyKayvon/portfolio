@@ -479,3 +479,17 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   50% { border-color: var(--accent); }
 }
 
+/* ========================================
+   CERTIFICATION LOGOS - RESPONSIVE
+   ======================================== */
+
+/* Mobile: Hide inline logos, show logos after bullets */
+@media (max-width: 768px) {
+  .cert-logo-inline {
+    display: none !important;
+  }
+
+  .cert-logo-mobile {
+    display: block !important;
+  }
+}
