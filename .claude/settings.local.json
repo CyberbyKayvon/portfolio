@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd GhostTrack Analytics tracking to all pages\n\n- Added GhostTrack analytics script to index.html, projects.html, and gallery.html\n- Enables real-time visitor tracking with site-id \"portfolio\"\n- Tracks page views, events, and user interactions across the site\n- Added floodattack.pdf for SYN flood project documentation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
