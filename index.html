@@ -157,8 +157,11 @@ setTimeout(function() {
       </div>
       <!-- After social links div in the About section -->
 <div style="margin-top: 1.5rem;">
-  <a href="cyberresume.pdf" target="_blank" rel="noopener noreferrer"
+  <a href="cyberresume.pdf"
      class="resume-btn"
+     data-event-name="resume_view"
+     data-event-category="document"
+     data-event-label="Resume PDF Click - Hero Section"
      style="display: inline-block; padding: 12px 24px; background: var(--accent); color: white;
             text-decoration: none; border-radius: 8px; font-weight: 700; transition: opacity 0.2s;">
     📄 View Resume
@@ -819,6 +822,33 @@ setTimeout(function() {
     if (e.key === 'Escape' && lightbox.style.display === 'flex') {
       closeLightbox();
     }
+  });
+
+  // Custom GhostTrack event for Resume button
+  document.querySelectorAll('.resume-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      // Track the resume view event with custom data
+      const eventData = {
+        event_name: this.getAttribute('data-event-name') || 'resume_view',
+        event_category: this.getAttribute('data-event-category') || 'document',
+        event_label: this.getAttribute('data-event-label') || 'Resume PDF Click',
+        url: this.href,
+        timestamp: new Date().toISOString()
+      };
+
+      // Send to GhostTrack if available
+      if (typeof window.ghostTrack !== 'undefined' && window.ghostTrack.track) {
+        window.ghostTrack.track(eventData.event_name, eventData);
+      }
+
+      // Also try alternate GhostTrack API patterns
+      if (typeof window.gt !== 'undefined' && window.gt.event) {
+        window.gt.event(eventData.event_name, eventData);
+      }
+
+      // Log for debugging (can remove in production)
+      console.log('GhostTrack Resume Event:', eventData);
+    });
   });
 })();
 </script>
