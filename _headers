@@ -1,0 +1,31 @@
+# Security Headers for cyberbykayvon.com
+# GitHub Pages custom headers configuration
+
+/*
+  # Content Security Policy - Prevents XSS and injection attacks
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://ghosttrack-analytics-production.up.railway.app https://courtcrate.com https://www.youtube.com; frame-src 'self' https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://ghosttrack-analytics-production.up.railway.app https://courtcrate.com; media-src 'self'
+
+  # Prevents clickjacking attacks
+  X-Frame-Options: SAMEORIGIN
+
+  # Prevents MIME-type sniffing
+  X-Content-Type-Options: nosniff
+
+  # Forces HTTPS connections
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Controls referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Controls browser features and permissions
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=()
+
+  # Legacy XSS protection (deprecated but still used by older browsers)
+  X-XSS-Protection: 1; mode=block
+
+# PDF files - same security headers
+/*.pdf
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
