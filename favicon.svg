@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="kGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#purpleGradient)"/>
+
+  <!-- Letter K -->
+  <g fill="url(#kGradient)">
+    <!-- Vertical bar of K -->
+    <rect x="28" y="25" width="10" height="50" rx="2"/>
+
+    <!-- Upper diagonal of K -->
+    <path d="M 38 40 L 65 25 L 68 28 L 72 25 L 72 32 L 41 47 Z"/>
+
+    <!-- Lower diagonal of K -->
+    <path d="M 41 53 L 72 68 L 72 75 L 68 72 L 65 75 L 38 60 Z"/>
+  </g>
+
+  <!-- Subtle shadow/depth effect -->
+  <circle cx="50" cy="50" r="48" fill="none" stroke="rgba(139,92,246,0.3)" stroke-width="2"/>
+</svg>

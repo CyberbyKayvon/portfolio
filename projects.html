@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kayvon Karimi - Projects Gallery</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
     :root {
       --bg: #0a0e1a;
@@ -539,6 +541,77 @@
           <div class="thumbnail">
             <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
               <defs>
+                <linearGradient id="bgEcommerce" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <rect width="1280" height="720" fill="url(#bgEcommerce)"/>
+
+              <!-- Layered Defense Visualization -->
+              <g transform="translate(640, 360)">
+                <!-- Outer Layer -->
+                <circle cx="0" cy="0" r="180" fill="none" stroke="#ef4444" stroke-width="6" opacity="0.6"/>
+                <text x="0" y="-160" font-family="system-ui" font-size="16" font-weight="600" fill="#ef4444" text-anchor="middle">Layer 1: Infrastructure</text>
+
+                <!-- Middle Layer -->
+                <circle cx="0" cy="0" r="130" fill="none" stroke="#f59e0b" stroke-width="6" opacity="0.6"/>
+                <text x="0" y="-110" font-family="system-ui" font-size="16" font-weight="600" fill="#f59e0b" text-anchor="middle">Layer 2: IDS</text>
+
+                <!-- Inner Layer -->
+                <circle cx="0" cy="0" r="80" fill="none" stroke="#10b981" stroke-width="6" opacity="0.6"/>
+                <text x="0" y="-60" font-family="system-ui" font-size="16" font-weight="600" fill="#10b981" text-anchor="middle">Layer 3: WAF</text>
+
+                <!-- Core -->
+                <circle cx="0" cy="0" r="40" fill="#3b82f6" opacity="0.8"/>
+                <text x="0" y="10" font-family="system-ui" font-size="24" font-weight="800" fill="#ffffff" text-anchor="middle">APP</text>
+              </g>
+
+              <!-- Title Box -->
+              <rect x="100" y="50" width="1080" height="120" rx="12" fill="rgba(30, 41, 59, 0.95)" stroke="#10b981" stroke-width="3"/>
+              <text x="640" y="95" font-family="system-ui" font-size="38" font-weight="800" fill="#10b981" text-anchor="middle">WEB APPLICATION HARDENING</text>
+              <text x="640" y="130" font-family="system-ui" font-size="22" font-weight="600" fill="#94a3b8" text-anchor="middle">WordPress + WooCommerce Multi-Layer Defense</text>
+
+              <!-- Stats Bar -->
+              <rect x="150" y="580" width="260" height="60" rx="8" fill="#ef4444"/>
+              <text x="280" y="618" font-family="system-ui" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">5M+ IPs Blocked</text>
+
+              <rect x="450" y="580" width="380" height="60" rx="8" fill="#10b981"/>
+              <text x="640" y="618" font-family="system-ui" font-size="18" font-weight="700" fill="#000000" text-anchor="middle">IDS/IPS/WAF Implemented</text>
+
+              <rect x="870" y="580" width="260" height="60" rx="8" fill="#3b82f6"/>
+              <text x="1000" y="618" font-family="system-ui" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">OWASP Top 10</text>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3 class="project-title">Web Application Security Hardening</h3>
+            <p class="project-desc">Multi-layer defense architecture for WordPress/WooCommerce platform. Detected and blocked 5+ active threat sources, implemented IDS/IPS/WAF (Wordfence), geographic IP blocking (5M+ IPs), Apache hardening, and 24/7 automated monitoring achieving OWASP Top 10 compliance.</p>
+            <div class="tech-tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">Wordfence WAF</span>
+              <span class="tag">IDS/IPS</span>
+              <span class="tag">Apache</span>
+              <span class="tag">OWASP Top 10</span>
+              <span class="tag">Threat Intelligence</span>
+            </div>
+            <div class="card-actions">
+              <a href="EcommerceAppHardening.pdf" class="btn btn-primary pdf-link"
+                 data-event-name="ecommerce_hardening_report_view"
+                 data-event-category="document"
+                 data-event-label="E-Commerce Security Hardening Report">
+                📄 View Report
+              </a>
+              <a href="https://github.com/CyberbyKayvon" target="_blank" class="btn btn-secondary">
+                GitHub →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="thumbnail">
+            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+              <defs>
                 <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
                   <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
@@ -675,7 +748,7 @@
           </div>
           <div class="card-content">
             <h3 class="project-title">Enterprise Security Hardening & Infrastructure Defense</h3>
-            <p class="project-desc">Enterprise infrastructure hardening achieving zero critical vulnerabilities. Eliminated EternalBlue (SMBv1), weak SSL/TLS ciphers, and RDP exposure. Implemented NIST/CIS-aligned controls across Windows Server and Ubuntu systems.</p>
+            <p class="project-desc">Achieved zero critical vulnerabilities through enterprise infrastructure hardening. Eliminated EternalBlue, weak SSL ciphers, and RDP exposure using NIST/CIS controls.</p>
             <div class="tech-tags">
               <span class="tag">NIST 800-53</span>
               <span class="tag">CIS Benchmarks</span>
@@ -689,77 +762,6 @@
                  data-event-name="enterprise_hardening_report_view"
                  data-event-category="document"
                  data-event-label="Enterprise Security Hardening Report">
-                📄 View Report
-              </a>
-              <a href="https://github.com/CyberbyKayvon" target="_blank" class="btn btn-secondary">
-                GitHub →
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="thumbnail">
-            <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-              <defs>
-                <linearGradient id="bgEcommerce" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
-                  <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
-                </linearGradient>
-              </defs>
-              <rect width="1280" height="720" fill="url(#bgEcommerce)"/>
-
-              <!-- Layered Defense Visualization -->
-              <g transform="translate(640, 360)">
-                <!-- Outer Layer -->
-                <circle cx="0" cy="0" r="180" fill="none" stroke="#ef4444" stroke-width="6" opacity="0.6"/>
-                <text x="0" y="-160" font-family="system-ui" font-size="16" font-weight="600" fill="#ef4444" text-anchor="middle">Layer 1: Infrastructure</text>
-
-                <!-- Middle Layer -->
-                <circle cx="0" cy="0" r="130" fill="none" stroke="#f59e0b" stroke-width="6" opacity="0.6"/>
-                <text x="0" y="-110" font-family="system-ui" font-size="16" font-weight="600" fill="#f59e0b" text-anchor="middle">Layer 2: IDS</text>
-
-                <!-- Inner Layer -->
-                <circle cx="0" cy="0" r="80" fill="none" stroke="#10b981" stroke-width="6" opacity="0.6"/>
-                <text x="0" y="-60" font-family="system-ui" font-size="16" font-weight="600" fill="#10b981" text-anchor="middle">Layer 3: WAF</text>
-
-                <!-- Core -->
-                <circle cx="0" cy="0" r="40" fill="#3b82f6" opacity="0.8"/>
-                <text x="0" y="10" font-family="system-ui" font-size="24" font-weight="800" fill="#ffffff" text-anchor="middle">APP</text>
-              </g>
-
-              <!-- Title Box -->
-              <rect x="100" y="50" width="1080" height="120" rx="12" fill="rgba(30, 41, 59, 0.95)" stroke="#10b981" stroke-width="3"/>
-              <text x="640" y="95" font-family="system-ui" font-size="38" font-weight="800" fill="#10b981" text-anchor="middle">E-COMMERCE SECURITY HARDENING</text>
-              <text x="640" y="130" font-family="system-ui" font-size="22" font-weight="600" fill="#94a3b8" text-anchor="middle">WordPress + WooCommerce Multi-Layer Defense</text>
-
-              <!-- Stats Bar -->
-              <rect x="150" y="580" width="260" height="60" rx="8" fill="#ef4444"/>
-              <text x="280" y="618" font-family="system-ui" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">5M+ IPs Blocked</text>
-
-              <rect x="450" y="580" width="380" height="60" rx="8" fill="#10b981"/>
-              <text x="640" y="618" font-family="system-ui" font-size="18" font-weight="700" fill="#000000" text-anchor="middle">IDS/IPS/WAF Implemented</text>
-
-              <rect x="870" y="580" width="260" height="60" rx="8" fill="#3b82f6"/>
-              <text x="1000" y="618" font-family="system-ui" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">OWASP Top 10</text>
-            </svg>
-          </div>
-          <div class="card-content">
-            <h3 class="project-title">E-Commerce Web Application Security Hardening</h3>
-            <p class="project-desc">Multi-layer defense architecture for WordPress/WooCommerce platform. Detected and blocked 5+ active threat sources, implemented IDS/IPS/WAF (Wordfence), geographic IP blocking (5M+ IPs), Apache hardening, and 24/7 automated monitoring achieving OWASP Top 10 compliance.</p>
-            <div class="tech-tags">
-              <span class="tag">WordPress</span>
-              <span class="tag">Wordfence WAF</span>
-              <span class="tag">IDS/IPS</span>
-              <span class="tag">Apache</span>
-              <span class="tag">OWASP Top 10</span>
-              <span class="tag">Threat Intelligence</span>
-            </div>
-            <div class="card-actions">
-              <a href="EcommerceAppHardening.pdf" class="btn btn-primary pdf-link"
-                 data-event-name="ecommerce_hardening_report_view"
-                 data-event-category="document"
-                 data-event-label="E-Commerce Security Hardening Report">
                 📄 View Report
               </a>
               <a href="https://github.com/CyberbyKayvon" target="_blank" class="btn btn-secondary">
