@@ -13,12 +13,12 @@
   <style>
     /* Stats Band Styling */
     .stats-band {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #0f1419 0%, #2d3748 100%);
       padding: 3rem 0;
       margin: 0;
-      border-top: 3px solid #5a67d8;
-      border-bottom: 3px solid #5a67d8;
-      box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+      border-top: 2px solid #374151;
+      border-bottom: 2px solid #374151;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
     .stats-grid {
@@ -33,6 +33,19 @@
     .stat-item {
       text-align: center;
       color: #ffffff;
+    }
+
+    .stat-item a {
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .stat-item a:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-item a:hover .stat-number {
+      color: #3b82f6;
     }
 
     .stat-number {
@@ -628,13 +641,15 @@ setTimeout(function() {
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <div class="stat-number" data-target="12">0</div>
+        <div class="stat-number" data-target="20">0</div>
         <div class="stat-label">Security Reports Written</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <div class="stat-number">A+</div>
-        <div class="stat-label">Security Headers Rating</div>
+        <a href="https://github.com/CyberbyKayvon?tab=repositories" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+          <div class="stat-number" data-target="22">0</div>
+          <div class="stat-label">GitHub Repositories →</div>
+        </a>
       </div>
     </div>
   </div>
