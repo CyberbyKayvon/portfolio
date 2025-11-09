@@ -545,6 +545,28 @@ setTimeout(function() {
 </section>
 
 
+    <!-- Stats Band -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="50">0</div>
+        <div class="stat-label">Vulnerabilities Identified</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="12">0</div>
+        <div class="stat-label">Security Reports Written</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number">A+</div>
+        <div class="stat-label">Security Headers Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <!-- Projects -->
 <section id="projects" class="section">
   <div class="container">
@@ -906,6 +928,50 @@ setTimeout(function() {
 })();
 </script>
 
+<!-- Animated Stats Counter -->
+<script>
+(function() {
+  function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000; // 2 seconds
+    const increment = target / (duration / 16); // 60fps
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target + '+';
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current) + '+';
+      }
+    }, 16);
+  }
+
+  // Intersection Observer to trigger animation when stats come into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+        statNumbers.forEach(num => {
+          if (num.textContent === '0') {
+            animateCounter(num);
+          }
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  // Observe the stats band when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const statsBand = document.querySelector('.stats-band');
+    if (statsBand) {
+      observer.observe(statsBand);
+    }
+  });
+})();
+</script>
 
 
   </main>
