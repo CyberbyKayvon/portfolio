@@ -126,8 +126,8 @@ p.lead{
 }
 
 .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px}
-.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-.card-body{padding:14px}
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; height:100%}
+.card-body{padding:14px; display:flex; flex-direction:column; flex:1; justify-content:space-between}
 .card h4{margin:6px 0; font-size:1.12rem}
 
 [data-theme="dark"] .card h4 {
@@ -136,7 +136,7 @@ p.lead{
 
 .tidy li{margin:6px 0}
 
-.btnrow{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px}
+.btnrow{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:auto; padding-top:10px}
 .btn{display:inline-block; padding:10px 12px; border-radius:12px; border:1px solid var(--line); text-decoration:none; font-weight:700; background:#f9fbff}
 .btn:hover{background:#f0f0ff}
 
