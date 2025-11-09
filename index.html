@@ -516,7 +516,8 @@ setTimeout(function() {
           <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
             Live demonstration of the analytics dashboard tracking events from the test page. Shows real-time data visualization, bot detection, and security monitoring. Designed WordPress plugin for one-click integration.
           </p>
-          <div class="btnrow" style="margin-top: auto;">
+          <div class="btnrow" style="margin-top: auto; display: flex; gap: 10px;">
+            <button class="smalllink" onclick="openDevModal(0)" style="cursor: pointer; border: none; background: transparent; padding: 0; color: var(--accent); text-decoration: underline;">View Larger</button>
             <a class="smalllink" href="https://github.com/CyberbyKayvon/GhostTrack-Analytics" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </div>
@@ -540,7 +541,8 @@ setTimeout(function() {
           <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
             Custom WordPress plugin deployed on live WooCommerce site, capturing visitor events via admin dashboard. Demonstrates seamless plugin integration with real-time analytics aggregation.
           </p>
-          <div class="btnrow" style="margin-top: auto;">
+          <div class="btnrow" style="margin-top: auto; display: flex; gap: 10px;">
+            <button class="smalllink" onclick="openDevModal(1)" style="cursor: pointer; border: none; background: transparent; padding: 0; color: var(--accent); text-decoration: underline;">View Larger</button>
             <a class="smalllink" href="https://github.com/CyberbyKayvon/GhostTrack-Analytics" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </div>
@@ -563,7 +565,8 @@ setTimeout(function() {
           <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
             Production deployment with WordPress plugin integration, multi-site management, interactive heatmaps, and IP geolocation tracking across multiple properties in real-time environment.
           </p>
-          <div class="btnrow" style="margin-top: auto;">
+          <div class="btnrow" style="margin-top: auto; display: flex; gap: 10px;">
+            <button class="smalllink" onclick="openDevModal(2)" style="cursor: pointer; border: none; background: transparent; padding: 0; color: var(--accent); text-decoration: underline;">View Larger</button>
             <a class="smalllink" href="https://github.com/CyberbyKayvon/GhostTrack-Analytics" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </div>
@@ -583,7 +586,8 @@ setTimeout(function() {
           <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
             Custom WordPress plugin admin interface integrated into WooCommerce dashboard. One-click installation with comprehensive analytics tracking, site management controls, and real-time event monitoring directly from WordPress.
           </p>
-          <div class="btnrow" style="margin-top: auto;">
+          <div class="btnrow" style="margin-top: auto; display: flex; gap: 10px;">
+            <button class="smalllink" onclick="openDevModal(3)" style="cursor: pointer; border: none; background: transparent; padding: 0; color: var(--accent); text-decoration: underline;">View Larger</button>
             <a class="smalllink" href="https://github.com/CyberbyKayvon/GhostTrack-Analytics" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </div>
@@ -593,6 +597,118 @@ setTimeout(function() {
   </div>
 </section>
 
+<!-- Development Modal -->
+<div id="dev-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; overflow-y:auto; padding: 20px;">
+  <span id="dev-modal-close" style="position:fixed; top:20px; right:30px; color:white; font-size:40px; font-weight:bold; cursor:pointer; z-index:10000;">&times;</span>
+  <div style="max-width: 1000px; margin: 60px auto; background: var(--bg); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+    <div id="dev-modal-content" style="position: relative; background: #000;"></div>
+    <div style="padding: 24px; background: var(--card);">
+      <h3 id="dev-modal-title" style="margin: 0 0 12px 0; color: var(--fg); font-size: 1.5rem;"></h3>
+      <p id="dev-modal-desc" style="margin: 0; color: var(--muted); line-height: 1.6;"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Development Modal functionality
+(function() {
+  'use strict';
+
+  const devItems = [
+    {
+      type: 'video',
+      src: 'media/ghosttrack1.mp4',
+      poster: 'media/ghosttrack1-poster.jpg',
+      title: 'GhostTrack Dashboard - Real-Time Event Tracking',
+      desc: 'Live demonstration of the analytics dashboard tracking events from the test page. Shows real-time data visualization, bot detection, and security monitoring. Designed WordPress plugin for one-click integration.'
+    },
+    {
+      type: 'video',
+      src: 'media/ghosttrack2.mp4',
+      poster: 'media/ghosttrack2-poster.jpg',
+      title: 'WordPress Plugin Integration - Production Tracking',
+      desc: 'Custom WordPress plugin deployed on live WooCommerce site, capturing visitor events via admin dashboard. Demonstrates seamless plugin integration with real-time analytics aggregation.'
+    },
+    {
+      type: 'video',
+      src: 'media/ghosttrack3.mp4',
+      title: 'Live Dashboard — Multi-Site, Heatmap & IP Lookup',
+      desc: 'Production deployment with WordPress plugin integration, multi-site management, interactive heatmaps, and IP geolocation tracking across multiple properties in real-time environment.'
+    },
+    {
+      type: 'image',
+      src: 'media/wpdash.png',
+      title: 'WordPress Admin Panel - Plugin Dashboard Interface',
+      desc: 'Custom WordPress plugin admin interface integrated into WooCommerce dashboard. One-click installation with comprehensive analytics tracking, site management controls, and real-time event monitoring directly from WordPress.'
+    }
+  ];
+
+  const modal = document.getElementById('dev-modal');
+  const modalContent = document.getElementById('dev-modal-content');
+  const modalTitle = document.getElementById('dev-modal-title');
+  const modalDesc = document.getElementById('dev-modal-desc');
+  const modalClose = document.getElementById('dev-modal-close');
+
+  window.openDevModal = function(index) {
+    const item = devItems[index];
+
+    modalTitle.textContent = item.title;
+    modalDesc.textContent = item.desc;
+
+    if (item.type === 'video') {
+      modalContent.innerHTML = `
+        <video
+          style="width: 100%; display: block;"
+          controls
+          autoplay
+          ${item.poster ? `poster="${item.poster}"` : ''}>
+          <source src="${item.src}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      `;
+    } else {
+      modalContent.innerHTML = `
+        <img
+          src="${item.src}"
+          alt="${item.title}"
+          style="width: 100%; display: block;">
+      `;
+    }
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeDevModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+
+    // Stop any playing videos
+    const videos = modalContent.querySelectorAll('video');
+    videos.forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+    });
+
+    modalContent.innerHTML = '';
+  }
+
+  modalClose.addEventListener('click', closeDevModal);
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeDevModal();
+    }
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeDevModal();
+    }
+  });
+})();
+</script>
 
   <!-- Featured Videos (fast thumbnails) -->
 <section id="videos" class="section">
