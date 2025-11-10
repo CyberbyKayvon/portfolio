@@ -12,6 +12,11 @@
 
   <style>
     /* Stats Band Styling */
+    /* Development Projects Grid - 2 columns on desktop, 1 on mobile */
+    .dev-projects-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
     .stats-band {
       background: linear-gradient(135deg, #0f1419 0%, #2d3748 100%);
       padding: 3rem 0;
@@ -73,6 +78,10 @@
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
+      .dev-projects-grid {
+        grid-template-columns: 1fr !important;
+      }
+
       .stats-band {
         padding: 2rem 0;
       }
@@ -493,7 +502,7 @@ setTimeout(function() {
     <h3 class="title">Project in Development</h3>
     <p class="lead">Current work: GhostTrack Analytics - A privacy-first web analytics platform and IDS (Intrusion Detection System) with built-in security monitoring. Designed custom WordPress plugin for seamless integration.</p>
 
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr); max-width: 1200px; margin: 0 auto;">
+    <div class="grid dev-projects-grid" style="max-width: 1200px; margin: 0 auto;">
 
       <!-- First video - Test Dashboard -->
       <article class="card">
