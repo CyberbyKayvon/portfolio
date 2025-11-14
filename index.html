@@ -1305,6 +1305,43 @@ setTimeout(function() {
   console.log('Dark mode initialized');
 })();
 </script>
+
+<script>
+// Video tracking for GhostTrack Analytics
+(function() {
+  // Custom GhostTrack event for embedded video play events
+  document.querySelectorAll('video').forEach(function(video) {
+    let hasTrackedPlay = false;
+
+    video.addEventListener('play', function(e) {
+      // Only track the first play to avoid duplicate events
+      if (!hasTrackedPlay) {
+        hasTrackedPlay = true;
+
+        const videoTitle = this.getAttribute('aria-label') || 'Unknown Video';
+        const eventData = {
+          event_name: 'embedded_video_play',
+          event_category: 'video',
+          event_label: videoTitle,
+          video_src: this.querySelector('source') ? this.querySelector('source').src : '',
+          timestamp: new Date().toISOString()
+        };
+
+        // Send to GhostTrack
+        if (typeof window.ghostTrack !== 'undefined' && window.ghostTrack.track) {
+          window.ghostTrack.track(eventData.event_name, eventData);
+        }
+
+        if (typeof window.gt !== 'undefined' && window.gt.event) {
+          window.gt.event(eventData.event_name, eventData);
+        }
+
+        console.log('GhostTrack Embedded Video Play:', eventData);
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
 
